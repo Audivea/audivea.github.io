@@ -68,11 +68,13 @@ nav {
   -webkit-text-fill-color: transparent;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .nav-slogan {
-    display: none; /* Hide slogan on small screens */
+    display: none; /* Hide slogan only on very small screens */
   }
-  
+}
+
+@media (max-width: 768px) {
   .nav-icon {
     height: 35px; /* Slightly smaller on mobile */
   }
