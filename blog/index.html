@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Audivea Articles</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JLL7X7X53H');
+  </script>
+  
+  <!-- Cool font example from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../icon.png" type="image/png">
+  
+  <!-- Common styles -->
+  <link rel="stylesheet" href="../components/styles.css">
+  
+  <!-- Component scripts -->
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+
+  <style>
+    /* Page-specific styles */
+    .container {
+      width: 800px;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+    .page-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #00aaff;
+      text-align: center;
+    }
+    .page-subtitle {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      color: #aaa;
+      text-align: center;
+    }
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .blog-card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .blog-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #00aaff;
+    }
+    .blog-excerpt {
+      color: #ccc;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .read-more {
+      display: inline-block;
+      color: #00aaff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    .read-more:hover {
+      color: #33cfff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header will be inserted by header.js -->
+  
+  <div class="main-content">
+    <div class="container">
+      <h1 class="page-title">Articles</h1>
+      <p class="page-subtitle">Deep dives into the art and science of sound.</p>
+      
+      <div class="blog-list">
+        <article class="blog-card">
+          <h2 class="blog-title">Metering in Music</h2>
+          <p class="blog-excerpt">
+            Explore the fundamentals of audio metering and how it impacts music production. Learn about different metering standards and how they can help you achieve better mixes.
+          </p>
+          <a href="metering-in-music.html" class="read-more">Read More →</a>
+        </article>
+        
+        <article class="blog-card">
+          <h2 class="blog-title">Metering in Music Production</h2>
+          <p class="blog-excerpt">
+            Dive deeper into the practical applications of metering in professional music production. Discover advanced techniques and tools used by industry professionals.
+          </p>
+          <a href="metering-in-music-production.html" class="read-more">Read More →</a>
+        </article>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Footer will be inserted by footer.js -->
+</body>
+</html>
