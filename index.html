@@ -108,8 +108,8 @@
       <!-- Latest article -->
       <div class="content-item">
         <a href="blog/mastering-audio-metering.html">
-          <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
-            <img src="blog/mastering-audio-metering.png" alt="Audio Metering in Music Production" style="width: 200px; height: auto; border-radius: 6px; flex-shrink: 0;">
+          <div class="article-flex-container">
+            <img src="blog/mastering-audio-metering.png" alt="Audio Metering in Music Production" class="article-image">
             <div>
               <h3 class="item-title">Mastering Audio Metering in Music Production</h3>
               <div class="item-meta">Published on July 31, 2025</div>
@@ -120,6 +120,43 @@
           </div>
         </a>
       </div>
+
+      <style>
+        /* Styles for article layout */
+        .article-flex-container {
+          display: flex;
+          gap: 1.5rem;
+          align-items: flex-start;
+          flex-direction: row;
+        }
+        
+        .article-image {
+          width: 200px;
+          height: auto;
+          border-radius: 6px;
+          flex-shrink: 0;
+        }
+        
+        /* Responsive styles for content items */
+        @media (max-width: 768px) {
+          .article-flex-container {
+            flex-direction: column !important;
+          }
+          
+          .article-image {
+            width: 100% !important;
+            max-width: 400px;
+            margin-bottom: 1rem;
+          }
+          
+          .item-summary {
+            -webkit-line-clamp: 3;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+        }
+      </style>
     </section>
   </div>
   
