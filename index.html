@@ -31,31 +31,70 @@
     .main-content {
       justify-content: center;
     }
-    .logo {
-      width: 200px;
-      max-width: 40%;
-      margin-bottom: 1rem;
+    /* Main content styles */
+    .main-content {
+      padding-top: 100px; /* Extra padding at the top for content */
     }
-    .brand-name {
-      font-family: 'Manrope', sans-serif;
-      font-size: 4rem;
+    
+    /* Latest section styles */
+    .latest-section {
+      width: 800px;
+      max-width: 90%;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      font-size: 2rem;
       font-weight: 700;
-      letter-spacing: 1px;
-      margin: 0;
-      background: linear-gradient(to right, #33cfff, #0088ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 8px rgba(0, 180, 255, 0.4);
+      margin-bottom: 1.5rem;
+      color: #00aaff;
+      border-bottom: 1px solid rgba(0, 170, 255, 0.3);
+      padding-bottom: 0.5rem;
     }
-    .tagline {
-      font-family: 'Manrope', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 400;
-      letter-spacing: 1px;
-      background: linear-gradient(to right, #00b4ff, #0072ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-top: 0.5rem;
+    
+    .content-placeholder, .content-item {
+      background-color: rgba(30, 30, 40, 0.5);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(0, 170, 255, 0.2);
+    }
+    
+    .placeholder-text {
+      color: #aaa;
+      font-style: italic;
+    }
+    
+    .content-item {
+      transition: background-color 0.3s ease;
+    }
+    
+    .content-item:hover {
+      background-color: rgba(40, 40, 60, 0.7);
+    }
+    
+    .content-item a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    .item-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #00aaff;
+      margin-bottom: 0.5rem;
+    }
+    
+    .item-meta {
+      font-size: 0.8rem;
+      color: #aaa;
+      margin-bottom: 0.8rem;
+    }
+    
+    .item-summary {
+      color: #ddd;
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
   </style>
 </head>
@@ -63,9 +102,14 @@
   <!-- Header will be inserted by header.js -->
   
   <div class="main-content">
-    <img src="herobanner.png" alt="Audivea Logo" class="logo">
-    <h1 class="brand-name">Audivea</h1>
-    <p class="tagline">Dive deeper, let your sound ascend.</p>
+    <section class="latest-section">
+      <h2 class="section-title">What’s New</h2>
+      
+      <!-- Content placeholder for future articles and updates -->
+      <div class="content-placeholder">
+        <p class="placeholder-text">New articles, products, and updates will appear here.</p>
+      </div>
+    </section>
   </div>
   
   <!-- Footer will be inserted by footer.js -->
