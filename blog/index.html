@@ -96,8 +96,8 @@
       
       <div class="blog-list">
         <article class="blog-card">
-          <div style="display: flex; gap: 1.5rem; align-items: flex-start;">
-            <img src="mastering-audio-metering.png" alt="Audio Metering in Music Production" style="width: 180px; height: auto; border-radius: 6px; flex-shrink: 0;">
+          <div class="article-flex-container">
+            <img src="mastering-audio-metering.png" alt="Audio Metering in Music Production" class="article-image">
             <div>
               <h2 class="blog-title">Mastering Audio Metering in Music Production</h2>
               <p class="blog-excerpt">
@@ -108,6 +108,41 @@
           </div>
         </article>
       </div>
+
+      <style>
+        /* Responsive styles for article cards */
+        .article-flex-container {
+          display: flex;
+          gap: 1.5rem;
+          align-items: flex-start;
+        }
+        
+        .article-image {
+          width: 180px;
+          height: auto;
+          border-radius: 6px;
+          flex-shrink: 0;
+        }
+        
+        @media (max-width: 768px) {
+          .article-flex-container {
+            flex-direction: column;
+          }
+          
+          .article-image {
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 1rem;
+          }
+          
+          .blog-excerpt {
+            -webkit-line-clamp: 3;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+        }
+      </style>
     </div>
   </div>
   

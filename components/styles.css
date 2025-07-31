@@ -184,3 +184,38 @@ body {
   max-width: 90%;
   margin: 0 auto;
 }
+
+/* Additional responsive styles */
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    max-width: 95%;
+  }
+  
+  .main-content {
+    padding: 90px 0 70px 0;
+  }
+  
+  .nav-links {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 1rem;
+  }
+  
+  .nav-container {
+    padding: 0 16px;
+  }
+  
+  .footer-links {
+    padding: 0 16px;
+    font-size: 0.9rem;
+  }
+  
+  .social-link {
+    margin: 0 0.3rem;
+  }
+}
