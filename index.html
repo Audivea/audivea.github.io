@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>audivea.com</title>
-  <!-- Google tag (gtag.js) 請將 G-XXXXXXXXXX 替換為自己的 ID -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -18,21 +18,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="icon.png" type="image/png">
+  
+  <!-- Common styles -->
+  <link rel="stylesheet" href="components/styles.css">
+  
+  <!-- Component scripts -->
+  <script src="components/header.js"></script>
+  <script src="components/footer.js"></script>
 
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background-color: #000;
-      display: flex;
+    /* Page-specific styles */
+    .main-content {
       justify-content: center;
-      align-items: center;
-      font-family: 'Manrope', sans-serif;
-      color: #fff;
-      flex-direction: column;
     }
     .logo {
       width: 200px;
@@ -60,37 +57,17 @@
       -webkit-text-fill-color: transparent;
       margin-top: 0.5rem;
     }
-    .social-footer {
-      margin-top: 3rem;
-      font-size: 1rem;
-      color: #aaa;
-      text-align: center;
-    }
-    .social-link {
-      color: #888;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-weight: 500;
-    }
-    .social-link:hover {
-      text-decoration: underline;
-      color: #ccc;
-    }
-    .divider {
-      color: #555;
-    }
   </style>
 </head>
 <body>
-  <img src="herobanner.png" alt="Audivea Logo" class="logo">
-  <h1 class="brand-name">Audivea</h1>
-  <p class="tagline">Dive deeper, let your sound ascend.</p>
-  <footer class="social-footer">
-    <a href="https://www.instagram.com/audivea/" target="_blank" class="social-link">Instagram</a>
-    <span class="divider">|</span>
-    <a href="https://www.facebook.com/audivea" target="_blank" class="social-link">Facebook</a>
-    <span class="divider">|</span>
-    <a href="mailto:audivea.official@gmail.com" class="social-link">Email</a>
-  </footer>
+  <!-- Header will be inserted by header.js -->
+  
+  <div class="main-content">
+    <img src="herobanner.png" alt="Audivea Logo" class="logo">
+    <h1 class="brand-name">Audivea</h1>
+    <p class="tagline">Dive deeper, let your sound ascend.</p>
+  </div>
+  
+  <!-- Footer will be inserted by footer.js -->
 </body>
 </html>
