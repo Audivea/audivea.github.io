@@ -13,11 +13,20 @@ function loadHeader() {
   // Create header element
   const header = document.createElement('header');
   
+  // Determine the path to the icon based on current location
+  const iconPath = isInBlogDir ? '../icon.png' : './icon.png';
+
   // Set the HTML content with relative paths
   header.innerHTML = `
     <nav>
       <div class="nav-container">
-        <a href="${homePath}" class="nav-logo">Audivea</a>
+        <div class="nav-brand">
+          <div class="brand-top">
+            <img src="${iconPath}" alt="Audivea Icon" class="nav-icon">
+            <a href="${homePath}" class="nav-logo">Audivea</a>
+          </div>
+          <span class="nav-slogan">Dive deeper, let your sound ascend.</span>
+        </div>
         <div class="nav-links">
           <a href="${blogPath}" class="nav-link ${isInBlogDir ? 'active' : ''}">Articles</a>
         </div>
