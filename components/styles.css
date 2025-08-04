@@ -7,7 +7,7 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1e1e28; /* Changed from semi-transparent to solid color */
+  background-color: rgba(15, 15, 25, 0.95); /* Semi-transparent but more opaque than content blocks */
   position: fixed;
   top: 0;
   left: 0;
@@ -108,7 +108,7 @@ nav {
   color: #aaa;
   text-align: center;
   width: 100%;
-  background-color: #1e1e28; /* Changed from semi-transparent to solid color */
+  background-color: rgba(15, 15, 25, 0.95); /* Semi-transparent but more opaque than content blocks */
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
   position: fixed;
   bottom: 0;
@@ -157,7 +157,12 @@ html {
 }
 
 body {
-  background-color: #000;
+  background-color: #000; /* Keep as fallback */
+  background-image: url('../BK.png');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; /* Creates parallax effect */
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   font-family: 'Manrope', sans-serif;
