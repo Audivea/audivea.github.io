@@ -3,18 +3,21 @@ function loadHeader() {
   // Get the current page path to determine active links and path structure
   const currentPath = window.location.pathname;
   
-  // Determine if we're in the articles directory or root directory
+  // Determine if we're in a subdirectory
   const isInArticlesDir = currentPath.includes('/articles/') || currentPath.includes('/blog/');
-  
-  // Set the home and articles paths based on current location
-  const homePath = isInArticlesDir ? '../index.html' : './index.html';
-  const articlesPath = isInArticlesDir ? './index.html' : './articles/index.html';
+  const isInPluginsDir = currentPath.includes('/products/');
+  const isInSubDir = isInArticlesDir || isInPluginsDir;
+
+  // Set paths based on current location
+  const homePath = isInSubDir ? '../index.html' : './index.html';
+  const articlesPath = isInSubDir ? '../articles/index.html' : './articles/index.html';
+  const pluginsPath = isInSubDir ? '../products/index.html' : './products/index.html';
   
   // Create header element
   const header = document.createElement('header');
   
   // Determine the path to the icon based on current location
-  const iconPath = isInArticlesDir ? '../icon.png' : './icon.png';
+  const iconPath = isInSubDir ? '../icon.png' : './icon.png';
 
   // Set the HTML content with relative paths
   header.innerHTML = `
@@ -28,6 +31,7 @@ function loadHeader() {
           <span class="nav-slogan">Dive deeper, let your sound ascend.</span>
         </div>
         <div class="nav-links">
+          <a href="${pluginsPath}" class="nav-link ${isInPluginsDir ? 'active' : ''}">Products</a>
           <a href="${articlesPath}" class="nav-link ${isInArticlesDir ? 'active' : ''}">Articles</a>
         </div>
       </div>
