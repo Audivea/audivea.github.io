@@ -9,9 +9,9 @@ function loadHeader() {
   const isInSubDir = isInArticlesDir || isInPluginsDir;
 
   // Set paths based on current location
-  const homePath = isInSubDir ? '../index.html' : './index.html';
-  const articlesPath = isInSubDir ? '../articles/index.html' : './articles/index.html';
-  const pluginsPath = isInSubDir ? '../products/index.html' : './products/index.html';
+  const homePath = isInSubDir ? '../' : './';
+  const articlesPath = isInSubDir ? '../articles/' : './articles/';
+  const pluginsPath = isInSubDir ? '../products/' : './products/';
   
   // Create header element
   const header = document.createElement('header');
