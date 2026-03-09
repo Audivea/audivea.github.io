@@ -5,13 +5,15 @@ function loadHeader() {
   const isInArticlesDir = currentPath.includes('/articles/') || currentPath.includes('/blog/');
   const isInPluginsDir = currentPath.includes('/products/');
   const isAboutPage = currentPath.endsWith('/about.html') || currentPath.endsWith('/about');
+  const isContactPage = currentPath.endsWith('/contact.html') || currentPath.endsWith('/contact');
   const isInSubDir = isInArticlesDir || isInPluginsDir;
-  const isHome = !isInArticlesDir && !isInPluginsDir && !isAboutPage;
+  const isHome = !isInArticlesDir && !isInPluginsDir && !isAboutPage && !isContactPage;
 
   const homePath = isInSubDir ? '../' : './';
   const articlesPath = isInSubDir ? '../articles/' : './articles/';
   const pluginsPath = isInSubDir ? '../products/' : './products/';
   const aboutPath = isInSubDir ? '../about.html' : './about.html';
+  const contactPath = isInSubDir ? '../contact.html' : './contact.html';
 
   const header = document.createElement('header');
 
@@ -39,6 +41,7 @@ function loadHeader() {
           <a href="${pluginsPath}" class="nav-link ${isInPluginsDir ? 'active' : ''}">Products</a>
           <a href="${articlesPath}" class="nav-link ${isInArticlesDir ? 'active' : ''}">Articles</a>
           <a href="${aboutPath}" class="nav-link ${isAboutPage ? 'active' : ''}">About</a>
+          <a href="${contactPath}" class="nav-link ${isContactPage ? 'active' : ''}">Contact</a>
         </div>
       </div>
     </nav>
