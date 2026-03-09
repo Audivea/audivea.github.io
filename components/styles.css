@@ -325,8 +325,8 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
-  padding: 120px 24px 64px;
+  min-height: 50vh;
+  padding: 100px 24px 48px;
   text-align: center;
   border-bottom: 1px solid rgba(0, 170, 255, 0.08);
 }
