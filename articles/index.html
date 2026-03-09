@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Audivea Articles</title>
+  <title>Articles — The Art and Science of Sound | Audivea</title>
+  <meta name="description" content="Deep dives into the art and science of sound. Explore audio production techniques with Audivea.">
+  <link rel="canonical" href="https://audivea.com/articles/">
+  <meta property="og:title" content="Audivea Articles">
+  <meta property="og:description" content="Deep dives into the art and science of sound.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Audivea Articles">
+  <meta name="twitter:description" content="Deep dives into the art and science of sound.">
+  <meta name="twitter:image" content="https://audivea.com/og-image.png">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
   <script>
@@ -12,159 +23,57 @@
     gtag('js', new Date());
     gtag('config', 'G-JLL7X7X53H');
   </script>
-  
-  <!-- Cool font example from Google Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="../icon.png" type="image/png">
-  
-  <!-- Common styles -->
+  <link rel="icon" href="../favicon.png" type="image/png">
+
   <link rel="stylesheet" href="../components/styles.css">
-  
-  <!-- Component scripts -->
+
   <script src="../components/header.js"></script>
   <script src="../components/footer.js"></script>
-
-  <style>
-    /* Page-specific styles */
-    .container {
-      width: 800px;
-      max-width: 90%;
-      margin: 0 auto;
-    }
-    .page-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #00aaff;
-      text-align: center;
-      text-shadow: 0 0 10px rgba(0, 170, 255, 0.5); /* Glow effect for the title */
-      letter-spacing: 0.05em; /* Slightly increased letter spacing */
-    }
-    .page-subtitle {
-      font-size: 1.2rem;
-      font-weight: 400;
-      margin-bottom: 2rem;
-      color: #aaa;
-      text-align: center;
-    }
-    .blog-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    .blog-card {
-      background-color: rgba(20, 20, 30, 0.7); /* Darker background with higher opacity */
-      border-radius: 8px;
-      padding: 1.5rem;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
-      border: 1px solid rgba(0, 170, 255, 0.2);
-    }
-    .blog-card:hover {
-      transform: translateY(-5px);
-      background-color: rgba(25, 25, 40, 0.8);
-    }
-    .blog-title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: #00aaff;
-      text-shadow: 0 0 8px rgba(0, 170, 255, 0.4); /* Subtle glow for headings */
-    }
-    .blog-excerpt {
-      color: #fff; /* Brightened text color */
-      margin-bottom: 1rem;
-      line-height: 1.6;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Subtle text shadow for readability */
-    }
-    .read-more {
-      display: inline-block;
-      color: #00aaff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    .read-more:hover {
-      color: #33cfff;
-      text-decoration: underline;
-    }
-  </style>
 </head>
 <body>
   <!-- Header will be inserted by header.js -->
-  
+
   <div class="main-content">
-    <div class="container">
+    <div class="container-wide">
       <h1 class="page-title">Articles</h1>
       <p class="page-subtitle">Deep dives into the art and science of sound.</p>
-      
-      <div class="blog-list">
-        <article class="blog-card">
-          <div class="article-flex-container">
-            <img src="how-to-read-your-meters-and-fix-mix-problem.png" alt="Reading Meters and Fixing Mix Problems" class="article-image">
+
+      <div class="card-list">
+        <article class="card">
+          <div class="card-flex">
+            <img src="how-to-read-your-meters-and-fix-mix-problem.webp" alt="Reading Meters and Fixing Mix Problems" class="card-image">
             <div>
-              <h2 class="blog-title">How to Read Your Meters and Fix Mix Problems</h2>
-              <p class="blog-excerpt">
+              <h2 class="card-title">How to Read Your Meters and Fix Mix Problems</h2>
+              <div class="card-meta">Published on August 16, 2025</div>
+              <p class="card-excerpt">
                 Mixing is both an art and a science. While your ears are your most important tools, your meters provide crucial visual feedback that can help you identify and fix problems in your mix. Learn how to interpret different types of meters and use them to diagnose and solve common mix problems.
               </p>
-              <a href="how-to-read-your-meters-and-fix-mix-problems.html" class="read-more">Read More →</a>
+              <a href="how-to-read-your-meters-and-fix-mix-problems.html" class="card-link">Read More &rarr;</a>
             </div>
           </div>
         </article>
 
-        <article class="blog-card">
-          <div class="article-flex-container">
-            <img src="mastering-audio-metering.png" alt="Audio Metering in Music Production" class="article-image">
+        <article class="card">
+          <div class="card-flex">
+            <img src="mastering-audio-metering.webp" alt="Audio Metering in Music Production" class="card-image">
             <div>
-              <h2 class="blog-title">Mastering Audio Metering in Music Production</h2>
-              <p class="blog-excerpt">
+              <h2 class="card-title">Mastering Audio Metering in Music Production</h2>
+              <div class="card-meta">Published on July 31, 2025</div>
+              <p class="card-excerpt">
                 Ever uploaded a track to Spotify, only to find it sounds quieter—or just flatter—than you remember in the studio? The missing link might not be your ears—it might be your meters. Learn how to use metering effectively at every stage of production.
               </p>
-              <a href="mastering-audio-metering.html" class="read-more">Read More →</a>
+              <a href="mastering-audio-metering.html" class="card-link">Read More &rarr;</a>
             </div>
           </div>
         </article>
       </div>
-
-      <style>
-        /* Responsive styles for article cards */
-        .article-flex-container {
-          display: flex;
-          gap: 1.5rem;
-          align-items: flex-start;
-        }
-        
-        .article-image {
-          width: 180px;
-          height: auto;
-          border-radius: 6px;
-          flex-shrink: 0;
-        }
-        
-        @media (max-width: 768px) {
-          .article-flex-container {
-            flex-direction: column;
-          }
-          
-          .article-image {
-            width: 100%;
-            max-width: 400px;
-            margin-bottom: 1rem;
-          }
-          
-          .blog-excerpt {
-            -webkit-line-clamp: 3;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          }
-        }
-      </style>
     </div>
   </div>
-  
+
   <!-- Footer will be inserted by footer.js -->
 </body>
 </html>
