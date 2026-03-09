@@ -6,6 +6,7 @@ function loadFooter() {
   const productsPath = isInSubDir ? '../products/' : './products/';
   const articlesPath = isInSubDir ? '../articles/' : './articles/';
   const aboutPath = isInSubDir ? '../about.html' : './about.html';
+  const contactPath = isInSubDir ? '../contact.html' : './contact.html';
 
   const footer = document.createElement('footer');
   footer.className = 'social-footer';
@@ -21,6 +22,7 @@ function loadFooter() {
             <a href="${productsPath}">Products</a>
             <a href="${articlesPath}">Articles</a>
             <a href="${aboutPath}">About</a>
+            <a href="${contactPath}">Contact</a>
           </div>
           <div class="footer-social">
             <a href="https://www.facebook.com/audivea" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -29,16 +31,6 @@ function loadFooter() {
             <a href="https://www.instagram.com/audivea" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
               <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
             </a>
-            <a href="mailto:audivea.official@gmail.com" aria-label="Email">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </a>
-          </div>
-          <div class="footer-signup">
-            <p>Stay updated on new tools and articles.</p>
-            <form class="signup-form" action="mailto:audivea.official@gmail.com" method="POST" enctype="text/plain">
-              <input type="email" name="email" placeholder="Your email address" required>
-              <button type="submit">Subscribe</button>
-            </form>
           </div>
         </div>
       </div>

@@ -789,14 +789,132 @@ nav {
 }
 
 /* ============================================
+   Contact Form
+   ============================================ */
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 1px solid rgba(0, 170, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color var(--transition-speed) ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #666;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-submit {
+  align-self: flex-start;
+  padding: 12px 32px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Manrope', sans-serif;
+  transition: background var(--transition-speed) ease;
+}
+
+.contact-submit:hover {
+  background: var(--color-primary-light);
+}
+
+/* ============================================
    About Page
    ============================================ */
+
+/* Section 1: Intro */
+.about-intro {
+  text-align: center;
+  padding: 0 24px 3rem;
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+
+.about-intro-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-intro-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Section 2: Our Philosophy */
+.about-philosophy-section {
+  background: rgba(0, 170, 255, 0.03);
+  border-top: 1px solid rgba(0, 170, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 170, 255, 0.1);
+  padding: 3rem 24px;
+}
+
+.about-section-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-align: center;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.about-section-lead {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+  line-height: 1.6;
+}
 
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
   margin-top: 2rem;
+  max-width: var(--max-width-wide);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .about-value {
@@ -819,6 +937,42 @@ nav {
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
+}
+
+/* Section 3: What We're Building */
+.about-building-section {
+  text-align: center;
+  padding: 3rem 24px 1rem;
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+
+.about-building-text {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* CTA Button */
+.about-cta {
+  display: inline-block;
+  padding: 14px 36px;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background var(--transition-speed) ease;
+  margin-top: 1.5rem;
+}
+
+.about-cta:hover {
+  background: var(--color-primary-light);
 }
 
 /* ============================================
@@ -952,6 +1106,22 @@ nav {
 
   .about-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-intro {
+    padding: 0 16px 2rem;
+  }
+
+  .about-philosophy-section {
+    padding: 2rem 16px;
+  }
+
+  .about-building-section {
+    padding: 2rem 16px 1rem;
+  }
+
+  .about-section-heading {
+    font-size: 1.5rem;
   }
 }
 
