@@ -1,25 +1,22 @@
 // Header component with navigation bar
 function loadHeader() {
-  // Get the current page path to determine active links and path structure
   const currentPath = window.location.pathname;
-  
-  // Determine if we're in a subdirectory
+
   const isInArticlesDir = currentPath.includes('/articles/') || currentPath.includes('/blog/');
   const isInPluginsDir = currentPath.includes('/products/');
+  const isAboutPage = currentPath.endsWith('/about.html') || currentPath.endsWith('/about');
   const isInSubDir = isInArticlesDir || isInPluginsDir;
+  const isHome = !isInArticlesDir && !isInPluginsDir && !isAboutPage;
 
-  // Set paths based on current location
   const homePath = isInSubDir ? '../' : './';
   const articlesPath = isInSubDir ? '../articles/' : './articles/';
   const pluginsPath = isInSubDir ? '../products/' : './products/';
-  
-  // Create header element
-  const header = document.createElement('header');
-  
-  // Determine the path to the icon based on current location
-  const iconPath = isInSubDir ? '../icon.png' : './icon.png';
+  const aboutPath = isInSubDir ? '../about.html' : './about.html';
 
-  // Set the HTML content with relative paths
+  const header = document.createElement('header');
+
+  const iconPath = isInSubDir ? '../icon.webp' : './icon.webp';
+
   header.innerHTML = `
     <nav>
       <div class="nav-container">
@@ -30,17 +27,40 @@ function loadHeader() {
           </div>
           <span class="nav-slogan">Dive deeper, let your sound ascend.</span>
         </div>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
         <div class="nav-links">
+          <a href="${homePath}" class="nav-link ${isHome ? 'active' : ''}">Home</a>
           <a href="${pluginsPath}" class="nav-link ${isInPluginsDir ? 'active' : ''}">Products</a>
           <a href="${articlesPath}" class="nav-link ${isInArticlesDir ? 'active' : ''}">Articles</a>
+          <a href="${aboutPath}" class="nav-link ${isAboutPage ? 'active' : ''}">About</a>
         </div>
       </div>
     </nav>
   `;
-  
-  // Insert the header at the beginning of the body
+
   document.body.insertBefore(header, document.body.firstChild);
+
+  // Hamburger menu toggle
+  const toggle = header.querySelector('.nav-toggle');
+  const navLinks = header.querySelector('.nav-links');
+  toggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  // Close menu when a link is clicked
+  navLinks.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 }
 
-// Load the header when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', loadHeader);

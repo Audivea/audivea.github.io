@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>audivea.com</title>
+  <title>Audivea — Audio Plugins Crafted for Depth</title>
+  <meta name="description" content="Audivea creates audio plugins that help producers, engineers, and sound designers dive deeper into sound and focus on what matters most.">
+  <link rel="canonical" href="https://audivea.com/">
+  <meta property="og:title" content="Audivea — Audio Plugins Crafted for Depth">
+  <meta property="og:description" content="Precision audio tools for producers, engineers, and sound designers.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Audivea — Audio Plugins Crafted for Depth">
+  <meta name="twitter:description" content="Precision audio tools for producers, engineers, and sound designers.">
+  <meta name="twitter:image" content="https://audivea.com/og-image.png">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
   <script>
@@ -12,128 +23,70 @@
     gtag('js', new Date());
     gtag('config', 'G-JLL7X7X53H');
   </script>
-  
-  <!-- Cool font example from Google Fonts -->
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="icon.png" type="image/png">
-  
-  <!-- Common styles -->
+  <link rel="icon" href="favicon.png" type="image/png">
+
   <link rel="stylesheet" href="components/styles.css">
-  
-  <!-- Component scripts -->
+
   <script src="components/header.js"></script>
   <script src="components/footer.js"></script>
-
-  <style>
-    /* Page-specific styles */
-    .main-content {
-      justify-content: center;
-    }
-    /* Main content styles */
-    .main-content {
-      padding-top: 100px; /* Extra padding at the top for content */
-    }
-    
-    /* Latest section styles */
-    .latest-section {
-      width: 800px;
-      max-width: 90%;
-      margin: 0 auto;
-    }
-    
-    .section-title {
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: #00aaff;
-      border-bottom: 1px solid rgba(0, 170, 255, 0.3);
-      padding-bottom: 0.5rem;
-      text-shadow: 0 0 10px rgba(0, 170, 255, 0.5); /* Glow effect for the title */
-      letter-spacing: 0.05em; /* Slightly increased letter spacing */
-    }
-    
-    .content-placeholder, .content-item {
-      background-color: rgba(15, 15, 25, 0.85); /* Further darkened and increased opacity for better readability */
-      border-radius: 8px;
-      padding: 20px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(0, 170, 255, 0.2);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
-    }
-    
-    .placeholder-text {
-      color: #aaa;
-      font-style: italic;
-    }
-    
-    .content-item {
-      transition: background-color 0.3s ease;
-    }
-    
-    .content-item:hover {
-      background-color: rgba(40, 40, 60, 0.7);
-    }
-    
-    .content-item a {
-      text-decoration: none;
-      color: inherit;
-    }
-    
-    .item-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      color: #00aaff;
-      margin-bottom: 0.5rem;
-    }
-    
-    .item-meta {
-      font-size: 0.8rem;
-      color: #aaa;
-      margin-bottom: 0.8rem;
-    }
-    
-    .item-summary {
-      color: #fff; /* Brightened text color for better contrast */
-      font-size: 0.95rem;
-      line-height: 1.5;
-      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); /* Subtle text shadow for readability */
-    }
-  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Audivea",
+    "url": "https://audivea.com",
+    "logo": "https://audivea.com/icon.webp",
+    "description": "Audivea creates audio plugins that help producers, engineers, and sound designers dive deeper into sound and focus on what matters most.",
+    "sameAs": [
+      "https://www.facebook.com/audivea",
+      "https://www.instagram.com/audivea"
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- Header will be inserted by header.js -->
-  
-  <div class="main-content">
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Audio Plugins<br>Crafted for Depth</h1>
+      <p class="hero-subtitle">Dive deeper into sound. Precision tools designed to help you reveal detail, focus on what matters, and create with clarity.</p>
+      <div class="hero-actions">
+        <a href="products/" class="hero-cta">Explore Products</a>
+        <a href="articles/" class="hero-cta-secondary">Read Articles</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="main-content home-content">
     <section class="latest-section">
-      <h2 class="section-title">What’s New</h2>
-      
-      <!-- Coming soon product -->
-      <div class="content-item">
+      <h2 class="section-title">What's New</h2>
+
+      <div class="card">
         <a href="products/coming-soon.html">
-          <div class="article-flex-container">
-            <img src="products/coming-soon.png" alt="Coming Soon" class="article-image">
+          <div class="card-flex">
+            <img src="products/coming-soon.webp" alt="Coming Soon" class="card-image" loading="lazy">
             <div>
-              <h3 class="item-title">Something New Is on the Way</h3>
-              <div class="item-meta">Published on March 5, 2026</div>
-              <p class="item-summary">
-                Stay tuned for updates.
-              </p>
+              <h3 class="card-title">Something New Is on the Way</h3>
+              <div class="card-meta">Published on March 5, 2026</div>
+              <p class="card-excerpt">Stay tuned for updates.</p>
             </div>
           </div>
         </a>
       </div>
 
-      <!-- Latest article -->
-      <div class="content-item">
+      <div class="card">
         <a href="articles/how-to-read-your-meters-and-fix-mix-problems.html">
-          <div class="article-flex-container">
-            <img src="articles/how-to-read-your-meters-and-fix-mix-problem.png" alt="Reading Meters and Fixing Mix Problems" class="article-image">
+          <div class="card-flex">
+            <img src="articles/how-to-read-your-meters-and-fix-mix-problem.webp" alt="Reading Meters and Fixing Mix Problems" class="card-image" loading="lazy">
             <div>
-              <h3 class="item-title">How to Read Your Meters and Fix Mix Problems</h3>
-              <div class="item-meta">Published on August 16, 2025</div>
-              <p class="item-summary">
+              <h3 class="card-title">How to Read Your Meters and Fix Mix Problems</h3>
+              <div class="card-meta">Published on August 16, 2025</div>
+              <p class="card-excerpt">
                 In music production, meters do more than provide numbers on a screen—they reveal what's really happening in your mix. Learn how to interpret different types of meters and use them to diagnose and solve common mix problems.
               </p>
             </div>
@@ -141,61 +94,33 @@
         </a>
       </div>
 
-      <!-- Previous article -->
-      <div class="content-item">
+      <div class="card">
         <a href="articles/mastering-audio-metering.html">
-          <div class="article-flex-container">
-            <img src="articles/mastering-audio-metering.png" alt="Audio Metering in Music Production" class="article-image">
+          <div class="card-flex">
+            <img src="articles/mastering-audio-metering.webp" alt="Audio Metering in Music Production" class="card-image" loading="lazy">
             <div>
-              <h3 class="item-title">Mastering Audio Metering in Music Production</h3>
-              <div class="item-meta">Published on July 31, 2025</div>
-              <p class="item-summary">
+              <h3 class="card-title">Mastering Audio Metering in Music Production</h3>
+              <div class="card-meta">Published on July 31, 2025</div>
+              <p class="card-excerpt">
                 Ever uploaded a track to Spotify, only to find it sounds quieter—or just flatter—than you remember in the studio? The missing link might not be your ears—it might be your meters. Learn how to use metering effectively at every stage of production.
               </p>
             </div>
           </div>
         </a>
       </div>
+    </section>
 
-      <style>
-        /* Styles for article layout */
-        .article-flex-container {
-          display: flex;
-          gap: 1.5rem;
-          align-items: flex-start;
-          flex-direction: row;
-        }
-        
-        .article-image {
-          width: 200px;
-          height: auto;
-          border-radius: 6px;
-          flex-shrink: 0;
-        }
-        
-        /* Responsive styles for content items */
-        @media (max-width: 768px) {
-          .article-flex-container {
-            flex-direction: column !important;
-          }
-          
-          .article-image {
-            width: 100% !important;
-            max-width: 400px;
-            margin-bottom: 1rem;
-          }
-          
-          .item-summary {
-            -webkit-line-clamp: 3;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-          }
-        }
-      </style>
+    <section class="philosophy-section">
+      <h2 class="section-title">Dive Deeper. Ascend With Clarity.</h2>
+      <div class="philosophy-body">
+        <p>Audivea tools are designed to give creators the right level of insight at the right moment.</p>
+        <p><strong>Dive</strong> when you want to explore the details of your sound — loudness behavior, dynamics, and stereo relationships.</p>
+        <p><strong>Ascend</strong> when you need clarity and focus, surfacing the most important information for mixing and mastering decisions.</p>
+        <p>Our goal is simple: help producers and engineers understand their sound more deeply and work with greater confidence.</p>
+      </div>
     </section>
   </div>
-  
+
   <!-- Footer will be inserted by footer.js -->
 </body>
 </html>
