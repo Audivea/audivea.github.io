@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coming Soon — Audivea</title>
+  <meta name="description" content="Something new is on the way from Audivea. Stay tuned for our upcoming audio plugin release.">
+  <link rel="canonical" href="https://audivea.com/products/coming-soon.html">
+  <meta property="og:title" content="Coming Soon — Audivea">
+  <meta property="og:description" content="Something new is on the way from Audivea.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Coming Soon — Audivea">
+  <meta name="twitter:description" content="Something new is on the way from Audivea.">
+  <meta name="twitter:image" content="https://audivea.com/og-image.png">
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
   <script>
@@ -13,95 +24,31 @@
     gtag('config', 'G-JLL7X7X53H');
   </script>
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="../icon.png" type="image/png">
+  <link rel="icon" href="../favicon.png" type="image/png">
 
-  <!-- Common styles -->
   <link rel="stylesheet" href="../components/styles.css">
 
-  <!-- Component scripts -->
   <script src="../components/header.js"></script>
   <script src="../components/footer.js"></script>
-
-  <style>
-    .container {
-      width: 800px;
-      max-width: 90%;
-      margin: 0 auto;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Audivea Audio Plugin",
+    "description": "A new audio tool for music producers and engineers.",
+    "brand": {
+      "@type": "Organization",
+      "name": "Audivea"
+    },
+    "offers": {
+      "@type": "Offer",
+      "availability": "https://schema.org/PreOrder"
     }
-    .product-header {
-      margin-bottom: 2rem;
-    }
-    .product-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: #00aaff;
-      text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
-      letter-spacing: 0.05em;
-    }
-    .product-meta {
-      color: #aaa;
-      font-size: 0.9rem;
-      margin-bottom: 2rem;
-    }
-    .product-content {
-      line-height: 1.8;
-      background-color: rgba(15, 15, 25, 0.85);
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(0, 170, 255, 0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .product-image {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 2rem;
-    }
-    .coming-soon-label {
-      font-size: 1.6rem;
-      font-weight: 700;
-      background: linear-gradient(to right, #33cfff, #0088ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 0.05em;
-    }
-    .back-to-products {
-      display: inline-block;
-      margin-top: 2rem;
-      color: #00aaff;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    .back-to-products:hover {
-      color: #33cfff;
-      text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-      .product-title {
-        font-size: 2rem;
-      }
-      .coming-soon-label {
-        font-size: 1.3rem;
-      }
-    }
-    @media (max-width: 480px) {
-      .product-title {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+  }
+  </script>
 </head>
 <body>
   <!-- Header will be inserted by header.js -->
@@ -109,14 +56,21 @@
   <div class="main-content">
     <div class="container">
       <div class="product-header">
-        <h1 class="product-title">Something New Is on the Way</h1>
-        <div class="product-meta">Published on March 5, 2026</div>
+        <h1 class="article-title">Something New Is on the Way</h1>
+        <div class="article-meta">Published on March 5, 2026</div>
       </div>
       <div class="product-content">
-        <img src="coming-soon.png" alt="Coming Soon" class="product-image">
+        <img src="coming-soon.webp" alt="Coming Soon" class="product-image">
         <div class="coming-soon-label">Coming Soon</div>
+        <div class="notify-section">
+          <p class="notify-text">We're building something new for music producers and engineers. Enter your email to be notified when we launch.</p>
+          <form class="signup-form" action="https://formspree.io/f/xgonoazl" method="POST">
+            <input type="email" name="email" placeholder="Your email address" required>
+            <button type="submit">Get Notified</button>
+          </form>
+        </div>
       </div>
-      <a href="./" class="back-to-products">← Back to Products</a>
+      <a href="./" class="back-link">&larr; Back to Products</a>
     </div>
   </div>
 
