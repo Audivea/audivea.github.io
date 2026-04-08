@@ -91,56 +91,40 @@
       <!-- RESULT STATE -->
       <div id="analyzer-results" class="analyzer-section" hidden>
 
-        <!-- File info bar -->
-        <div id="result-file-info" class="analyzer-file-info"></div>
-
-        <!-- Summary cards row -->
-        <div id="summary-cards" class="analyzer-summary-row">
-          <!-- 5 cards injected by JS -->
+        <!-- Overview: file info + summary cards -->
+        <div class="analyzer-overview-panel">
+          <div id="result-file-info" class="analyzer-file-info"></div>
+          <div id="summary-cards" class="analyzer-summary-row"></div>
         </div>
 
         <!-- Findings section -->
         <div id="findings-section" class="analyzer-findings">
           <h2 class="analyzer-section-title">Findings</h2>
-          <ul id="findings-list" class="findings-list">
-            <!-- injected by JS -->
-          </ul>
+          <ul id="findings-list" class="findings-list"></ul>
         </div>
 
-        <!-- Detail panels -->
-        <div id="detail-panels" class="analyzer-details">
-          <!-- Loudness detail -->
-          <div class="analyzer-detail-panel" id="detail-loudness">
+        <!-- Combined detail panel -->
+        <div class="analyzer-detail-combined">
+          <div class="detail-section" id="detail-loudness">
             <h3 class="detail-panel-title">Loudness</h3>
             <div class="detail-panel-body" id="detail-loudness-body"></div>
           </div>
-          <!-- Peak detail -->
-          <div class="analyzer-detail-panel" id="detail-peak">
+          <div class="detail-section" id="detail-peak">
             <h3 class="detail-panel-title">Peak Safety</h3>
             <div class="detail-panel-body" id="detail-peak-body"></div>
           </div>
-          <!-- Dynamics detail -->
-          <div class="analyzer-detail-panel" id="detail-dynamics">
+          <div class="detail-section" id="detail-dynamics">
             <h3 class="detail-panel-title">Dynamics</h3>
             <div class="detail-panel-body" id="detail-dynamics-body"></div>
           </div>
-          <!-- Stereo detail -->
-          <div class="analyzer-detail-panel" id="detail-stereo">
+          <div class="detail-section" id="detail-stereo">
             <h3 class="detail-panel-title">Stereo / Phase</h3>
             <div class="detail-panel-body" id="detail-stereo-body"></div>
           </div>
-          <!-- Tonal detail -->
-          <div class="analyzer-detail-panel" id="detail-tonal">
+          <div class="detail-section" id="detail-tonal">
             <h3 class="detail-panel-title">Tonal Balance</h3>
             <div class="detail-panel-body" id="detail-tonal-body"></div>
           </div>
-        </div>
-
-        <!-- CTA section -->
-        <div class="analyzer-cta">
-          <h2 class="analyzer-cta-title">Want real-time insight in your DAW?</h2>
-          <p class="analyzer-cta-text">The Audivea Metering plugin gives you all of this — live, in your session, with visual depth you can feel.</p>
-          <a href="../../products/" class="hero-cta">Explore Products</a>
         </div>
 
         <!-- Analyze another -->
