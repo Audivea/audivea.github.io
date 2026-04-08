@@ -235,7 +235,9 @@ self.onmessage = function (e) {
     self.postMessage({ type: 'progress', pct: 0, label: 'Measuring peaks and dynamics...' });
 
     var samplePeak = 0;
+    var samplePeakAt = 0;
     var truePeak = 0;
+    var truePeakAt = 0;
     var sumSquared = 0; // for RMS (full-bandwidth, unweighted)
 
     // True peak history buffers (per channel)
@@ -255,8 +257,8 @@ self.onmessage = function (e) {
       // Sample peak (max across channels)
       var absL = Math.abs(sL);
       var absR = Math.abs(sR);
-      if (absL > samplePeak) samplePeak = absL;
-      if (absR > samplePeak) samplePeak = absR;
+      if (absL > samplePeak) { samplePeak = absL; samplePeakAt = i; }
+      if (absR > samplePeak) { samplePeak = absR; samplePeakAt = i; }
 
       // RMS (average of L+R energy)
       sumSquared += sL * sL;
@@ -272,8 +274,8 @@ self.onmessage = function (e) {
         if (interpL > tpL) tpL = interpL;
         if (interpR > tpR) tpR = interpR;
       }
-      if (tpL > truePeak) truePeak = tpL;
-      if (tpR > truePeak) truePeak = tpR;
+      if (tpL > truePeak) { truePeak = tpL; truePeakAt = i; }
+      if (tpR > truePeak) { truePeak = tpR; truePeakAt = i; }
 
       // Shift true peak history
       histL[0] = histL[1]; histL[1] = histL[2]; histL[2] = sL;
@@ -294,7 +296,7 @@ self.onmessage = function (e) {
     }
 
     // Compute peak results
-    var samplePeakDb = gainToDb(samplePeak);
+    var samplePeakDb = Math.min(0, gainToDb(samplePeak));
     var truePeakDb = gainToDb(truePeak);
 
     // RMS
@@ -365,17 +367,28 @@ self.onmessage = function (e) {
       bandKW_R[b].initForSampleRate(sampleRate);
     }
 
-    // LUFS block accumulation (100ms blocks per ITU-R BS.1770-4)
+    // LUFS block accumulation (100ms blocks for integrated LUFS + tonal balance)
     var samplesPerBlock = Math.floor(sampleRate * 0.1); // 100ms
     var blockSampleCount = 0;
     var kwSumL = 0, kwSumR = 0;
     var bandSumL = [0, 0, 0], bandSumR = [0, 0, 0];
 
-    // Momentary LUFS ring buffer (4 blocks = 400ms)
-    var momentaryBuffer = [];
+    // Per-sample sliding windows for momentary (400ms) and short-term (3s)
+    var momentaryWinSize = Math.floor(sampleRate * 0.4);
+    var shortTermWinSize = Math.floor(sampleRate * 3.0);
+    var momRing = new Float64Array(momentaryWinSize);
+    var momSum = 0;
+    var momPos = 0;
+    var momentaryMax = -Infinity;
+    var momentaryMaxAt = 0;
+    var stRing = new Float64Array(shortTermWinSize);
+    var stSum = 0;
+    var stPos = 0;
+    var shortTermMax = -Infinity;
+    var shortTermMaxAt = 0;
 
-    // Short-term LUFS ring buffer (30 blocks = 3s) for LRA
-    var shortTermBuffer = [];
+    // Evaluate momentary/short-term every hopSize samples (≈10ms)
+    var hopSize = Math.max(1, Math.floor(sampleRate * 0.01));
 
     // Integrated LUFS histogram (same as plugin)
     var integratedHist = new Int32Array(LUFS_HIST_BINS);
@@ -386,6 +399,9 @@ self.onmessage = function (e) {
     var lraHist = new Int32Array(LUFS_HIST_BINS);
     var lraBlockCount = 0;
     var lraUngatedLinearSum = 0;
+
+    // Short-term block buffer for LRA (100ms blocks, 30 blocks = 3s)
+    var stBlockBuffer = [];
 
     // Band energy accumulators (integrated over whole file)
     var bandIntegratedSum = [0, 0, 0];
@@ -433,31 +449,47 @@ self.onmessage = function (e) {
         bandSumR[b] += bkwR * bkwR;
       }
 
+      // Sliding window: update ring buffers with per-sample K-weighted energy
+      var kwEnergy = kwL * kwL + kwR * kwR;
+      momSum -= momRing[momPos];
+      momRing[momPos] = kwEnergy;
+      momSum += kwEnergy;
+      momPos = (momPos + 1) % momentaryWinSize;
+
+      stSum -= stRing[stPos];
+      stRing[stPos] = kwEnergy;
+      stSum += kwEnergy;
+      stPos = (stPos + 1) % shortTermWinSize;
+
+      // Evaluate momentary/short-term at hop intervals
+      if (i % hopSize === 0) {
+        if (i >= momentaryWinSize - 1) {
+          var momLufs = meanSquareToLUFS(momSum / momentaryWinSize);
+          if (momLufs > momentaryMax) { momentaryMax = momLufs; momentaryMaxAt = i; }
+        }
+        if (i >= shortTermWinSize - 1) {
+          var stLufs = meanSquareToLUFS(stSum / shortTermWinSize);
+          if (stLufs > shortTermMax) { shortTermMax = stLufs; shortTermMaxAt = i; }
+        }
+      }
+
       blockSampleCount++;
 
-      // Commit block on 100ms boundary
+      // Commit block on 100ms boundary (for integrated LUFS, tonal balance, LRA)
       if (blockSampleCount >= samplesPerBlock) {
         var meanSq = (kwSumL + kwSumR) / blockSampleCount;
         var blockLufs = meanSquareToLUFS(meanSq);
 
-        // Momentary: power-mean of last 4 blocks (400ms)
-        momentaryBuffer.push(blockLufs);
-        if (momentaryBuffer.length > 4) momentaryBuffer.shift();
-
-        var momentaryLufs = calculateLUFSFromBlocks(momentaryBuffer);
-
-        // Short-term: power-mean of last 30 blocks (3s)
-        shortTermBuffer.push(blockLufs);
-        if (shortTermBuffer.length > 30) shortTermBuffer.shift();
-
-        if (shortTermBuffer.length >= 10) { // need at least 1s of data
-          var stLufs = calculateLUFSFromBlocks(shortTermBuffer);
-          // LRA histogram: populated with short-term LUFS (EBU TECH 3342)
-          if (stLufs > ABSOLUTE_GATE_LUFS) {
-            var lraBin = lufsToHistBin(stLufs);
+        // LRA: track short-term LUFS from block averages (EBU TECH 3342)
+        stBlockBuffer.push(blockLufs);
+        if (stBlockBuffer.length > 30) stBlockBuffer.shift();
+        if (stBlockBuffer.length >= 10) {
+          var stBlockLufs = calculateLUFSFromBlocks(stBlockBuffer);
+          if (stBlockLufs > ABSOLUTE_GATE_LUFS) {
+            var lraBin = lufsToHistBin(stBlockLufs);
             lraHist[lraBin]++;
             lraBlockCount++;
-            lraUngatedLinearSum += Math.pow(10, stLufs * 0.1);
+            lraUngatedLinearSum += Math.pow(10, stBlockLufs * 0.1);
           }
         }
 
@@ -691,12 +723,18 @@ self.onmessage = function (e) {
       result: {
         loudness: {
           integrated: integratedLUFS,
+          momentaryMax: momentaryMax === -Infinity ? -100 : momentaryMax,
+          momentaryMaxAt: momentaryMaxAt / sampleRate,
+          shortTermMax: shortTermMax === -Infinity ? -100 : shortTermMax,
+          shortTermMaxAt: shortTermMaxAt / sampleRate,
           range: lra,
           status: loudnessStatus
         },
         peak: {
           samplePeakDb: samplePeakDb,
+          samplePeakAt: samplePeakAt / sampleRate,
           truePeakDb: truePeakDb,
+          truePeakAt: truePeakAt / sampleRate,
           clipRisk: clipRisk
         },
         dynamics: {

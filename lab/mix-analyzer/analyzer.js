@@ -69,6 +69,25 @@
     showSection(uploadSection);
   }
 
+  // Read native sample rate from WAV/AIFF header to avoid browser resampling
+  function detectSampleRate(arrayBuffer) {
+    try {
+      var view = new DataView(arrayBuffer);
+      var tag = String.fromCharCode(view.getUint8(0), view.getUint8(1), view.getUint8(2), view.getUint8(3));
+      if (tag === 'RIFF') {
+        // WAV: sample rate at byte 24 (little-endian)
+        return view.getUint32(24, true);
+      }
+      if (tag === 'FORM') {
+        // AIFF: sample rate at byte 26 (80-bit extended, read rough approximation)
+        var exp = view.getUint16(26) - 16383;
+        var mantissa = view.getUint32(28);
+        return Math.round(mantissa * Math.pow(2, exp - 31));
+      }
+    } catch (e) { /* ignore parse errors */ }
+    return null;
+  }
+
   function handleFile(file) {
     // Validate size
     if (file.size > MAX_FILE_SIZE) {
@@ -96,7 +115,10 @@
     const reader = new FileReader();
     reader.onload = function () {
       setProgress(10, 'Decoding audio...');
-      const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      // Detect native sample rate from file header to prevent browser resampling
+      const nativeSR = detectSampleRate(reader.result);
+      const ctxOpts = nativeSR ? { sampleRate: nativeSR } : undefined;
+      const audioCtx = new (window.AudioContext || window.webkitAudioContext)(ctxOpts);
       audioCtx.decodeAudioData(reader.result).then(function (audioBuffer) {
         audioCtx.close();
 
@@ -147,7 +169,7 @@
       flac: 'FLAC', m4a: 'AAC/M4A', aac: 'AAC/M4A' };
     const format = formatMap[ext] || ext.toUpperCase();
 
-    worker = new Worker('worker.js');
+    worker = new Worker('worker.js?v=6');
 
     worker.onmessage = function (e) {
       const msg = e.data;
@@ -224,6 +246,11 @@
     return m + ':' + (s < 10 ? '0' : '') + s;
   }
 
+  function fmtAt(sec) {
+    if (sec === undefined || sec === null) return '';
+    return ' <span class="detail-timestamp">at ' + formatDuration(sec) + '</span>';
+  }
+
   function renderSummaryCards(result) {
     var html = '';
     html += summaryCard('Loudness', fmtDb(result.loudness.integrated) + ' LUFS',
@@ -248,6 +275,7 @@
   }
 
   function fmtDb(val) {
+    if (val === undefined || val === null) return '—';
     if (val <= -100) return '-inf';
     return (val >= 0 ? '+' : '') + val.toFixed(1);
   }
@@ -301,9 +329,11 @@
   function renderDetailLoudness(result) {
     var body = document.getElementById('detail-loudness-body');
     var html = detailRow('Integrated LUFS', fmtDb(result.loudness.integrated) + ' LUFS');
+    html += detailRow('Momentary Max', fmtDb(result.loudness.momentaryMax) + ' LUFS' + fmtAt(result.loudness.momentaryMaxAt));
+    html += detailRow('Short-term Max', fmtDb(result.loudness.shortTermMax) + ' LUFS' + fmtAt(result.loudness.shortTermMaxAt));
     html += detailRow('Loudness Range (LRA)', result.loudness.range.toFixed(1) + ' LU');
     html += detailRow('Status', result.loudness.status);
-    html += '<p class="detail-explainer">Integrated LUFS measures the overall perceived loudness of the entire file per ITU-R BS.1770-4. Loudness Range indicates the variation between quiet and loud passages.</p>';
+    html += '<p class="detail-explainer">Integrated is the overall loudness of your mix. Momentary Max is the loudest peak moment. Short-term Max is the loudest few seconds. Loudness Range shows how much variation there is between the quietest and loudest parts.</p>';
     body.innerHTML = html;
   }
 
@@ -312,7 +342,7 @@
     var html = detailRow('Sample Peak', fmtDb(result.peak.samplePeakDb) + ' dBFS');
     html += detailRow('True Peak', fmtDb(result.peak.truePeakDb) + ' dBTP');
     html += detailRow('Clip Risk', result.peak.clipRisk);
-    html += '<p class="detail-explainer">True peak uses 4x oversampled interpolation to detect inter-sample peaks that exceed 0 dBFS. Most streaming platforms require true peak below -1.0 dBTP.</p>';
+    html += '<p class="detail-explainer">Sample peak is the highest level in the audio data. True peak catches peaks between samples that can cause distortion during playback. Most streaming platforms want true peak below -1.0 dBTP.</p>';
     body.innerHTML = html;
   }
 
@@ -321,7 +351,7 @@
     var html = detailRow('RMS Level', fmtDb(result.dynamics.rmsDb) + ' dBFS');
     html += detailRow('Crest Factor', result.dynamics.crestDb.toFixed(1) + ' dB');
     html += detailRow('Status', result.dynamics.status);
-    html += '<p class="detail-explainer">Crest factor is the difference between peak and RMS levels. Higher values indicate more dynamic range. A healthy mix typically has 8-14 dB of crest factor.</p>';
+    html += '<p class="detail-explainer">Crest factor tells you how much headroom your mix has between average and peak levels. Higher means more dynamic, lower means more compressed. A healthy mix typically sits around 8\u201314 dB.</p>';
     body.innerHTML = html;
   }
 
@@ -341,7 +371,7 @@
     // Phase correlation bar
     html += '<div class="phase-bar"><div class="phase-bar-fill" style="' + phaseBarStyle(result.stereo.correlation) + '"></div></div>';
     html += '<div class="phase-bar-labels"><span>-1</span><span>0</span><span>+1</span></div>';
-    html += '<p class="detail-explainer">Phase correlation of +1 means identical L/R (mono), 0 means uncorrelated, -1 means fully inverted. Values below +0.3 may cause mono compatibility issues.</p>';
+    html += '<p class="detail-explainer">Correlation shows how similar the left and right channels are. Near +1 means very mono-like, near 0 means wide stereo, and negative values mean phase issues. Below +0.3 your mix may not translate well to mono playback (phones, clubs, Bluetooth speakers).</p>';
     body.innerHTML = html;
   }
 
@@ -376,7 +406,7 @@
     html += tonalBar('High', result.tonal.high, '> 4 kHz');
     html += '</div>';
     html += detailRow('Tilt', result.tonal.tiltLabel);
-    html += '<p class="detail-explainer">Energy distribution across three bands using Linkwitz-Riley crossovers at 200 Hz and 4 kHz, with K-weighting applied per band. Percentages represent each band\'s contribution to total perceived loudness.</p>';
+    html += '<p class="detail-explainer">Shows how your mix\'s energy is spread across low (sub/bass), mid, and high (presence/air) frequencies. Use this to spot if your mix is bass-heavy, thin, or well balanced.</p>';
     body.innerHTML = html;
   }
 
