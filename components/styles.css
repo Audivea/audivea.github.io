@@ -342,12 +342,12 @@ nav {
   line-height: 1.15;
   margin: 0 0 1rem;
   letter-spacing: -0.01em;
-  color: #fff;
+  color: #F3F7FB;
 }
 
 .hero-subtitle {
-  font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.15rem;
+  color: #A7B4C8;
   line-height: 1.6;
   margin: 0 0 2rem;
   font-weight: 400;
@@ -380,18 +380,21 @@ nav {
 .hero-cta-secondary {
   display: inline-block;
   padding: 14px 36px;
-  color: var(--color-primary);
   font-weight: 600;
   font-size: 1rem;
   border-radius: 6px;
   text-decoration: none;
-  border: 1px solid rgba(0, 170, 255, 0.4);
+  border: 1px solid rgba(0, 170, 255, 0.3);
+  background: rgba(30, 30, 50, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   color: rgba(255, 255, 255, 0.9);
-  transition: border-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  transition: background var(--transition-speed) ease, border-color var(--transition-speed) ease, color var(--transition-speed) ease;
 }
 
 .hero-cta-secondary:hover {
-  border-color: rgba(0, 170, 255, 0.7);
+  background: rgba(0, 170, 255, 0.12);
+  border-color: rgba(0, 170, 255, 0.6);
   color: #fff;
 }
 
