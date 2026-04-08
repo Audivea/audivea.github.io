@@ -4,20 +4,28 @@ function loadHeader() {
 
   const isInArticlesDir = currentPath.includes('/articles/') || currentPath.includes('/blog/');
   const isInPluginsDir = currentPath.includes('/products/');
+  const isInLabDir = currentPath.includes('/lab/');
   const isAboutPage = currentPath.endsWith('/about.html') || currentPath.endsWith('/about');
   const isContactPage = currentPath.endsWith('/contact.html') || currentPath.endsWith('/contact');
-  const isInSubDir = isInArticlesDir || isInPluginsDir;
-  const isHome = !isInArticlesDir && !isInPluginsDir && !isAboutPage && !isContactPage;
 
-  const homePath = isInSubDir ? '../' : './';
-  const articlesPath = isInSubDir ? '../articles/' : './articles/';
-  const pluginsPath = isInSubDir ? '../products/' : './products/';
-  const aboutPath = isInSubDir ? '../about.html' : './about.html';
-  const contactPath = isInSubDir ? '../contact.html' : './contact.html';
+  // Determine depth: lab/mix-analyzer/ is 2 levels deep, articles/ is 1 level deep
+  const pathParts = currentPath.replace(/\/index\.html$/, '/').split('/').filter(Boolean);
+  const siteRoot = window.location.hostname.includes('github.io') ? pathParts.shift() : null;
+  const depth = pathParts.length; // 0 = root, 1 = lab/, 2 = lab/mix-analyzer/
+  const prefix = depth === 0 ? './' : '../'.repeat(depth);
+
+  const isHome = !isInArticlesDir && !isInPluginsDir && !isInLabDir && !isAboutPage && !isContactPage;
+
+  const homePath = prefix;
+  const articlesPath = prefix + 'articles/';
+  const pluginsPath = prefix + 'products/';
+  const labPath = prefix + 'lab/';
+  const aboutPath = prefix + 'about.html';
+  const contactPath = prefix + 'contact.html';
 
   const header = document.createElement('header');
 
-  const iconPath = isInSubDir ? '../icon.webp' : './icon.webp';
+  const iconPath = prefix + 'icon.webp';
 
   header.innerHTML = `
     <nav>
@@ -39,6 +47,7 @@ function loadHeader() {
         <div class="nav-links">
           <a href="${homePath}" class="nav-link ${isHome ? 'active' : ''}">Home</a>
           <a href="${pluginsPath}" class="nav-link ${isInPluginsDir ? 'active' : ''}">Products</a>
+          <a href="${labPath}" class="nav-link ${isInLabDir ? 'active' : ''}">Lab</a>
           <a href="${articlesPath}" class="nav-link ${isInArticlesDir ? 'active' : ''}">Articles</a>
           <a href="${aboutPath}" class="nav-link ${isAboutPage ? 'active' : ''}">About</a>
           <a href="${contactPath}" class="nav-link ${isContactPage ? 'active' : ''}">Contact</a>

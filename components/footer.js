@@ -1,12 +1,18 @@
 // Footer component
 function loadFooter() {
   const currentPath = window.location.pathname;
-  const isInSubDir = currentPath.includes('/articles/') || currentPath.includes('/blog/') || currentPath.includes('/products/');
 
-  const productsPath = isInSubDir ? '../products/' : './products/';
-  const articlesPath = isInSubDir ? '../articles/' : './articles/';
-  const aboutPath = isInSubDir ? '../about.html' : './about.html';
-  const contactPath = isInSubDir ? '../contact.html' : './contact.html';
+  // Determine depth: lab/mix-analyzer/ is 2 levels deep, articles/ is 1 level deep
+  const pathParts = currentPath.replace(/\/index\.html$/, '/').split('/').filter(Boolean);
+  const siteRoot = window.location.hostname.includes('github.io') ? pathParts.shift() : null;
+  const depth = pathParts.length; // 0 = root, 1 = lab/, 2 = lab/mix-analyzer/
+  const prefix = depth === 0 ? './' : '../'.repeat(depth);
+
+  const productsPath = prefix + 'products/';
+  const labPath = prefix + 'lab/';
+  const articlesPath = prefix + 'articles/';
+  const aboutPath = prefix + 'about.html';
+  const contactPath = prefix + 'contact.html';
 
   const footer = document.createElement('footer');
   footer.className = 'social-footer';
@@ -20,6 +26,7 @@ function loadFooter() {
         <div class="footer-right">
           <div class="footer-nav">
             <a href="${productsPath}">Products</a>
+            <a href="${labPath}">Lab</a>
             <a href="${articlesPath}">Articles</a>
             <a href="${aboutPath}">About</a>
             <a href="${contactPath}">Contact</a>
