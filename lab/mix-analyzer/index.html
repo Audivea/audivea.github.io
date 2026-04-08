@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mix Analyzer — Free Audio Analysis Tool | Audivea</title>
+  <meta name="description" content="Analyze your mix for free. Check loudness (LUFS), true peak, dynamics, stereo image, and tonal balance — instantly in your browser.">
+  <link rel="canonical" href="https://audivea.com/lab/mix-analyzer/">
+  <meta property="og:title" content="Mix Analyzer — Free Audio Analysis | Audivea">
+  <meta property="og:description" content="Check loudness, true peak, dynamics, stereo image, and tonal balance — instantly in your browser.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mix Analyzer — Free Audio Analysis | Audivea">
+  <meta name="twitter:description" content="Check loudness, true peak, dynamics, stereo image, and tonal balance — instantly in your browser.">
+  <meta name="twitter:image" content="https://audivea.com/og-image.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JLL7X7X53H');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../../favicon.png" type="image/png">
+  <link rel="stylesheet" href="../../components/styles.css">
+  <script src="../../components/header.js"></script>
+  <script src="../../components/footer.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Audivea Mix Analyzer",
+    "description": "Free browser-based audio analysis tool. Check loudness, true peak, dynamics, stereo image, and tonal balance.",
+    "url": "https://audivea.com/lab/mix-analyzer/",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "Any (browser-based)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Audivea",
+      "url": "https://audivea.com"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-fixed"></div>
+
+  <div class="main-content">
+    <div class="container-wide">
+
+      <!-- UPLOAD STATE -->
+      <div id="analyzer-upload" class="analyzer-section">
+        <h1 class="page-title">Mix Analyzer</h1>
+        <p class="page-subtitle">Drop in an audio file for instant feedback on loudness, dynamics, stereo image, and tonal balance.</p>
+
+        <div id="drop-zone" class="analyzer-dropzone" role="button" tabindex="0" aria-label="Upload audio file for analysis">
+          <div class="dropzone-icon" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M24 32V12"/>
+              <path d="M16 20l8-8 8 8"/>
+              <path d="M8 36h32"/>
+            </svg>
+          </div>
+          <p class="dropzone-text">Drag and drop an audio file here</p>
+          <p class="dropzone-subtext">or click to browse</p>
+          <input type="file" id="file-input" accept="audio/*,.wav,.aiff,.aif,.mp3,.flac,.m4a,.aac" hidden>
+        </div>
+
+        <div class="analyzer-meta">
+          <p class="analyzer-formats">WAV, AIFF, MP3, FLAC, AAC/M4A &mdash; up to 200 MB</p>
+          <p class="analyzer-privacy">Your file never leaves your browser. All analysis runs locally.</p>
+        </div>
+      </div>
+
+      <!-- PROCESSING STATE -->
+      <div id="analyzer-processing" class="analyzer-section" hidden>
+        <h2 class="analyzer-processing-title">Analyzing</h2>
+        <p id="processing-filename" class="analyzer-processing-file"></p>
+        <div class="analyzer-progress-track">
+          <div id="progress-bar" class="analyzer-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <p id="progress-label" class="analyzer-progress-label">Decoding audio...</p>
+      </div>
+
+      <!-- RESULT STATE -->
+      <div id="analyzer-results" class="analyzer-section" hidden>
+
+        <!-- Overview: file info + summary cards -->
+        <div class="analyzer-overview-panel">
+          <div id="result-file-info" class="analyzer-file-info"></div>
+          <div id="summary-cards" class="analyzer-summary-row"></div>
+        </div>
+
+        <!-- Findings section -->
+        <div id="findings-section" class="analyzer-findings">
+          <h2 class="analyzer-section-title">Findings</h2>
+          <ul id="findings-list" class="findings-list"></ul>
+        </div>
+
+        <!-- Combined detail panel -->
+        <div class="analyzer-detail-combined">
+          <div class="detail-section" id="detail-loudness">
+            <h3 class="detail-panel-title">Loudness</h3>
+            <div class="detail-panel-body" id="detail-loudness-body"></div>
+          </div>
+          <div class="detail-section" id="detail-peak">
+            <h3 class="detail-panel-title">Peak Safety</h3>
+            <div class="detail-panel-body" id="detail-peak-body"></div>
+          </div>
+          <div class="detail-section" id="detail-dynamics">
+            <h3 class="detail-panel-title">Dynamics</h3>
+            <div class="detail-panel-body" id="detail-dynamics-body"></div>
+          </div>
+          <div class="detail-section" id="detail-stereo">
+            <h3 class="detail-panel-title">Stereo / Phase</h3>
+            <div class="detail-panel-body" id="detail-stereo-body"></div>
+          </div>
+          <div class="detail-section" id="detail-tonal">
+            <h3 class="detail-panel-title">Tonal Balance</h3>
+            <div class="detail-panel-body" id="detail-tonal-body"></div>
+          </div>
+        </div>
+
+        <!-- Analyze another -->
+        <div class="analyzer-reset-wrap">
+          <button id="analyze-another" class="analyzer-reset-btn">Analyze Another File</button>
+        </div>
+      </div>
+
+      <!-- ERROR STATE -->
+      <div id="analyzer-error" class="analyzer-section" hidden>
+        <div class="analyzer-error-box">
+          <p id="error-message" class="analyzer-error-text"></p>
+          <button id="error-retry" class="analyzer-reset-btn">Try Again</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="analyzer.js"></script>
+</body>
+</html>
