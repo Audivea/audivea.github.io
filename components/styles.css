@@ -541,6 +541,8 @@ nav {
   object-fit: cover;
   border-radius: 6px;
   flex-shrink: 0;
+  border: 1px solid rgba(0, 170, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ============================================
@@ -688,6 +690,13 @@ nav {
   margin-bottom: 2rem;
 }
 
+.product-tagline {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 0.5rem;
+  letter-spacing: -0.005em;
+}
+
 .product-content {
   line-height: 1.8;
   background-color: var(--color-bg-panel);
@@ -706,6 +715,35 @@ nav {
   height: auto;
   border-radius: 8px;
   margin-bottom: 2rem;
+  border: 1px solid rgba(0, 170, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.product-features {
+  margin-top: 2rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+
+.product-features h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  color: var(--color-primary);
+}
+
+.product-features ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.product-features li {
+  margin-bottom: 0.5rem;
+}
+
+.product-features strong {
+  font-weight: 600;
+  color: #fff;
 }
 
 .coming-soon-label {
@@ -931,7 +969,8 @@ nav {
   justify-content: center;
   background: rgba(0, 170, 255, 0.05);
   border-radius: 6px;
-  border: 1px solid rgba(0, 170, 255, 0.1);
+  border: 1px solid rgba(0, 170, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* ============================================
