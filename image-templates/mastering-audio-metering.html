@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #07172f;
+  }
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #1a4ea0 0%, #0e3478 35%, #0a2755 65%, #07172f 100%);
+    overflow: hidden;
+  }
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+  .diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <svg class="diagram" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Gradient mapped to the full meter height in userSpace -->
+        <linearGradient id="meterGrad" x1="0" y1="880" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#3990d0"/>
+          <stop offset="35%"  stop-color="#5ecbff"/>
+          <stop offset="78%"  stop-color="#a9e6ff"/>
+          <stop offset="92%"  stop-color="#ffc97a"/>
+          <stop offset="100%" stop-color="#ff7a5e"/>
+        </linearGradient>
+        <filter id="barGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="9"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- ============ Left meter ============ -->
+      <!-- Bar housing -->
+      <rect x="430" y="180" width="80" height="700"
+            fill="#0a2755" fill-opacity="0.5"
+            stroke="#5ecbff" stroke-opacity="0.35" stroke-width="1.5"
+            rx="12"/>
+      <!-- Active fill: from current level (top) down to bottom of bar.
+           L level: peak around -5 dB. Bar maps -60 dB (y=880) to 0 dB (y=180).
+           -5 dB position: 180 + (700 * 5/60) = 180 + 58 = 238 -->
+      <rect x="436" y="238" width="68" height="636"
+            fill="url(#meterGrad)" filter="url(#barGlow)" rx="8"/>
+      <!-- Peak-hold tick (slightly above current level, near 0 dB) -->
+      <rect x="436" y="206" width="68" height="4" fill="#ffd6c2" rx="2" filter="url(#dotGlow)"/>
+
+      <!-- ============ Right meter ============ -->
+      <rect x="570" y="180" width="80" height="700"
+            fill="#0a2755" fill-opacity="0.5"
+            stroke="#5ecbff" stroke-opacity="0.35" stroke-width="1.5"
+            rx="12"/>
+      <!-- R level: peak around -8 dB. -8 dB position: 180 + (700*8/60) = 273 -->
+      <rect x="576" y="273" width="68" height="601"
+            fill="url(#meterGrad)" filter="url(#barGlow)" rx="8"/>
+      <!-- Peak-hold tick (just above current) -->
+      <rect x="576" y="248" width="68" height="4" fill="#ffd6c2" rx="2" filter="url(#dotGlow)"/>
+
+      <!-- ============ Tick scale (left of L meter) ============ -->
+      <g font-family="ui-monospace, Menlo, Consolas, monospace"
+         font-size="20" fill="#5ecbff" fill-opacity="0.7" text-anchor="end">
+        <!-- Tick marks -->
+        <g stroke="#5ecbff" stroke-opacity="0.4" stroke-width="1.5">
+          <line x1="400" y1="180" x2="420" y2="180"/>
+          <line x1="400" y1="297" x2="420" y2="297"/>
+          <line x1="400" y1="413" x2="420" y2="413"/>
+          <line x1="400" y1="530" x2="420" y2="530"/>
+          <line x1="400" y1="647" x2="420" y2="647"/>
+          <line x1="400" y1="763" x2="420" y2="763"/>
+          <line x1="400" y1="880" x2="420" y2="880"/>
+        </g>
+        <text x="390" y="187">0</text>
+        <text x="390" y="304">-10</text>
+        <text x="390" y="420">-20</text>
+        <text x="390" y="537">-30</text>
+        <text x="390" y="654">-40</text>
+        <text x="390" y="770">-50</text>
+        <text x="390" y="887">-60</text>
+      </g>
+
+      <!-- ============ L / R labels under meters ============ -->
+      <g font-family="ui-monospace, Menlo, Consolas, monospace"
+         font-size="28" fill="#cfe5ff" fill-opacity="0.85"
+         text-anchor="middle" font-weight="700">
+        <text x="470" y="930">L</text>
+        <text x="610" y="930">R</text>
+      </g>
+
+      <!-- ============ LUFS readout panel ============ -->
+      <g transform="translate(720 380)">
+        <!-- Outer panel -->
+        <rect x="0" y="0" width="240" height="160"
+              fill="#0a2755" fill-opacity="0.55"
+              stroke="#5ecbff" stroke-opacity="0.4" stroke-width="1.5"
+              rx="14"/>
+        <!-- Label -->
+        <text x="20" y="36"
+              font-family="ui-monospace, Menlo, Consolas, monospace"
+              font-size="20" fill="#5ecbff" fill-opacity="0.85"
+              font-weight="600" letter-spacing="2">LUFS</text>
+        <!-- Big value -->
+        <text x="20" y="120"
+              font-family="ui-monospace, Menlo, Consolas, monospace"
+              font-size="76" fill="#cfe5ff" font-weight="700"
+              filter="url(#dotGlow)">−14.0</text>
+        <!-- Footnote -->
+        <text x="20" y="148"
+              font-family="ui-monospace, Menlo, Consolas, monospace"
+              font-size="16" fill="#5ecbff" fill-opacity="0.6"
+              letter-spacing="2">INTEGRATED</text>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>

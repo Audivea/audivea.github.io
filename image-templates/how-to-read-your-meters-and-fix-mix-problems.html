@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #07172f;
+  }
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #1a4ea0 0%, #0e3478 35%, #0a2755 65%, #07172f 100%);
+    overflow: hidden;
+  }
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+  .diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <svg class="diagram" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="ringGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="4"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="3"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <radialGradient id="scopeBg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#0a2755" stop-opacity="0.55"/>
+          <stop offset="100%" stop-color="#0a2755" stop-opacity="0.15"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Phase scope panel background -->
+      <circle cx="540" cy="500" r="340" fill="url(#scopeBg)"/>
+
+      <!-- Outer ring -->
+      <circle cx="540" cy="500" r="340" fill="none"
+              stroke="#5ecbff" stroke-opacity="0.5" stroke-width="2"
+              filter="url(#ringGlow)"/>
+      <!-- Inner ring (50%) -->
+      <circle cx="540" cy="500" r="170" fill="none"
+              stroke="#5ecbff" stroke-opacity="0.2" stroke-width="1"
+              stroke-dasharray="4 6"/>
+
+      <!-- Horizontal/vertical axes (M-S layout) -->
+      <line x1="200" y1="500" x2="880" y2="500"
+            stroke="#5ecbff" stroke-opacity="0.25" stroke-width="1.5"/>
+      <line x1="540" y1="160" x2="540" y2="840"
+            stroke="#5ecbff" stroke-opacity="0.25" stroke-width="1.5"/>
+
+      <!-- +45 / −45 axes (L / R channels) -->
+      <line x1="300" y1="260" x2="780" y2="740"
+            stroke="#7fdcff" stroke-opacity="0.55" stroke-width="2"
+            stroke-dasharray="8 8"/>
+      <line x1="300" y1="740" x2="780" y2="260"
+            stroke="#7fdcff" stroke-opacity="0.55" stroke-width="2"
+            stroke-dasharray="8 8"/>
+
+      <!-- Channel labels at axis tips -->
+      <g font-family="ui-monospace, Menlo, Consolas, monospace"
+         font-size="20" fill="#cfe5ff" fill-opacity="0.85"
+         font-weight="700" text-anchor="middle">
+        <text x="290" y="252">L</text>
+        <text x="790" y="252">R</text>
+      </g>
+      <!-- Mid / Side ticks at horizontal/vertical extremes -->
+      <g font-family="ui-monospace, Menlo, Consolas, monospace"
+         font-size="14" fill="#5ecbff" fill-opacity="0.55"
+         letter-spacing="1.5" text-anchor="middle">
+        <text x="540" y="146">+M</text>
+        <text x="540" y="864">−M</text>
+        <text x="180" y="505">−S</text>
+        <text x="900" y="505">+S</text>
+      </g>
+
+      <!-- Correlation cloud — populated by JS below -->
+      <g id="cloud" fill="#cfe5ff" filter="url(#dotGlow)"></g>
+
+      <!-- Correlation meter at bottom -->
+      <!-- Horizontal track -->
+      <rect x="290" y="950" width="500" height="14"
+            fill="#0a2755" fill-opacity="0.55"
+            stroke="#5ecbff" stroke-opacity="0.4" stroke-width="1.5"
+            rx="7"/>
+      <!-- Centre tick -->
+      <line x1="540" y1="940" x2="540" y2="974" stroke="#5ecbff" stroke-opacity="0.5" stroke-width="1.5"/>
+      <!-- Indicator (positioned at ~+0.78) -->
+      <!-- track spans 290..790, center 540 = 0, +1 = 790, so +0.78 ≈ 540 + 195 = 735 -->
+      <circle cx="735" cy="957" r="11" fill="#7fdcff" filter="url(#dotGlow)"/>
+      <!-- End labels -->
+      <g font-family="ui-monospace, Menlo, Consolas, monospace"
+         font-size="18" fill="#5ecbff" fill-opacity="0.7" text-anchor="middle">
+        <text x="290" y="1000">−1</text>
+        <text x="540" y="1000">0</text>
+        <text x="790" y="1000">+1</text>
+      </g>
+      <g font-family="ui-monospace, Menlo, Consolas, monospace"
+         font-size="14" fill="#5ecbff" fill-opacity="0.55"
+         letter-spacing="2" text-anchor="middle">
+        <text x="540" y="918">CORRELATION</text>
+      </g>
+    </svg>
+  </div>
+
+  <script>
+    // Generate the correlation cloud: many small dots clustered along
+    // the +45° axis (mono-leaning, positive correlation).
+    const ns = 'http://www.w3.org/2000/svg';
+    const cloud = document.getElementById('cloud');
+    const cx = 540, cy = 500;
+    const COUNT = 260;
+
+    // Simple seeded LCG for deterministic output across renders.
+    let seed = 1337;
+    function rnd() {
+      seed = (seed * 1664525 + 1013904223) >>> 0;
+      return seed / 0xffffffff;
+    }
+    function gauss(mean, sd) {
+      const u = 1 - rnd();
+      const v = rnd();
+      return mean + sd * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+    }
+
+    for (let i = 0; i < COUNT; i++) {
+      // Distance along main +45° diagonal — wide spread
+      const d = gauss(0, 140);
+      // Perpendicular offset — narrow (strong correlation)
+      const p = gauss(0, 28);
+      // Rotate (cos45, sin45) = (1/√2, 1/√2)
+      const k = Math.SQRT1_2;
+      const dx = (d - p) * k;
+      const dy = (d + p) * k;
+      const x = cx + dx;
+      const y = cy - dy; // SVG y inverted
+
+      // Skip if outside the scope ring (r=340)
+      const dist = Math.hypot(x - cx, y - cy);
+      if (dist > 330) continue;
+
+      const dot = document.createElementNS(ns, 'circle');
+      dot.setAttribute('cx', x.toFixed(2));
+      dot.setAttribute('cy', y.toFixed(2));
+      dot.setAttribute('r', (2 + rnd() * 1.5).toFixed(2));
+      dot.setAttribute('opacity', (0.35 + rnd() * 0.5).toFixed(2));
+      cloud.appendChild(dot);
+    }
+  </script>
+</body>
+</html>
