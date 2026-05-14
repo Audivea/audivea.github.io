@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #07172f;
+  }
+
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #1a4ea0 0%, #0e3478 35%, #0a2755 65%, #07172f 100%);
+    overflow: hidden;
+  }
+
+  /* Soft vignette over the gradient */
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+
+  .diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <svg class="diagram" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Glow for the smooth curve -->
+        <filter id="curveGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Strong glow for sample dots -->
+        <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="5" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Danger zone gradient above the ceiling -->
+        <linearGradient id="dangerGrad" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0%"   stop-color="#ff7a5e" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="#ff7a5e" stop-opacity="0"/>
+        </linearGradient>
+        <!-- Smooth curve gradient -->
+        <linearGradient id="curveGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#7fdcff"/>
+          <stop offset="50%"  stop-color="#cfe5ff"/>
+          <stop offset="100%" stop-color="#7fdcff"/>
+        </linearGradient>
+        <!-- Baseline axis gradient (fade at edges) -->
+        <linearGradient id="axisGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#5ecbff" stop-opacity="0"/>
+          <stop offset="15%"  stop-color="#5ecbff" stop-opacity="0.6"/>
+          <stop offset="85%"  stop-color="#5ecbff" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#5ecbff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Danger zone band (above ceiling) -->
+      <rect x="80" y="280" width="920" height="180" fill="url(#dangerGrad)"/>
+
+      <!-- Ceiling line (0 dBFS) -->
+      <line x1="80" y1="460" x2="1000" y2="460"
+            stroke="#ff8a5e" stroke-width="3"
+            stroke-dasharray="16 12" stroke-linecap="round"
+            opacity="0.85"/>
+
+      <!-- Smooth true-peak curve threads through the samples; between the two middle samples it arcs above the ceiling -->
+      <path d="
+        M 80 740
+        C 100 738, 140 712, 164 700
+        C 188 685, 220 655, 247 640
+        C 270 620, 308 595, 331 580
+        C 355 565, 390 540, 414 525
+        C 440 510, 475 490, 498 485
+        C 525 410, 555 410, 582 485
+        C 605 490, 640 510, 665 525
+        C 690 540, 725 565, 749 580
+        C 770 595, 810 620, 833 640
+        C 855 655, 892 685, 916 700
+        C 940 712, 970 738, 1000 740
+      " fill="none" stroke="url(#curveGrad)" stroke-width="6"
+        stroke-linecap="round" stroke-linejoin="round"
+        filter="url(#curveGlow)"/>
+
+      <!-- Baseline axis -->
+      <line x1="80" y1="760" x2="1000" y2="760"
+            stroke="url(#axisGrad)" stroke-width="2" opacity="0.55"/>
+
+      <!-- Vertical stems from baseline to each sample -->
+      <g stroke="#5ecbff" stroke-width="1.5" opacity="0.35">
+        <line x1="80"   y1="760" x2="80"   y2="740"/>
+        <line x1="164"  y1="760" x2="164"  y2="700"/>
+        <line x1="247"  y1="760" x2="247"  y2="640"/>
+        <line x1="331"  y1="760" x2="331"  y2="580"/>
+        <line x1="414"  y1="760" x2="414"  y2="525"/>
+        <line x1="498"  y1="760" x2="498"  y2="485"/>
+        <line x1="582"  y1="760" x2="582"  y2="485"/>
+        <line x1="665"  y1="760" x2="665"  y2="525"/>
+        <line x1="749"  y1="760" x2="749"  y2="580"/>
+        <line x1="833"  y1="760" x2="833"  y2="640"/>
+        <line x1="916"  y1="760" x2="916"  y2="700"/>
+        <line x1="1000" y1="760" x2="1000" y2="740"/>
+      </g>
+
+      <!-- Sample dots: 12 samples form a symmetric bell; two middle samples sit just below the ceiling -->
+      <g fill="#5ecbff" filter="url(#dotGlow)">
+        <circle cx="80"   cy="740" r="11"/>
+        <circle cx="164"  cy="700" r="11"/>
+        <circle cx="247"  cy="640" r="11"/>
+        <circle cx="331"  cy="580" r="11"/>
+        <circle cx="414"  cy="525" r="11"/>
+        <circle cx="498"  cy="485" r="11"/>
+        <circle cx="582"  cy="485" r="11"/>
+        <circle cx="665"  cy="525" r="11"/>
+        <circle cx="749"  cy="580" r="11"/>
+        <circle cx="833"  cy="640" r="11"/>
+        <circle cx="916"  cy="700" r="11"/>
+        <circle cx="1000" cy="740" r="11"/>
+      </g>
+
+      <!-- Small accent star at the overshoot apex -->
+      <g transform="translate(540 430)" opacity="0.95">
+        <path d="M 0 -18 L 3 -3 L 18 0 L 3 3 L 0 18 L -3 3 L -18 0 L -3 -3 Z"
+              fill="#ffd6c2"/>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>

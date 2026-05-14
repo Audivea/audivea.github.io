@@ -537,7 +537,7 @@ nav {
 
 .card-image {
   width: 240px;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 6px;
   flex-shrink: 0;
@@ -962,7 +962,7 @@ nav {
 
 .lab-card-icon {
   width: 240px;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 1 / 1;
   flex-shrink: 0;
   display: flex;
   align-items: center;

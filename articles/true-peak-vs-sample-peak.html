@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>True Peak vs Sample Peak: Why Masters Still Clip | Audivea</title>
+  <meta name="description" content="A −1.0 dBFS master can still clip on Spotify or Apple Music. The reason is the gap between sample peak and true peak — and a true peak meter is the only honest way to see it.">
+  <link rel="canonical" href="https://audivea.com/articles/true-peak-vs-sample-peak.html">
+  <meta property="og:title" content="True Peak vs Sample Peak: Why Masters Still Clip">
+  <meta property="og:description" content="A −1.0 dBFS master can still clip on Spotify or Apple Music. The reason is the gap between sample peak and true peak.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="True Peak vs Sample Peak: Why Masters Still Clip">
+  <meta name="twitter:description" content="A −1.0 dBFS master can still clip on Spotify or Apple Music. The reason is the gap between sample peak and true peak.">
+  <meta name="twitter:image" content="https://audivea.com/og-image.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JLL7X7X53H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../favicon.png" type="image/png">
+
+  <link rel="stylesheet" href="../components/styles.css">
+
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "True Peak vs Sample Peak: Why Masters Still Clip",
+    "datePublished": "2026-05-14",
+    "author": {
+      "@type": "Organization",
+      "name": "Audivea"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Audivea",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://audivea.com/icon.webp"
+      }
+    },
+    "description": "A −1.0 dBFS master can still clip on Spotify or Apple Music. The reason is the gap between sample peak and true peak — and a true peak meter is the only honest way to see it.",
+    "image": "https://audivea.com/articles/true-peak-vs-sample-peak.webp",
+    "url": "https://audivea.com/articles/true-peak-vs-sample-peak.html"
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-fixed"></div>
+  <!-- Header will be inserted by header.js -->
+
+  <div class="main-content">
+    <div class="container-wide">
+      <article>
+        <header class="article-header">
+          <h1 class="article-title">True Peak vs Sample Peak: Why Masters Still Clip</h1>
+          <div class="article-meta">Published on May 14, 2026</div>
+        </header>
+
+        <div class="article-content">
+          <img src="true-peak-vs-sample-peak.webp" alt="True Peak vs Sample Peak" class="article-featured-image">
+
+          <p>
+            You bounced the master at −1.0 dBFS. Your DAW's peak meter agreed. You uploaded to Spotify, listened on your phone, and heard a flat little crackle on the loud bits.
+          </p>
+
+          <p>
+            You're not alone. Most engineers shipping tracks in the last decade have run into the same thing. The peak meter wasn't wrong — it just wasn't watching the right signal.
+          </p>
+
+          <p>
+            This article covers what <em>true peak</em> actually measures, why it disagrees with the sample peak your DAW shows by default, and how to use a true peak meter without overthinking it.
+          </p>
+
+          <hr>
+
+          <h2>The two numbers your peak meter could mean</h2>
+
+          <p>
+            Every digital audio file is a list of samples — 44,100 or 48,000 per second, each one a single number. When your DAW shows "peak," it almost always means the loudest single sample in that list.
+          </p>
+
+          <p>
+            That number is real. It is also incomplete.
+          </p>
+
+          <p>
+            A digital audio file is not the sound. The sound is what comes out when a converter — a D/A on your interface, or the resampling and decoding inside a phone, a streaming codec, or a Bluetooth chip — reconstructs a continuous waveform from those samples. Between any two samples, the actual analog waveform can rise <em>higher</em> than either sample on its own. That higher value is the <strong>true peak</strong>, also called the <strong>inter-sample peak</strong>.
+          </p>
+
+          <p>
+            Sample peak is what's <em>in the file</em>. True peak is what <em>comes out of the speaker</em>.
+          </p>
+
+          <p>
+            When they disagree, true peak wins — because true peak is what your listener hears.
+          </p>
+
+          <h2>Why the gap exists</h2>
+
+          <p>
+            The gap is a property of how digital audio reconstructs analog. The Nyquist–Shannon sampling theorem guarantees you can recover the original waveform from samples, but "recover" means draw a smooth curve through the dots — and a smooth curve through dots can swing higher than the dots themselves between them.
+          </p>
+
+          <p>
+            In practice, this happens whenever a signal has been pushed hard enough that successive samples sit near the ceiling. A limiter that clamps every sample to −0.1 dBFS does not clamp the reconstructed waveform to −0.1 dBFS. The reconstruction can peek over 0 dBFS by a few tenths of a dB, sometimes more.
+          </p>
+
+          <p>
+            A few rules of thumb that hold up in the field:
+          </p>
+
+          <ul>
+            <li>Hot, limited material in modern pop and EDM regularly shows true peaks <strong>0.5 to 2 dB above</strong> its sample peak.</li>
+            <li>Sparse material with long inter-sample distances — kick drums, plucked sounds, isolated transients — tends toward the higher end of that range.</li>
+            <li>Material that hasn't been pushed against a ceiling — orchestral, jazz, ambient — almost never has a meaningful true peak / sample peak gap.</li>
+          </ul>
+
+          <p>
+            The gap is not a flaw in your converter or your DAW. It is a structural feature of sampled audio.
+          </p>
+
+          <h2>Where the gap turns into clipping</h2>
+
+          <p>
+            Three places, in order of how often they bite:
+          </p>
+
+          <h3>1. Lossy codecs</h3>
+          <p>
+            AAC, MP3, and Opus encode in the frequency domain and decode back to PCM. The decoded PCM is <em>not</em> sample-identical to your master. Levels shift, sometimes upward. A −0.3 dBFS sample-peak master can decode to a +0.4 dBTP playback signal, and the downstream chain clips.
+          </p>
+
+          <h3>2. Sample rate conversion</h3>
+          <p>
+            Streaming services normalize loudness and may resample. Both steps can lift true peak relative to what you handed them.
+          </p>
+
+          <h3>3. Consumer playback chains</h3>
+          <p>
+            Phone DACs, Bluetooth codecs, and laptop converters often have less headroom than your studio interface and no protective limiter on the output. Anything over 0 dBTP on the way in is anyone's guess on the way out.
+          </p>
+
+          <p>
+            This is why streaming platforms publish a true peak ceiling in their delivery specs. They have measured the round trip.
+          </p>
+
+          <h2>What the streaming platforms ask for</h2>
+
+          <p>
+            The currently published targets, abbreviated:
+          </p>
+
+          <table>
+            <tr>
+              <th>Platform</th>
+              <th>True Peak Ceiling</th>
+              <th>Loudness Reference</th>
+            </tr>
+            <tr>
+              <td>Spotify</td>
+              <td>−1.0 dBTP</td>
+              <td>−14 LUFS</td>
+            </tr>
+            <tr>
+              <td>Apple Music</td>
+              <td>−1.0 dBTP</td>
+              <td>−16 LUFS (Sound Check)</td>
+            </tr>
+            <tr>
+              <td>YouTube</td>
+              <td>−1.0 dBTP</td>
+              <td>−14 LUFS</td>
+            </tr>
+            <tr>
+              <td>Tidal</td>
+              <td>−1.0 dBTP</td>
+              <td>−14 LUFS</td>
+            </tr>
+            <tr>
+              <td>Amazon Music</td>
+              <td>−2.0 dBTP</td>
+              <td>−14 LUFS</td>
+            </tr>
+          </table>
+
+          <p>
+            The numbers shift over time and vary by program type — podcast specs differ from music. The pattern does not shift: <strong>everyone wants a true peak ceiling below 0 dBFS, with a comfortable margin for codec recovery.</strong>
+          </p>
+
+          <p>
+            A −1.0 dBTP ceiling is the safe default across the board. −2.0 dBTP costs almost nothing perceptually and removes the question entirely.
+          </p>
+
+          <h2>What a true peak meter actually does</h2>
+
+          <p>
+            A true peak meter does not measure your file. It measures a reconstruction of your file — an oversampled, interpolated estimate of what the analog signal between your samples would look like.
+          </p>
+
+          <p>
+            The ITU-R BS.1770 standard defines the reference implementation: 4× oversample (or higher), apply a polyphase interpolation filter, then read the peak of the upsampled stream. That gives a value within tenths of a dB of the real inter-sample peak.
+          </p>
+
+          <p>
+            Real meters do this in real time, which is why a true peak readout costs a little more CPU than a sample peak readout. It is worth it.
+          </p>
+
+          <p>
+            Dedicated metering plugins — Youlean Loudness Meter, iZotope Insight, MeldaProduction MMultiAnalyzer — show the true peak reading alongside the sample peak. Keeping both on screen at once is how the difference between them stops being theoretical: if sample peak reads −1.0 and true peak reads −0.2 on the same passage, that is the codec margin you do not have.
+          </p>
+
+          <h2>How to read it without overthinking it</h2>
+
+          <p>
+            A common mistake is treating true peak as a separate measurement that lives only in mastering. It does not have to.
+          </p>
+
+          <p>
+            A workable workflow:
+          </p>
+
+          <ol>
+            <li><strong>Set a true peak ceiling.</strong> −1.0 dBTP is fine. −2.0 dBTP is safer.</li>
+            <li><strong>Use a true-peak-aware limiter at the end of your master chain.</strong> FabFilter Pro-L 2, Waves L2 Ultramaximizer, iZotope Ozone Maximizer, and most stock DAW limiters all have a true peak mode. It costs CPU and a small amount of latency. Use it.</li>
+            <li><strong>Read true peak, not sample peak, when checking whether you're done.</strong> If the limiter is set to −1.0 dBTP, the meter should be reading at or under −1.0 dBTP at the loudest moment of the track.</li>
+            <li><strong>Ignore the sample peak number unless you're debugging.</strong> Sample peak is the file's number. True peak is the listener's number. You are shipping for the listener.</li>
+          </ol>
+
+          <p>
+            That is most of it. The rest is taste.
+          </p>
+
+          <h2>What about during mixing?</h2>
+
+          <p>
+            A true peak meter on the master bus during a mix is mostly informational. You are not committing the limiter ceiling there. The useful version of "true peak during mixing" is <strong>headroom</strong>: how much margin do you have before the master limiter has to work hard to bring the track to its true peak ceiling?
+          </p>
+
+          <p>
+            For most pop and rock work, if the mix bus is averaging around −10 dBFS sample peak with peaks around −3 to −1 dBFS, there is enough headroom for a master limiter to do its job and keep the result under −1.0 dBTP. Looser than that and the limiter is doing more shaping than catching.
+          </p>
+
+          <p>
+            Inter-sample issues at the mix stage are rare unless something is being driven into a soft clipper or a saturator without oversampling — also worth checking, but that is a different article.
+          </p>
+
+          <h2>Tonal balance is the other thing the meter sees</h2>
+
+          <p>
+            While we are on it: the same metering chain that gives you true peak also gives you everything else — LUFS short-term and integrated, RMS, peak/RMS as a dynamics readout, stereo correlation, and the frequency-band energy split called <strong>tonal balance</strong>.
+          </p>
+
+          <p>
+            Tonal balance is the long-window read of how energy distributes across low, mid, and high bands relative to a reference. It catches the bass-heavy mix on a small monitor, the brittle top end on a hot day, the dark master that translates worse than expected. We will come back to it in its own article.
+          </p>
+
+          <h2>The short version</h2>
+
+          <ul>
+            <li><strong>Sample peak</strong> is the loudest sample in the file.</li>
+            <li><strong>True peak</strong> is the loudest point in the reconstructed analog waveform.</li>
+            <li>They disagree, sometimes by 1–2 dB.</li>
+            <li>Codecs, resamplers, and consumer playback chains turn that disagreement into audible clipping.</li>
+            <li>Streaming platforms ask for −1.0 dBTP or lower. Honor it.</li>
+            <li>Use a true-peak-aware limiter and read the true peak meter when checking the master.</li>
+            <li>Sample peak is for debugging. True peak is the number that ships.</li>
+          </ul>
+
+          <p>
+            A meter that shows you both side by side is the cheapest way to never wonder again why the upload sounded worse than the bounce.
+          </p>
+
+          <hr>
+
+          <p>
+            Ready to check your own master? Try the <a href="../lab/mix-analyzer/">Mix Analyzer</a> — a free browser-based tool that measures loudness, true peak, dynamics, stereo image, and tonal balance.
+          </p>
+
+          <hr>
+
+          <a href="./" class="back-link">&larr; Back to Articles</a>
+          <a href="#" class="back-to-top">&uarr; Back to Top</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Footer will be inserted by footer.js -->
+</body>
+</html>

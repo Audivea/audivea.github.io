@@ -1,0 +1,80 @@
+<!--
+  Scaffold for a new article hero illustration.
+
+  To use:
+    1. Copy this file to image-templates/<article-slug>.html
+       (the slug must match the article's HTML filename without .html)
+    2. Replace the <!-- ARTICLE CONTENT --> block with the concept illustration
+    3. Run: npm run hero -- <article-slug>
+       Output: articles/<article-slug>.webp (1080×1080)
+
+  Conventions:
+    - Canvas is 1080×1080
+    - Background gradient + vignette are pre-wired; don't fight them
+    - Brand cyan: #5ecbff (dots/lines), #7fdcff–#cfe5ff (highlights)
+    - Warning/danger accent: #ff7a5e–#ff8a5e
+    - No baked-in title text — the article H1 carries the message
+    - Predefined SVG filters available: #curveGlow, #dotGlow
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #07172f;
+  }
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #1a4ea0 0%, #0e3478 35%, #0a2755 65%, #07172f 100%);
+    overflow: hidden;
+  }
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+  .diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <svg class="diagram" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="curveGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="5" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- ARTICLE CONTENT — replace with the concept illustration -->
+
+    </svg>
+  </div>
+</body>
+</html>
