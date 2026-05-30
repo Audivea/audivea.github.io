@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LUFS Targets for Spotify, Apple Music & YouTube: How Normalization Works | Audivea</title>
+  <meta name="description" content="Every streaming platform publishes an integrated LUFS target. The number is not a goal you hit — it is the level the platform plays your track at. Here is how normalization works and what the published number actually controls.">
+  <link rel="canonical" href="https://audivea.com/articles/lufs-targets-spotify-apple-music-youtube.html">
+  <meta property="og:title" content="LUFS Targets for Spotify, Apple Music & YouTube: How Normalization Works">
+  <meta property="og:description" content="The published LUFS target is the level the platform plays your track at, not a number you compete on. Here is how normalization actually works.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/articles/lufs-targets-spotify-apple-music-youtube.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LUFS Targets for Spotify, Apple Music & YouTube: How Normalization Works">
+  <meta name="twitter:description" content="The published LUFS target is the level the platform plays your track at, not a number you compete on.">
+  <meta name="twitter:image" content="https://audivea.com/articles/lufs-targets-spotify-apple-music-youtube.webp">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JLL7X7X53H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../favicon.png" type="image/png">
+
+  <link rel="stylesheet" href="../components/styles.css">
+
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "LUFS Targets for Spotify, Apple Music, and YouTube: How Streaming Normalization Actually Works",
+    "datePublished": "2026-05-30",
+    "author": {
+      "@type": "Organization",
+      "name": "Audivea"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Audivea",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://audivea.com/icon.webp"
+      }
+    },
+    "description": "Every streaming platform publishes an integrated LUFS target. The number is not a goal you hit — it is the level the platform plays your track at. Here is how normalization works and what the published number actually controls.",
+    "image": "https://audivea.com/articles/lufs-targets-spotify-apple-music-youtube.webp",
+    "url": "https://audivea.com/articles/lufs-targets-spotify-apple-music-youtube.html"
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-fixed"></div>
+  <!-- Header will be inserted by header.js -->
+
+  <div class="main-content">
+    <div class="container-wide">
+      <article>
+        <header class="article-header">
+          <h1 class="article-title">LUFS Targets for Spotify, Apple Music, and YouTube: How Streaming Normalization Actually Works</h1>
+          <div class="article-meta">Published on May 30, 2026</div>
+        </header>
+
+        <div class="article-content">
+          <img src="lufs-targets-spotify-apple-music-youtube.webp" alt="LUFS Targets" class="article-featured-image">
+
+          <p>
+            You read that Spotify wants −14 LUFS. You mastered to −14 LUFS. You A/B'd against the commercial reference you have been chasing all month, and your track still sounded quieter.
+          </p>
+
+          <p>
+            The published loudness targets are real. They are also misunderstood almost everywhere mastering is discussed, and the most common version of the misunderstanding is treating the published number as a target to <em>hit</em> in the way you hit a true peak ceiling. That framing is left over from the pre-normalization era. It has not been correct for almost a decade.
+          </p>
+
+          <p>
+            This article covers what an integrated LUFS reading actually measures, how streaming normalization works mechanically, what each major platform does to your master, and the small workflow that drops out of all of it.
+          </p>
+
+          <p>
+            We have written before on the <a href="mastering-audio-metering.html">family of meters</a> and <a href="how-to-read-your-meters-and-fix-mix-problems.html">how to read them when something is going wrong in the mix</a>. Both introduce LUFS and list the platform numbers. This article assumes those basics and goes one level deeper.
+          </p>
+
+          <hr>
+
+          <h2>Integrated, short-term, momentary</h2>
+
+          <p>
+            A LUFS meter shows three readings, not one.
+          </p>
+
+          <p>
+            <strong>Momentary LUFS</strong> is the K-weighted loudness over a 400 ms window. It moves fast. It spikes on transients. It is the closest LUFS gets to a peak-style reading.
+          </p>
+
+          <p>
+            <strong>Short-term LUFS</strong> is the K-weighted loudness over a 3-second window. It is the right read for comparing a verse to a chorus, or for matching section-to-section loudness inside a track.
+          </p>
+
+          <p>
+            <strong>Integrated LUFS</strong> is the K-weighted loudness averaged across the entire measured passage, with a gating function that excludes silence and very-quiet content. When a streaming spec says "−14 LUFS," it always means integrated LUFS measured across the full track.
+          </p>
+
+          <p>
+            The three readings answer different questions and they are not interchangeable. Mixing engineers who watch momentary LUFS during a session and assume they are mastering to −14 LUFS are reading the wrong number. The streaming platforms only care about the integrated reading, taken over the full track length.
+          </p>
+
+          <p>
+            K-weighting itself is the frequency curve defined by ITU-R BS.1770. It under-counts very low bass and slightly over-counts upper mids — roughly matching how humans perceive loudness. A K-weighted RMS-style integration is what makes a quiet jazz track and a hot pop track at the same integrated LUFS sound, on average, equally loud.
+          </p>
+
+          <h2>How normalization works</h2>
+
+          <p>
+            Every modern streaming platform performs the same three steps when you upload a track:
+          </p>
+
+          <ol>
+            <li><strong>Measure</strong> the file's integrated LUFS and its true peak across the full track.</li>
+            <li><strong>Compute</strong> a gain offset that would move the file's integrated LUFS to the platform's reference.</li>
+            <li><strong>Apply</strong> that gain offset, as a single flat number, to the file during playback. The actual file on disk does not change.</li>
+          </ol>
+
+          <p>
+            The gain offset is a single scalar. The platform is not compressing your track, not multiband-processing it, not changing its dynamics. It is reaching for the volume knob and turning it once, by exactly the amount needed to land the integrated LUFS reading on the reference.
+          </p>
+
+          <p>
+            If your track is hotter than the reference, the offset is negative — the platform turns you down. If your track is quieter than the reference, the offset is positive — the platform may or may not turn you up, depending on platform and user setting.
+          </p>
+
+          <p>
+            That is the entire mechanism. Once you see it as one number applied flat, the rest of this article follows.
+          </p>
+
+          <h2>What the platforms actually do</h2>
+
+          <p>
+            The currently published references, with the relevant behavior:
+          </p>
+
+          <table>
+            <tr>
+              <th>Platform</th>
+              <th>Reference</th>
+              <th>True Peak Ceiling</th>
+              <th>Normalize down?</th>
+              <th>Normalize up?</th>
+            </tr>
+            <tr>
+              <td>Spotify</td>
+              <td>−14 LUFS</td>
+              <td>−1.0 dBTP</td>
+              <td>Yes (always, in normalized mode)</td>
+              <td>Yes in "Loud"; no in "Normal" or "Quiet"</td>
+            </tr>
+            <tr>
+              <td>Apple Music</td>
+              <td>−16 LUFS</td>
+              <td>−1.0 dBTP</td>
+              <td>Yes, when Sound Check is on (default on mobile)</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>YouTube</td>
+              <td>−14 LUFS</td>
+              <td>−1.0 dBTP</td>
+              <td>Yes (always)</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td>Tidal</td>
+              <td>−14 LUFS</td>
+              <td>−1.0 dBTP</td>
+              <td>Yes (always, in normalized mode)</td>
+              <td>Yes</td>
+            </tr>
+            <tr>
+              <td>Amazon Music</td>
+              <td>−14 LUFS</td>
+              <td>−2.0 dBTP</td>
+              <td>Yes (always)</td>
+              <td>Yes</td>
+            </tr>
+          </table>
+
+          <p>
+            The numbers shift over time and specific behaviors vary by client version. The pattern does not shift: <strong>everyone normalizes downward against a reference between −14 and −16 LUFS, and everyone wants a true peak ceiling below 0 dBFS.</strong> Upward normalization is the variable; downward is the constant.
+          </p>
+
+          <p>
+            True peak is a separate topic. If you have not seen <a href="true-peak-vs-sample-peak.html">True Peak vs Sample Peak</a>, the short version is that codecs and consumer playback chains can lift the reconstructed signal 1–2 dB above the file's sample peak, and the platforms set the ceiling to give themselves a margin. The rest of this article is about the loudness number.
+          </p>
+
+          <h2>What hitting the target does and does not do</h2>
+
+          <p>
+            Given the mechanism, hitting the published reference exactly accomplishes one specific thing: it leaves the platform's gain offset close to zero, so the track plays at the level it was mastered at.
+          </p>
+
+          <p>
+            It does not make the track louder than its neighbors. The neighbors are also being normalized to the same reference. The reference is the destination for every track in the catalog.
+          </p>
+
+          <p>
+            It does not save a poorly-balanced mix. A muddy, narrow track reads −14 LUFS just fine and still sounds smaller than a wide, well-balanced track at the same reading. Once normalization equalizes the loudness, the listener's comparison is happening on balance, tone, dynamics, and stereo image — not on level.
+          </p>
+
+          <p>
+            What hitting the reference <em>does</em> control, in practice:
+          </p>
+
+          <p>
+            <strong>The dynamic delta that survives playback.</strong> A track mastered to −8 LUFS and turned down to −14 by Spotify still has the same internal loud-to-quiet ratio as it had at master, but every passage is now 6 dB quieter than the limiter let it be at the file level. The dynamic delta between a chorus and a verse is preserved, but the peaks no longer reach as high above the perceived loudness floor. A track mastered to −14 LUFS with a less aggressive limiter has more usable headroom for transient impact at playback. Dynamic snap is what listeners perceive as energy under normalization, because they cannot perceive level anymore.
+          </p>
+
+          <p>
+            <strong>Down-normalize avoidance versus up-normalize ambiguity.</strong> Mastering far below the reference puts you at the mercy of the user's playback setting. On Spotify "Normal" mode your −20 LUFS track plays at −20 LUFS and sounds quieter than the song before it. On Spotify "Loud" mode it gets pulled up, which costs you transient headroom and may push the limiter the platform applies above its true peak ceiling. Neither outcome is good. Mastering at or 1 dB under the reference avoids both edges.
+          </p>
+
+          <p>
+            <strong>Codec margin.</strong> A track sitting near the reference, with a true-peak-aware limiter at −1.0 dBTP, has comfortable codec margin downstream. A track pushed well above the reference does not — and it is exactly the kind of master where lossy codec decoding causes audible clipping on phones and laptops.
+          </p>
+
+          <h2>The workflow</h2>
+
+          <p>
+            Once the mechanism is in view, the streaming-era mastering workflow is short.
+          </p>
+
+          <ol>
+            <li><strong>Mix to leave headroom.</strong> Aim for an integrated bus reading around −16 to −20 LUFS at the end of the mix, with peaks well below the master ceiling. The master limiter should be catching, not shaping.</li>
+            <li><strong>Master to the reference, or 1 dB under.</strong> −14 LUFS integrated is the default for Spotify, YouTube, Tidal, Amazon. −16 LUFS if Apple Music is the primary target. There is no benefit to going further below the reference unless the music itself wants the dynamics.</li>
+            <li><strong>Hold the true peak ceiling.</strong> −1.0 dBTP across the board, −2.0 dBTP for Amazon and anything destined for FM downstream.</li>
+            <li><strong>Commit on the integrated reading, not the momentary or short-term.</strong> Let the meter integrate the full track length, then read.</li>
+            <li><strong>Verify with a matched-loudness A/B.</strong> Pull a commercial reference into the session, normalize it to the same integrated LUFS as your master, and compare. This is the test that exposes whether the master is competitive on the things normalization does not take away.</li>
+          </ol>
+
+          <p>
+            Step 5 is the one most engineers skip and the one that answers the "why is mine quieter than theirs" complaint that opens this article. At matched loudness, the gap is rarely loudness. It is bass weight, top-end air, stereo width, transient definition, or balance between elements. Those are the things that survive the platform's volume knob.
+          </p>
+
+          <h2>The short version</h2>
+
+          <ul>
+            <li><strong>LUFS</strong> is integrated, K-weighted loudness. The streaming platforms care about the <strong>integrated</strong> reading, taken over the full track.</li>
+            <li>Normalization works by measuring your file's integrated LUFS, computing a single gain offset against the platform's reference, and applying that offset flat at playback.</li>
+            <li>Mastering at the reference leaves the gain offset near zero. Mastering above gets you turned down. Mastering below either gets you turned up (losing transient headroom) or leaves you sounding quieter than your neighbors.</li>
+            <li>The published number controls the <strong>dynamic delta at playback, down-normalize avoidance, and codec margin</strong> — not loudness, which normalization decides.</li>
+            <li><strong>−14 LUFS integrated, −1.0 dBTP</strong> is a safe default for streaming-first work in 2026.</li>
+            <li>The competitive edge under normalization is the mix and master <em>inside</em> the reference level. Verify with a matched-loudness A/B.</li>
+          </ul>
+
+          <p>
+            A meter that shows integrated LUFS, momentary LUFS, short-term LUFS, true peak, and the frequency-band energy split together is the cheapest way to stop guessing whether the master is doing its job at the level it is going to be played at.
+          </p>
+
+          <hr>
+
+          <p>
+            Ready to check your own master? Try the <a href="../lab/mix-analyzer/">Mix Analyzer</a> — a free browser-based tool that measures loudness, true peak, dynamics, stereo image, and tonal balance.
+          </p>
+
+          <p>
+            Want the next one when it lands — gain staging, tonal balance, more on metering? Join the <a href="../products/metering.html">metering plugin waitlist</a>. The same list gets new articles too.
+          </p>
+
+          <hr>
+
+          <a href="./" class="back-link">&larr; Back to Articles</a>
+          <a href="#" class="back-to-top">&uarr; Back to Top</a>
+        </div>
+      </article>
+    </div>
+  </div>
+
+  <!-- Footer will be inserted by footer.js -->
+</body>
+</html>

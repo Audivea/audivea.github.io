@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--
+  LUFS hero — Template 1 (article).
+  Matches the shipped True Peak / mastering / how-to-read heroes:
+  same navy radial gradient + vignette, cyan palette, glow filters,
+  monospace labels, warm accent star. Diagram-forward (no big headline).
+
+  Concept: three source bars come in at different integrated levels
+  (−20 / −14 / −8 LUFS). The dashed "platform target" line is flat at
+  −14 across all three — normalization rendered as one image.
+
+  Ship: copy to
+    audivea.github.io/image-templates/lufs-targets-spotify-apple-music-youtube.html
+  then  npm run hero -- lufs-targets-spotify-apple-music-youtube
+-->
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #07172f;
+  }
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #1a4ea0 0%, #0e3478 35%, #0a2755 65%, #07172f 100%);
+    overflow: hidden;
+  }
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+  .diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <svg class="diagram" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Cyan bar fill, brighter toward the top -->
+        <linearGradient id="barGrad" x1="0" y1="860" x2="0" y2="220" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#3990d0"/>
+          <stop offset="45%"  stop-color="#5ecbff"/>
+          <stop offset="100%" stop-color="#a9e6ff"/>
+        </linearGradient>
+        <filter id="barGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="9"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="lineGlow" x="-20%" y="-50%" width="140%" height="200%">
+          <feGaussianBlur stdDeviation="4"/>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Continuous waveform texture (bottom band) -->
+        <linearGradient id="waveGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#5ecbff" stop-opacity="0"/>
+          <stop offset="15%"  stop-color="#5ecbff" stop-opacity="0.5"/>
+          <stop offset="85%"  stop-color="#5ecbff" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#5ecbff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!--
+        Meter scale: y=220 → 0 LUFS (top), y=860 → −24 LUFS (bottom).
+        26.67 px/dB.  −8 → 433,  −14 → 593,  −20 → 753.
+        Bars centred at x = 310 / 540 / 770, width 100.
+      -->
+
+      <!-- ============ Bar housings ============ -->
+      <g fill="#0a2755" fill-opacity="0.5" stroke="#5ecbff" stroke-opacity="0.30" stroke-width="1.5">
+        <rect x="260" y="220" width="100" height="640" rx="12"/>
+        <rect x="490" y="220" width="100" height="640" rx="12"/>
+        <rect x="720" y="220" width="100" height="640" rx="12"/>
+      </g>
+
+      <!-- ============ Active fills (source loudness, unequal) ============ -->
+      <g fill="url(#barGrad)" filter="url(#barGlow)">
+        <!-- −20 LUFS source: top at y=753 -->
+        <rect x="266" y="753" width="88" height="101" rx="8"/>
+        <!-- −14 LUFS source: top at y=593 -->
+        <rect x="496" y="593" width="88" height="261" rx="8"/>
+        <!-- −8 LUFS source: top at y=433 -->
+        <rect x="726" y="433" width="88" height="421" rx="8"/>
+      </g>
+
+      <!-- ============ Platform target line (flat at −14 across all) ============ -->
+      <line x1="200" y1="593" x2="880" y2="593"
+            stroke="#ffd6c2" stroke-width="3"
+            stroke-dasharray="16 12" stroke-linecap="round"
+            opacity="0.9" filter="url(#lineGlow)"/>
+
+      <!-- Target tag -->
+      <g font-family="ui-monospace, Menlo, Consolas, monospace" text-anchor="start">
+        <text x="892" y="587" font-size="30" font-weight="700" fill="#ffd6c2">−14</text>
+        <text x="892" y="612" font-size="15" font-weight="600" letter-spacing="2" fill="#ffd6c2" fill-opacity="0.7">LUFS · TARGET</text>
+      </g>
+
+      <!-- ============ Source labels under bars ============ -->
+      <g font-family="ui-monospace, Menlo, Consolas, monospace"
+         text-anchor="middle" fill="#cfe5ff">
+        <text x="310" y="908" font-size="34" font-weight="700">−20</text>
+        <text x="540" y="908" font-size="34" font-weight="700">−14</text>
+        <text x="770" y="908" font-size="34" font-weight="700">−8</text>
+      </g>
+      <g font-family="ui-monospace, Menlo, Consolas, monospace"
+         text-anchor="middle" fill="#5ecbff" fill-opacity="0.6"
+         font-size="16" font-weight="600" letter-spacing="3">
+        <text x="540" y="940">SOURCE LOUDNESS · INTEGRATED LUFS</text>
+      </g>
+
+      <!-- ============ Continuous waveform texture (bottom band) ============ -->
+      <g stroke="url(#waveGrad)" fill="none" stroke-linecap="round">
+        <path d="M0 1000 Q 60 968 120 1000 T 240 1000 T 360 1000 T 480 1000 T 600 1000 T 720 1000 T 840 1000 T 960 1000 T 1080 1000"
+              stroke-width="3" opacity="0.55"/>
+        <path d="M0 1024 Q 60 1000 120 1024 T 240 1024 T 360 1024 T 480 1024 T 600 1024 T 720 1024 T 840 1024 T 960 1024 T 1080 1024"
+              stroke-width="2" opacity="0.4"/>
+        <path d="M0 1048 Q 60 1030 120 1048 T 240 1048 T 360 1048 T 480 1048 T 600 1048 T 720 1048 T 840 1048 T 960 1048 T 1080 1048"
+              stroke-width="1.5" opacity="0.28"/>
+      </g>
+
+      <!-- ============ Accent star (bottom-right) ============ -->
+      <g transform="translate(1004 1004)" opacity="0.95">
+        <path d="M 0 -18 L 3 -3 L 18 0 L 3 3 L 0 18 L -3 3 L -18 0 L -3 -3 Z"
+              fill="#ffd6c2"/>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>
