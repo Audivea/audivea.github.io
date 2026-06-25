@@ -62,17 +62,16 @@
   <div class="bg-fixed"></div>
   <!-- Header will be inserted by header.js -->
 
-  <div class="main-content">
-    <div class="container-wide">
+  <section class="band first">
+    <div class="wrap">
       <article>
-        <header class="article-header">
-          <h1 class="article-title">LUFS Targets for Spotify, Apple Music, and YouTube: How Streaming Normalization Actually Works</h1>
-          <div class="article-meta">Published on May 30, 2026</div>
-        </header>
+        <div class="article-eyebrow">Article &middot; Loudness</div>
+        <h1 class="article-title">LUFS Targets for Spotify, Apple Music, and YouTube: How Streaming Normalization Actually Works</h1>
+        <div class="article-meta-v2">Published on May 30, 2026</div>
 
-        <div class="article-content">
-          <img src="lufs-targets-spotify-apple-music-youtube.webp" alt="LUFS targets for Spotify, Apple Music and YouTube" class="article-featured-image">
 
+        <div class="prose article-prose">
+          <img src="lufs-targets-spotify-apple-music-youtube.webp" alt="LUFS targets for Spotify, Apple Music and YouTube" class="article-figure" loading="lazy">
           <p>
             You read that Spotify wants −14 LUFS. You mastered to −14 LUFS. You A/B'd against the commercial reference you have been chasing all month, and your track still sounded quieter.
           </p>
@@ -147,6 +146,7 @@
             The currently published references, with the relevant behavior:
           </p>
 
+          <div class="prose-table-wrap">
           <table>
             <tr>
               <th>Platform</th>
@@ -191,6 +191,7 @@
               <td>Yes</td>
             </tr>
           </table>
+          </div>
 
           <p>
             The numbers shift over time and specific behaviors vary by client version. The pattern does not shift: <strong>everyone normalizes downward against a reference between −14 and −16 LUFS, and everyone wants a true peak ceiling below 0 dBFS.</strong> Upward normalization is the variable; downward is the constant.
@@ -273,14 +274,12 @@
             Want the next one when it lands — gain staging, tonal balance, more on metering? Join the <a href="../products/metering.html">metering plugin waitlist</a>. The same list gets new articles too.
           </p>
 
-          <hr>
-
-          <a href="./" class="back-link">&larr; Back to Articles</a>
-          <a href="#" class="back-to-top">&uarr; Back to Top</a>
         </div>
+
+        <a class="backlink-v2" href="./">&larr; Back to Articles</a>
       </article>
     </div>
-  </div>
+  </section>
 
   <!-- Footer will be inserted by footer.js -->
 </body>
