@@ -1,13 +1,13 @@
-// Footer component
+// Footer component — Instrument (v2)
 function loadFooter() {
   const currentPath = window.location.pathname;
 
-  // Determine depth: lab/mix-analyzer/ is 2 levels deep, articles/ is 1 level deep
   const pathParts = currentPath.replace(/\/index\.html$/, '/').split('/').filter(Boolean);
-  const siteRoot = window.location.hostname.includes('github.io') ? pathParts.shift() : null;
-  const depth = pathParts.length; // 0 = root, 1 = lab/, 2 = lab/mix-analyzer/
+  if (window.location.hostname.includes('github.io')) pathParts.shift();
+  const depth = pathParts.length;
   const prefix = depth === 0 ? './' : '../'.repeat(depth);
 
+  const homePath = prefix;
   const productsPath = prefix + 'products/';
   const labPath = prefix + 'lab/';
   const articlesPath = prefix + 'articles/';
@@ -15,23 +15,18 @@ function loadFooter() {
   const contactPath = prefix + 'contact.html';
 
   const footer = document.createElement('footer');
-  footer.className = 'social-footer';
+  footer.className = 'site';
   footer.innerHTML = `
-    <div class="footer-container">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <span class="footer-logo">Audivea</span>
-          <p class="footer-tagline">Dive deeper. Let your sound ascend.</p>
-        </div>
-        <div class="footer-right">
-          <div class="footer-nav">
-            <a href="${productsPath}">Products</a>
-            <a href="${labPath}">Lab</a>
-            <a href="${articlesPath}">Articles</a>
-            <a href="${aboutPath}">About</a>
-            <a href="${contactPath}">Contact</a>
-          </div>
-          <div class="footer-social">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a class="wordmark" href="${homePath}" aria-label="Audivea home">
+            <span class="wordmark-text">
+              <span class="wordmark-name">Audivea</span>
+              <span class="wordmark-slogan">Dive deeper, let your sound ascend.</span>
+            </span>
+          </a>
+          <div class="foot-social-v2">
             <a href="https://www.facebook.com/audivea" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
               <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
             </a>
@@ -46,8 +41,21 @@ function loadFooter() {
             </a>
           </div>
         </div>
+        <div class="foot-links">
+          <div class="foot-col">
+            <span class="head">Products</span>
+            <a href="${productsPath}">Products</a>
+            <a href="${labPath}">Lab</a>
+          </div>
+          <div class="foot-col">
+            <span class="head">Read</span>
+            <a href="${articlesPath}">Articles</a>
+            <a href="${aboutPath}">About</a>
+            <a href="${contactPath}">Contact</a>
+          </div>
+        </div>
       </div>
-      <div class="footer-bottom">
+      <div class="foot-base">
         <span>&copy; 2026 Audivea</span>
       </div>
     </div>

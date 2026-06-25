@@ -48,37 +48,43 @@
 </head>
 <body>
   <div class="bg-fixed"></div>
+  <!-- Header injected by header.js -->
 
-  <div class="main-content">
-    <div class="container-wide">
-      <h1 class="page-title">Lab</h1>
-      <p class="page-subtitle">Experiment with sound. See what you hear.</p>
+  <!-- ======================= THE LAB — INDEX ======================= -->
+  <section class="band first">
+    <div class="wrap">
+      <span class="article-eyebrow">Lab</span>
+      <h2 class="sec-title">Experiment with sound. See what you hear.</h2>
 
-      <div class="card-list">
-        <article class="card">
-          <a href="mix-analyzer/">
-            <div class="card-flex">
-              <div class="lab-card-icon" aria-hidden="true">
-                <svg width="240" height="135" viewBox="0 0 240 135" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- Simple meter bars icon rendered in CSS/SVG -->
-                  <rect x="30" y="80" width="24" height="40" rx="3" fill="rgba(0,170,255,0.3)"/>
-                  <rect x="66" y="50" width="24" height="70" rx="3" fill="rgba(0,170,255,0.5)"/>
-                  <rect x="102" y="30" width="24" height="90" rx="3" fill="rgba(0,170,255,0.7)"/>
-                  <rect x="138" y="45" width="24" height="75" rx="3" fill="rgba(0,170,255,0.5)"/>
-                  <rect x="174" y="65" width="24" height="55" rx="3" fill="rgba(0,170,255,0.3)"/>
-                </svg>
-              </div>
-              <div>
-                <h2 class="card-title">Mix Analyzer</h2>
-                <div class="card-meta">Audio Analysis Tool</div>
-                <p class="card-excerpt">
-                  Drop in an audio file and get instant feedback on loudness, peak levels, dynamics, stereo image, and tonal balance.                </p>
-              </div>
+      <div class="line-grid" style="margin-top:40px;">
+
+        <!-- FLAGSHIP — Mix Analyzer (real, free Lab tool) -->
+        <article class="pcard pcard-flag">
+          <div class="flag-left">
+            <div class="flag-eyebrow">Free &middot; Browser tool</div>
+            <h3 class="flag-name">Mix Analyzer</h3>
+            <p class="flag-desc">Drop in an audio file and get instant feedback on loudness, peak levels, dynamics, stereo image, and tonal balance.</p>
+            <div class="flag-specs">
+              <div><div class="lab">Reads</div><div class="val">LUFS &middot; dBTP</div></div>
+              <div><div class="lab">Analyzes</div><div class="val">Dynamics &middot; Stereo</div></div>
+              <div><div class="lab">Runs</div><div class="val">In-browser</div></div>
+              <div><div class="lab">Privacy</div><div class="val">Client-side</div></div>
             </div>
-          </a>
+            <div class="flag-foot">
+              <span class="pill live"><span class="dot"></span>Live now</span>
+              <a class="btn btn-ghost" href="mix-analyzer/" style="padding:9px 16px;">Open Mix Analyzer <span class="arr">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="flag-right">
+            <img class="flag-shot" src="mix-analyzer-preview.webp" alt="Mix Analyzer report — loudness, peak, dynamics, stereo and tonal readouts with findings" loading="lazy">
+          </div>
         </article>
+
+
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Footer injected by footer.js -->
 </body>
 </html>
