@@ -11,6 +11,7 @@ function loadFooter() {
   const productsPath = prefix + 'products/';
   const labPath = prefix + 'lab/';
   const articlesPath = prefix + 'articles/';
+  const supportPath = prefix + 'support/';
   const aboutPath = prefix + 'about.html';
   const contactPath = prefix + 'contact.html';
 
@@ -50,6 +51,7 @@ function loadFooter() {
           <div class="foot-col">
             <span class="head">Read</span>
             <a href="${articlesPath}">Articles</a>
+            <a href="${supportPath}">Support</a>
             <a href="${aboutPath}">About</a>
             <a href="${contactPath}">Contact</a>
           </div>
