@@ -2407,3 +2407,73 @@ body.manual-page { overflow-x: clip; }
 /* tall Settings-panel shot: float it so intro + tables flow beside it at native width */
 .settings-shot { float: right; width: 240px; margin: 2px 0 18px 30px; }
 @media (max-width: 820px) { .settings-shot { float: none; width: 100%; max-width: 240px; margin: 0 0 18px; } }
+
+/* ================================================================
+   PRODUCT RELEASE PAGE — Arcoline (products/metering.html)
+   Reuses v2 tokens + the manual's .shot grammar; adds scoped helpers
+   for the hero, split feature rows, the measurement grid and the
+   closing download band.
+   ================================================================ */
+
+/* hero */
+.prod-hero { max-width: 860px; }
+.prod-hero .pill { margin: 18px 0 0; }
+.prod-title { font-family: var(--sans); font-weight: 800; font-size: clamp(2.1rem, 4.8vw, 3.4rem); letter-spacing: -0.035em; color: var(--ink); line-height: 1.03; margin: 14px 0 18px; }
+.prod-title em { font-style: normal; background: linear-gradient(100deg, #9be8ff, #33cfff 55%, #0088ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.prod-sub { color: var(--prose); font-size: clamp(1.05rem, 1.7vw, 1.25rem); line-height: 1.62; max-width: 58ch; margin: 0 0 26px; }
+.prod-hero .cta-row { margin-bottom: 16px; }
+.prod-note { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+.prod-note b { color: var(--cyan-l); font-weight: 500; }
+
+/* app-icon lockups (hero + flagship card) */
+.prod-lockup { display: flex; align-items: center; gap: 16px; margin-bottom: 22px; }
+.prod-appicon { width: 66px; height: 66px; border-radius: 15px; display: block; flex: none; box-shadow: 0 12px 34px -12px rgba(0, 130, 220, 0.7); }
+.prod-wordmark { font-family: var(--sans); font-weight: 800; font-size: 1.55rem; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+.prod-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan-l); margin-top: 8px; }
+.flag-brand { display: flex; align-items: center; gap: 13px; margin-bottom: 12px; }
+.flag-brand .flag-name { margin: 0; }
+.flag-appicon { width: 46px; height: 46px; border-radius: 11px; display: block; flex: none; }
+.prod-hero-shot { margin: 44px 0 0; }
+.prod-hero-shot figcaption { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--faint); margin-top: 12px; text-align: center; }
+
+/* split feature row: media + copy, reversible */
+.prod-split { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: center; }
+.prod-split + .prod-split { margin-top: 66px; }
+.prod-split.rev .ps-media { order: 2; }
+.ps-kicker { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan-l); margin-bottom: 12px; }
+.ps-copy h3 { font-family: var(--sans); font-weight: 800; font-size: clamp(1.4rem, 2.6vw, 1.95rem); letter-spacing: -0.02em; color: var(--ink); margin: 0 0 12px; line-height: 1.12; }
+.ps-copy p { color: var(--prose); font-size: 1.02rem; line-height: 1.7; margin: 0 0 14px; max-width: 48ch; }
+.ps-copy p:last-child { margin-bottom: 0; }
+.ps-media.narrow { max-width: 340px; margin: 0 auto; }
+
+/* measurement grid */
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 38px; }
+.feature-card { border: 1px solid var(--hair); border-radius: 10px; background: var(--panel); padding: 22px 22px 24px; transition: border-color 0.2s var(--ease-2), transform 0.2s var(--ease-2); }
+.feature-card:hover { border-color: var(--hair-strong); transform: translateY(-2px); }
+.feature-card .fc-metric { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cyan-l); margin-bottom: 11px; }
+.feature-card .fc-name { font-family: var(--sans); font-weight: 700; font-size: 1.08rem; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 9px; }
+.feature-card p { color: var(--prose); font-size: 0.93rem; line-height: 1.6; margin: 0; }
+
+/* closing download band */
+.prod-cta { border: 1px solid var(--hair-strong); border-radius: 14px; background: radial-gradient(120% 150% at 50% -30%, rgba(0, 120, 210, 0.14), transparent 60%), var(--panel); padding: 46px 40px; text-align: center; }
+.prod-cta .pill { justify-content: center; margin-bottom: 16px; }
+.prod-cta h2 { font-family: var(--sans); font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; color: var(--ink); margin: 0 0 10px; border: none; padding: 0; }
+.prod-cta > p { color: var(--prose); max-width: 52ch; margin: 0 auto 24px; font-size: 1rem; line-height: 1.6; }
+.prod-cta .cta-row { justify-content: center; }
+.prod-secondary { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); margin-top: 22px; }
+.prod-secondary a { color: var(--cyan-l); text-decoration: none; }
+.prod-secondary a:hover { color: var(--cyan); }
+.spec-strip { display: flex; flex-wrap: wrap; margin: 32px auto 0; border: 1px solid var(--hair); border-radius: 8px; overflow: hidden; max-width: 760px; }
+.spec-strip div { flex: 1 1 150px; padding: 14px 16px; border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+.spec-strip .lab { font-family: var(--mono); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); margin-bottom: 5px; }
+.spec-strip .val { font-family: var(--mono); font-size: 12.5px; color: var(--ink); font-weight: 500; }
+
+@media (max-width: 768px) {
+  .prod-split { grid-template-columns: 1fr; gap: 22px; }
+  .prod-split.rev .ps-media { order: 0; }
+  .feature-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 480px) {
+  .feature-grid { grid-template-columns: 1fr; }
+  .prod-cta { padding: 34px 22px; }
+}
