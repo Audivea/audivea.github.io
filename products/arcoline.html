@@ -79,8 +79,7 @@
         <h1 class="prod-title">Everything you check before you deliver, in one <em>calm instrument</em>.</h1>
         <p class="prod-sub">A precision meter for loudness, true peak, dynamics, stereo image and tonal balance &mdash; with two views: <strong>Dive</strong> for a close look, <strong>Ascend</strong> for the at-a-glance verdict.</p>
         <div class="cta-row">
-          <!-- TODO: replace href="#" with the download / installer URL on launch -->
-          <a class="btn btn-primary" href="#download">Download &mdash; free <span class="arr">&darr;</span></a>
+          <a class="btn btn-primary" href="#download">Get it free <span class="arr">&darr;</span></a>
           <a class="btn btn-ghost" href="../support/arcoline-manual.html">Read the manual <span class="arr">&rarr;</span></a>
         </div>
         <div class="prod-note">Free &middot; <b>VST3</b> &middot; <b>AU</b> &middot; <b>Standalone</b> &middot; macOS &amp; Windows</div>
@@ -207,12 +206,30 @@
       <div class="prod-cta">
         <span class="pill live"><span class="dot"></span>Available now &middot; Version 1.0</span>
         <h2>Get Arcoline.</h2>
-        <p>Free. A VST3 and AU plugin plus a standalone app, for macOS (universal &mdash; Intel and Apple Silicon) and Windows.</p>
-        <div class="cta-row">
-          <!-- TODO: replace href="#" with the macOS installer (.pkg) URL on launch -->
-          <a class="btn btn-primary" href="#">Download for macOS</a>
-          <!-- TODO: replace href="#" with the Windows installer (.exe) URL on launch -->
-          <a class="btn btn-primary" href="#">Download for Windows</a>
+        <p>Free &mdash; a VST3 and AU plugin plus a standalone app, for macOS (universal, Intel &amp; Apple Silicon) and Windows. Enter your email and we'll send you the download &mdash; and let you know when there's an update.</p>
+
+        <!-- Soft capture: Formspree records the email (and emails the link); on
+             success the form reveals the download below so there's no inbox wait. -->
+        <form class="signup-form arco-form" action="https://formspree.io/f/xgonoazl" method="POST" novalidate>
+          <input type="hidden" name="_subject" value="Arcoline download request">
+          <input type="hidden" name="source" value="arcoline-download">
+          <input type="email" name="email" placeholder="Your email address" required aria-label="Your email address">
+          <button type="submit">Get the download</button>
+        </form>
+        <p class="signup-status" role="status" aria-live="polite" hidden></p>
+
+        <div class="arco-download" hidden>
+          <p class="arco-download-lead">Your download is ready &mdash; we've emailed the link too.</p>
+          <div class="cta-row">
+            <!-- TODO: host = GitHub Releases "latest/download" on Audivea/audivea.github.io.
+                 Keep the asset filenames stable and these links never need editing again.
+                 Swap for a CDN / Positive Grid URL here if you host elsewhere. -->
+            <a class="btn btn-primary arco-dl" data-os="macOS" href="https://github.com/Audivea/audivea.github.io/releases/latest/download/Arcoline-macOS.pkg">Download for macOS</a>
+            <a class="btn btn-primary arco-dl" data-os="Windows" href="https://github.com/Audivea/audivea.github.io/releases/latest/download/Arcoline-Windows.exe">Download for Windows</a>
+          </div>
+        </div>
+
+        <div class="cta-row" style="justify-content:center; margin-top:20px;">
           <a class="btn btn-ghost" href="../support/arcoline-manual.html">Read the manual <span class="arr">&rarr;</span></a>
         </div>
 
@@ -231,5 +248,56 @@
   </section>
 
   <!-- Footer injected by footer.js -->
+
+  <script>
+    // Arcoline download — soft capture. Post the email to Formspree (which records
+    // it and can email the link), then reveal the download inline so the user never
+    // has to wait on their inbox. Requires JS, like the rest of the site. Page-specific.
+    (function () {
+      var form = document.querySelector('.arco-form');
+      if (!form) return;
+      var status = document.querySelector('.signup-status');
+      var reveal = document.querySelector('.arco-download');
+      var btn = form.querySelector('button');
+      var label = btn.textContent;
+
+      function setStatus(msg, kind) {
+        status.textContent = msg || '';
+        status.className = 'signup-status' + (kind ? ' is-' + kind : '');
+        status.hidden = !msg;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = (form.email.value || '').trim();
+        if (!email) { setStatus('Please enter your email address.', 'error'); return; }
+        btn.disabled = true; btn.textContent = 'Sending…'; setStatus('');
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        }).then(function (res) {
+          if (!res.ok) return res.json().then(function (d) {
+            throw new Error((((d || {}).errors || [])[0] || {}).message || 'Request failed');
+          });
+          form.hidden = true;
+          reveal.hidden = false;
+          reveal.setAttribute('tabindex', '-1');
+          reveal.focus();
+          if (window.gtag) gtag('event', 'sign_up', { method: 'arcoline_download' });
+        }).catch(function () {
+          setStatus('Something went wrong — please try again, or email us at support.', 'error');
+          btn.disabled = false; btn.textContent = label;
+        });
+      });
+
+      Array.prototype.forEach.call(document.querySelectorAll('.arco-dl'), function (a) {
+        a.addEventListener('click', function () {
+          if (window.gtag) gtag('event', 'download', { os: a.getAttribute('data-os'), item: 'Arcoline 1.0' });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
