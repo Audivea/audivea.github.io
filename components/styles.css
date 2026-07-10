@@ -2089,6 +2089,8 @@ footer.site { border-top: 1px solid var(--hair); padding: 54px 0 40px; margin-to
 .foot-social-v2 svg { width: 17px; height: 17px; fill: currentColor; display: block; }
 .foot-base { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 42px; padding-top: 22px; border-top: 1px solid var(--hair); }
 .foot-base span { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+.foot-base a { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); text-decoration: none; transition: color 0.2s var(--ease-2); }
+.foot-base a:hover { color: var(--cyan-l); }
 
 /* ---------- inner-page heading recolor (cyan -> near-white) ---------- */
 .page-title,
