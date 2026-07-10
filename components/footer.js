@@ -11,8 +11,10 @@ function loadFooter() {
   const productsPath = prefix + 'products/';
   const labPath = prefix + 'lab/';
   const articlesPath = prefix + 'articles/';
+  const supportPath = prefix + 'support/';
   const aboutPath = prefix + 'about.html';
   const contactPath = prefix + 'contact.html';
+  const privacyPath = prefix + 'privacy.html';
 
   const footer = document.createElement('footer');
   footer.className = 'site';
@@ -50,6 +52,7 @@ function loadFooter() {
           <div class="foot-col">
             <span class="head">Read</span>
             <a href="${articlesPath}">Articles</a>
+            <a href="${supportPath}">Support</a>
             <a href="${aboutPath}">About</a>
             <a href="${contactPath}">Contact</a>
           </div>
@@ -57,6 +60,7 @@ function loadFooter() {
       </div>
       <div class="foot-base">
         <span>&copy; 2026 Audivea</span>
+        <a href="${privacyPath}">Privacy</a>
       </div>
     </div>
   `;

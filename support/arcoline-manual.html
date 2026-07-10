@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arcoline User Manual | Audivea</title>
+  <meta name="description" content="The complete user manual for Arcoline — the Audivea loudness, peak, dynamics, stereo and tonal-balance meter. The two views, how to read every meter, loudness targets, settings and keyboard shortcuts. VST3 / AU / Standalone for Mac & Windows.">
+  <link rel="canonical" href="https://audivea.com/support/arcoline-manual.html">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Arcoline User Manual | Audivea">
+  <meta property="og:description" content="The complete user manual for Arcoline — Audivea's loudness, peak, dynamics, stereo and tonal-balance meter.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/og-metering.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arcoline User Manual | Audivea">
+  <meta name="twitter:description" content="The complete user manual for Arcoline — Audivea's loudness, peak, dynamics, stereo and tonal-balance meter.">
+  <meta name="twitter:image" content="https://audivea.com/og-metering.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JLL7X7X53H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../favicon.png" type="image/png">
+
+  <link rel="stylesheet" href="../components/styles.css">
+
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/bg-wave.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Arcoline User Manual",
+    "description": "The complete user manual for Arcoline — Audivea's loudness, peak, dynamics, stereo and tonal-balance meter.",
+    "about": "Arcoline audio metering plugin",
+    "author": { "@type": "Organization", "name": "Audivea" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Audivea",
+      "logo": { "@type": "ImageObject", "url": "https://audivea.com/icon.webp" }
+    },
+    "image": "https://audivea.com/og-metering.png",
+    "url": "https://audivea.com/support/arcoline-manual.html"
+  }
+  </script>
+</head>
+<body class="manual-page">
+  <div class="bg-fixed"></div>
+  <!-- Header injected by header.js -->
+
+  <section class="band first">
+    <div class="wrap">
+      <div class="article-eyebrow">Support &middot; User Manual</div>
+      <h1 class="article-title">Arcoline &mdash; User Manual</h1>
+      <p class="page-lede">Everything you check before you deliver, in one calm instrument with two views. This manual covers the two views, how to read every meter in each, loudness targets, settings and shortcuts.</p>
+      <div class="badges" style="margin-top:20px;">
+        <span class="badge">Version 1.0</span>
+        <span class="badge">VST3</span>
+        <span class="badge">AU</span>
+        <span class="badge">Standalone</span>
+        <span class="badge">Mac &amp; Windows</span>
+      </div>
+
+      <div class="manual-layout" style="margin-top:44px;">
+
+        <!-- ===================== TOC ===================== -->
+        <aside class="manual-toc" aria-label="Manual contents">
+          <div class="toc-head">On this page</div>
+          <ol>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#install">Install &amp; setup</a></li>
+            <li><a href="#quickstart">Quick start</a></li>
+            <li><a href="#targets">Loudness targets</a></li>
+            <li><a href="#dive">Dive mode</a></li>
+            <li><a href="#ascend">Ascend mode</a></li>
+            <li><a href="#actions">Reset, Freeze, Export</a></li>
+            <li><a href="#settings">Settings reference</a></li>
+            <li><a href="#colour">The colour language</a></li>
+            <li><a href="#shortcuts">Keyboard shortcuts</a></li>
+            <li><a href="#faq">Troubleshooting &amp; FAQ</a></li>
+          </ol>
+        </aside>
+
+        <!-- ===================== BODY ===================== -->
+        <article class="manual-main prose">
+
+          <!-- OVERVIEW -->
+          <section id="overview">
+            <h2>Overview</h2>
+            <p>Arcoline is a precision monitoring instrument for music producers, mix engineers and mastering engineers. It reads loudness, true peak, level, dynamics, stereo image and tonal balance from your program material in real time &mdash; and it does it without touching your audio. Arcoline is an <strong>analyser</strong>: signal passes through it completely unaltered.</p>
+            <p>The design has one idea at its core: a <strong>two-view cognitive split</strong>.</p>
+            <ul>
+              <li><strong>Dive</strong> &mdash; a detailed workbench for when you're diagnosing. Every reading, on one screen.</li>
+              <li><strong>Ascend</strong> &mdash; an at-a-glance verdict for when you're creating. One dominant number that tells you if you're safe.</li>
+            </ul>
+            <p>Switch between them freely with the pill in the control bar, the <span class="kbd">Tab</span> key, or <span class="kbd">A</span>&nbsp;/&nbsp;<span class="kbd">D</span> &mdash; both read the same measurement, at different densities.</p>
+          </section>
+
+          <!-- INSTALL -->
+          <section id="install">
+            <h2>Install &amp; setup</h2>
+            <p>Arcoline ships as a <strong>VST3</strong> and <strong>AU</strong> plugin plus a <strong>standalone</strong> app, for macOS (universal &mdash; Intel and Apple Silicon) and Windows.</p>
+            <h3>Installing</h3>
+            <p>Run the installer for your platform &mdash; a <code>.pkg</code> on macOS, an <code>.exe</code> on Windows. It places the plugin in the standard folders automatically:</p>
+            <div class="prose-table-wrap">
+              <table>
+                <tr><th>Platform</th><th>Format</th><th>Location</th></tr>
+                <tr><td>macOS</td><td>AU</td><td>/Library/Audio/Plug-Ins/Components</td></tr>
+                <tr><td>macOS</td><td>VST3</td><td>/Library/Audio/Plug-Ins/VST3</td></tr>
+                <tr><td>Windows</td><td>VST3</td><td>C:\Program Files\Common Files\VST3</td></tr>
+              </table>
+            </div>
+            <p>After installing, rescan plugins in your DAW (most hosts do this automatically on next launch). On macOS, the first scan may take a moment while the system validates the component.</p>
+            <h3>Where to insert it</h3>
+            <p>Arcoline is a meter, so put it where you want to <em>measure</em>:</p>
+            <ul>
+              <li><strong>On the master / mix bus, last in the chain</strong> (after your limiter) to read the loudness and true peak your listeners will actually get. This is the delivery check.</li>
+              <li><strong>On any individual track or bus</strong> to inspect its level, dynamics or stereo image in isolation.</li>
+              <li><strong>Standalone</strong> for live monitoring, broadcast, or checking audio outside a DAW. In the standalone app, choose your input device from the <code>&#8942;</code> menu &rarr; <em>Audio/MIDI Settings</em>.</li>
+            </ul>
+          </section>
+
+          <!-- QUICK START -->
+          <section id="quickstart">
+            <h2>Quick start</h2>
+            <ol>
+              <li>Insert Arcoline on your master bus, after the limiter.</li>
+              <li>Open it. Pick your delivery target from the <strong>TARGET</strong> row (e.g. <em>Streaming &minus;14 LUFS</em>). See <a href="#targets">Loudness targets</a>.</li>
+              <li>Press play and let the whole song run once. The <strong>Integrated LUFS</strong> reading builds over the full program.</li>
+              <li>Read the verdict: the big number against your target, the &plusmn;LU delta chip, and the true-peak "over" flag.</li>
+              <li>Press <span class="kbd">R</span> to reset the measurement before the next pass.</li>
+            </ol>
+            <p>That's the loop. Everything below is detail on what each reading means and how to bend Arcoline to your workflow.</p>
+          </section>
+
+          <!-- ===================== LOUDNESS TARGETS (shared by both views) ===================== -->
+          <section id="targets">
+            <h2>Loudness targets</h2>
+            <p>A target sets the loudness and true-peak ceiling Arcoline judges you against &mdash; it drives the delta chip, the zone colours and the true-peak "over" flag in <em>both</em> views. Click the <strong>TARGET</strong> row in either view to choose one.</p>
+            <div class="prose-table-wrap">
+              <table>
+                <tr><th>Preset</th><th>Target</th><th>True peak</th><th>For</th></tr>
+                <tr><td>Streaming (YouTube / Spotify)</td><td>&minus;14 LUFS</td><td>&minus;1.0 dBTP</td><td>Spotify, YouTube, Tidal</td></tr>
+                <tr><td>Apple Music</td><td>&minus;16 LUFS</td><td>&minus;1.0 dBTP</td><td>Apple Music / iTunes</td></tr>
+                <tr><td>Amazon Music</td><td>&minus;14 LUFS</td><td>&minus;2.0 dBTP</td><td>Amazon Music</td></tr>
+                <tr><td>Podcast</td><td>&minus;16 LUFS</td><td>&minus;1.0 dBTP</td><td>Spoken-word content</td></tr>
+                <tr><td>Broadcast (EBU R128)</td><td>&minus;23 LUFS</td><td>&minus;1.0 dBTP</td><td>European broadcast</td></tr>
+                <tr><td>Film (ATSC A/85)</td><td>&minus;24 LUFS</td><td>&minus;2.0 dBTP</td><td>US broadcast &amp; streaming video</td></tr>
+                <tr><td>CD / Vinyl Master</td><td>&minus;9 LUFS</td><td>&minus;0.3 dBTP</td><td>Physical media (plays as mastered)</td></tr>
+                <tr><td>Custom</td><td colspan="2">Your own values</td><td>Anything else</td></tr>
+              </table>
+            </div>
+            <p>Most streaming platforms normalize playback: they turn everyone down to a reference loudness. For those presets, Ascend shows a plain-language line telling you how much quieter or louder your master will play after normalization. The <em>CD / Vinyl Master</em> preset is different &mdash; it plays as mastered, so no normalization preview is shown.</p>
+          </section>
+
+          <!-- ===================== DIVE MODE ===================== -->
+          <section id="dive">
+            <h2>Dive mode &mdash; the full workbench</h2>
+            <p>Dive is where you go when you're diagnosing a problem or doing a mastering QC pass: every reading Arcoline takes, on one screen.</p>
+
+            <figure class="manual-figure">
+              <div class="shot">
+                <img src="manual-img/dive.webp" alt="Arcoline Dive view: a top control bar, left/right level meters, a central radial loudness dial reading -9.7 LUFS (over target, red), a right report card with LOUDNESS, DYNAMICS and TONE sections, and a loudness history graph along the bottom." loading="lazy">
+              </div>
+              <figcaption>The Dive view. Control bar on top; level meters at left; the centre instrument; the LOUDNESS / DYNAMICS / TONE report card at right; the loudness-history timeline along the foot.</figcaption>
+            </figure>
+
+            <h3>Reading the meters in Dive</h3>
+            <p>A reference for every measurement Dive shows, laid out left-to-right as it sits in the window: the level meters, the centre instrument, the report card, then the history along the foot.</p>
+
+            <h4>Level meters &mdash; Peak, RMS &amp; True Peak</h4>
+            <div class="detail-shot narrow">
+              <div class="shot"><img src="manual-img/crop-meters.webp" alt="Left and right level meters with red peak-hold markers and a scale from 0 to -48, and numeric PK / RMS / TP readouts at the foot." loading="lazy"></div>
+              <div class="ds-text">
+                <p>Down the left edge, the left/right meters show classic per-channel level in dBFS: <strong>RMS</strong> (average energy) as the filled bar, with a <strong>peak-hold</strong> line marking the highest recent sample peak. The foot of each channel prints the session maxima &mdash; <strong>PK</strong> (peak), <strong>RMS</strong>, and <strong>TP</strong> (true peak, the inter-sample level that predicts codec or DAC clipping). A <strong>clip indicator</strong> flags full-scale samples; its behaviour is set by <em>Clip Mode</em> in <a href="#settings">Settings</a>.</p>
+              </div>
+            </div>
+
+            <h4>The centre instrument &mdash; LUFS dial &amp; Phase scope</h4>
+            <p>The centre has two postures. The <strong>LUFS dial</strong> is a 270&deg; radial for Integrated loudness &mdash; the dominant hero number, a &plusmn;LU delta against target, and a <code>TGT</code> marker on the arc. Toggle it to the <strong>Phase scope</strong>, a full goniometer for stereo imaging:</p>
+            <div class="shot-row">
+              <figure style="margin:0;">
+                <div class="shot"><img src="manual-img/crop-gauge.webp" alt="Radial LUFS dial reading -9.7 LUFS, +4.3 LU over target, with a TGT -14 marker and a phase-correlation arc reading +0.83." loading="lazy"></div>
+                <div class="shot-cap">Centre: LUFS dial</div>
+              </figure>
+              <figure style="margin:0;">
+                <div class="shot"><img src="manual-img/crop-gonio.webp" alt="Goniometer (phase scope) showing a near-vertical Lissajous trace and a correlation arc reading +0.95 — a mostly-mono, well-correlated signal." loading="lazy"></div>
+                <div class="shot-cap">Centre: Phase scope</div>
+              </figure>
+            </div>
+            <p>The <strong>goniometer</strong> plots left against right as a Lissajous figure &mdash; a vertical trace is mono, a 45&deg; lean shows a channel imbalance, a round blob is a wide image. The arc beneath it reads phase <strong>correlation</strong> on a named-end scale: <strong>MONO&nbsp;(+1)</strong> identical / mono-compatible, <strong>0</strong> uncorrelated / wide, <strong>ANTI&nbsp;(&minus;1)</strong> out of phase &mdash; investigate anything that sits there. Tune the trail with <em>Persistence</em>, or enable <em>Auto-scale</em> to fill the scope with low-level detail (see <a href="#settings">Settings</a>).</p>
+
+            <h4>The report card &mdash; Loudness (M / S / I)</h4>
+            <div class="detail-shot">
+              <div class="shot"><img src="manual-img/crop-loudness.webp" alt="Report-card LOUDNESS section: Momentary -6.6, Short-term -6.6, Integrated -9.7 LUFS as bars, the target row (Streaming -14.0), and Max M / Max S holds." loading="lazy"></div>
+              <div class="ds-text">
+                <p>The right-hand report card opens with loudness, measured to <strong>ITU-R BS.1770-4</strong> with K-weighting, in three windows:</p>
+                <ul>
+                  <li><strong>Momentary (M)</strong> &mdash; a 400&nbsp;ms window; "how loud right now."</li>
+                  <li><strong>Short-term (S)</strong> &mdash; a 3&nbsp;second window; the current section.</li>
+                  <li><strong>Integrated (I)</strong> &mdash; the gated average over the whole program; the value the centre dial mirrors, and the number streaming platforms normalize to.</li>
+                </ul>
+              </div>
+            </div>
+            <p>Integrated loudness uses gating to ignore silence and quiet passages (an absolute gate at &minus;70&nbsp;LUFS and a relative gate 10&nbsp;LU below the running mean), so it only means something once a reasonable stretch of program has played &mdash; let the whole song run. <strong>Max&nbsp;M</strong> and <strong>Max&nbsp;S</strong> hold the loudest momentary and short-term readings of the session.</p>
+
+            <h4>The report card &mdash; Dynamics (PSR / PLR / Range)</h4>
+            <div class="detail-shot">
+              <div class="shot"><img src="manual-img/crop-dynamics.webp" alt="Report-card DYNAMICS section: PSR 6.6, PLR 10.6, RANGE 10.8." loading="lazy"></div>
+              <div class="ds-text">
+                <div class="prose-table-wrap">
+                  <table>
+                    <tr><th>Metric</th><th>Meaning</th></tr>
+                    <tr><td>PSR</td><td>Peak to Short-term loudness Ratio &mdash; the punch of the current moment. Higher = more dynamic; low = squashed.</td></tr>
+                    <tr><td>PLR</td><td>Peak to Loudness Ratio (max true peak minus Integrated) &mdash; the crest of the whole program.</td></tr>
+                    <tr><td>Range</td><td>Loudness Range (LRA) &mdash; the spread of short-term loudness. Low = consistent; high = wide contrast.</td></tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <h4>The report card &mdash; Tonal balance (TONE)</h4>
+            <div class="detail-shot">
+              <div class="shot"><img src="manual-img/crop-tone.webp" alt="Report-card TONE section: a spectrum curve with Low 35%, Mid 56%, High 9% energy split." loading="lazy"></div>
+              <div class="ds-text">
+                <p>Tonal balance shows the program's spectrum and splits its energy across <strong>low</strong>, <strong>mid</strong> and <strong>high</strong> bands as a percentage of the whole, integrated over the session. It's the long-window read that catches a bass-heavy mix, a brittle top end, or a master that translates darker than you intended.</p>
+              </div>
+            </div>
+
+            <h4>Loudness history</h4>
+            <figure class="manual-figure">
+              <div class="shot"><img src="manual-img/crop-history.webp" alt="Loudness history timeline: the curve runs green under the -14 target line, turns amber as it approaches, and red once Integrated loudness crosses over." loading="lazy"></div>
+            </figure>
+            <p>Along the foot of Dive, a scrolling timeline plots loudness against your target line &mdash; the fastest way to see <em>where</em> in the song you drift over. Toggle it with <span class="kbd">H</span> or <em>Show history graph</em> in Settings (Dive only). Its green/amber/red story is covered under <a href="#colour">The colour language</a>.</p>
+
+          </section>
+
+          <!-- ===================== ASCEND MODE ===================== -->
+          <section id="ascend">
+            <h2>Ascend mode &mdash; the verdict</h2>
+            <p>Ascend rearranges the same measurement into a single report card, built to be glanced at while you create.</p>
+
+            <figure class="manual-figure" style="max-width:418px; margin-left:auto; margin-right:auto;">
+              <div class="shot"><img src="manual-img/ascend.webp" alt="Arcoline Ascend view: a dominant Integrated LUFS number of -9.7 with a +4.3 over-target chip, subordinate Momentary and Short-term rails, a TARGET row, a 'plays 4.3 dB quieter on target' line, a TRUE PEAK section flagged OVER, and a STEREO section with correlation and balance." loading="lazy"></div>
+              <figcaption>The Ascend view</figcaption>
+            </figure>
+
+            <p>It surfaces the delivery-critical readings, sized by importance &mdash; <a href="#dive">Dive</a> covers each in full:</p>
+            <ul>
+              <li><strong>Integrated LUFS</strong> (the hero number) &mdash; the gated average loudness over the whole program, the value streaming platforms normalize to. The bold <strong>&plusmn;LU delta</strong> is how far you sit from target: the "am I safe?" answer.</li>
+              <li><strong>Momentary &amp; Short-term rails</strong> &mdash; loudness over a 400&nbsp;ms and a 3&nbsp;second window; a subordinate read of the current moment and section.</li>
+              <li><strong>The TARGET row</strong> &mdash; clickable; sets what the delta judges against (see <a href="#targets">Loudness targets</a>).</li>
+              <li><strong>The normalization line</strong> &mdash; a plain-language "plays X&nbsp;dB quieter / louder on target" for platforms that turn playback down to a reference loudness.</li>
+              <li><strong>TRUE PEAK</strong> &mdash; the inter-sample peak in dBTP, measured with BS.1770-4 oversampling and almost always higher than your DAW's sample peak; the sticky "over" flag latches for the whole session so a stray transient can't slip past. (See <a href="../articles/true-peak-vs-sample-peak.html">True peak vs sample peak</a>.)</li>
+              <li><strong>STEREO</strong> &mdash; correlation (MONO&nbsp;+1 &rarr; ANTI&nbsp;&minus;1) and left/right balance; a fast phase-safety check.</li>
+            </ul>
+
+            <p>Ascend intentionally <strong>hides</strong> what you don't glance at mid-create: there's <em>no goniometer, no clip badge and no history graph</em> &mdash; switch to <a href="#dive">Dive</a> when you need them.</p>
+          </section>
+
+          <!-- ACTIONS -->
+          <section id="actions">
+            <h2>Reset, Freeze, Export</h2>
+            <p>All three live in the control bar at the top of the window.</p>
+            <h3>Reset</h3>
+            <p>Reset clears the measurement session &mdash; Integrated loudness, max-holds, the history graph, clip counts and the true-peak "over" flag &mdash; so your next pass starts clean. Click <strong>RESET</strong> (hold briefly to confirm; it's a deliberate action) or press <span class="kbd">R</span> / <span class="kbd">Cmd</span>+<span class="kbd">R</span> (<span class="kbd">Ctrl</span>+<span class="kbd">R</span> on Windows).</p>
+            <h3>Freeze</h3>
+            <p><strong>FREEZE</strong> (or <span class="kbd">F</span>) holds the display so you can read or screenshot a moment without the meters moving on. Measurement continues underneath; unfreeze to catch up.</p>
+            <h3>Export</h3>
+            <div class="detail-shot narrow">
+              <div class="shot" style="max-width:178px;"><img src="manual-img/menu.webp" alt="The overflow menu: Settings, Copy to Clipboard, Export CSV, About Audivea." loading="lazy"></div>
+              <div class="ds-text">
+                <p>From the <code>&#8942;</code> menu, export a snapshot of every current reading &mdash; <strong>Copy to Clipboard</strong> (a formatted text report) or <strong>Export CSV</strong> (a spreadsheet-ready file).</p>
+                <p>Both include the active preset, LUFS (Integrated / Short-term / Momentary and Max&nbsp;M / Max&nbsp;S), true peak, the dynamics trio (PSR / PLR / Range), the tonal balance, per-channel peak &amp; RMS, correlation, and clip counts &mdash; the same numbers on screen, ready for a delivery sheet.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- SETTINGS -->
+          <section id="settings">
+            <h2>Settings reference</h2>
+            <figure class="settings-shot"><div class="shot"><img src="manual-img/crop-settings.webp" alt="The Settings panel with sections for Metering, Goniometer, Appearance and Loudness Target, and a Reset to Defaults button." loading="lazy"></div></figure>
+            <p>Open Settings from the <code>&#8942;</code> menu or with <span class="kbd">S</span>; close with <span class="kbd">Esc</span>. It slides in from the right, mirroring the panel's groups &mdash; <strong>Metering</strong>, <strong>Goniometer</strong>, <strong>Appearance</strong> (theme &amp; accessibility) and <strong>Loudness Target</strong> &mdash; with <strong>Reset to Defaults</strong> at the foot (two clicks to confirm). Controls that don't apply to the current view are greyed out.</p>
+
+            <h3>Metering</h3>
+            <div class="prose-table-wrap">
+              <table>
+                <tr><th>Setting</th><th>Options</th><th>Default</th></tr>
+                <tr><td>Peak Hold</td><td>0.5 / 1.0 / 2.0 / 3.0 sec, or Infinite</td><td>1.0 sec</td></tr>
+                <tr><td>Clip Mode</td><td>Until Reset (latches) / Timed (2s) / Off</td><td>Until Reset</td></tr>
+                <tr><td>Auto-reset on play</td><td>On / Off</td><td>Off</td></tr>
+                <tr><td>Measurement follows transport</td><td>On / Off</td><td>On</td></tr>
+                <tr><td>Show history graph <span style="opacity:.7">(Dive only)</span></td><td>On / Off</td><td>Off</td></tr>
+              </table>
+            </div>
+
+            <h3>Goniometer <span style="font-weight:400;color:var(--muted);font-size:.8em;">(Dive only)</span></h3>
+            <div class="prose-table-wrap">
+              <table>
+                <tr><th>Setting</th><th>Options</th><th>Default</th></tr>
+                <tr><td>Persistence</td><td>0% (instant) to 100% (long trail)</td><td>50%</td></tr>
+                <tr><td>Auto-scale display</td><td>On / Off &mdash; boosts low-level stereo detail to fill the scope</td><td>Off</td></tr>
+              </table>
+            </div>
+
+            <h3 style="clear:right;">Themes</h3>
+            <p>Three themes ship in <em>Appearance</em>: <strong>Deep Blue</strong> (the default, shown throughout this manual), a greyer <strong>Neutral Dark</strong>, and a positive-polarity <strong>Light</strong> theme for bright rooms.</p>
+            <div class="shot-row trio">
+              <figure style="margin:0;">
+                <div class="shot"><img src="manual-img/dive.webp" alt="Arcoline Dive view in the default Deep Blue theme." loading="lazy"></div>
+                <div class="shot-cap">Deep Blue (default)</div>
+              </figure>
+              <figure style="margin:0;">
+                <div class="shot"><img src="manual-img/dive-dark.webp" alt="Arcoline Dive view in the Neutral Dark theme." loading="lazy"></div>
+                <div class="shot-cap">Neutral Dark</div>
+              </figure>
+              <figure style="margin:0;">
+                <div class="shot"><img src="manual-img/dive-light.webp" alt="Arcoline Dive view in the Light theme." loading="lazy"></div>
+                <div class="shot-cap">Light</div>
+              </figure>
+            </div>
+
+            <h3>Colour-blind safe</h3>
+            <p>An accessibility overlay (in <em>Appearance</em>, off by default) that re-points the alert ramp to a red-green-safe set &mdash; over-target reds render as magenta &mdash; on top of whichever theme you use.</p>
+
+            <h3>Loudness Target</h3>
+            <p>These take effect only when the <strong>Custom</strong> preset is active (see <a href="#targets">Loudness targets</a>) &mdash; the asymmetric "too loud" / "too quiet" margins colour the delta chip.</p>
+            <div class="prose-table-wrap">
+              <table>
+                <tr><th>Setting</th><th>Range</th><th>Default</th></tr>
+                <tr><td>Target</td><td>&minus;60 to 0 LUFS</td><td>&minus;14 LUFS</td></tr>
+                <tr><td>True Peak</td><td>&minus;6 to 0 dBTP</td><td>&minus;1.0 dBTP</td></tr>
+                <tr><td>Tolerance +</td><td>0.5 to 6 LU</td><td>1.0 LU</td></tr>
+                <tr><td>Tolerance &minus;</td><td>0.5 to 6 LU</td><td>1.0 LU</td></tr>
+              </table>
+            </div>
+
+            <h3>Measurement &amp; transport</h3>
+            <p>How the measurement accumulates is the key to accurate readings. Arcoline separates two kinds of measurement:</p>
+            <ul>
+              <li><strong>Instantaneous meters</strong> &mdash; peak, RMS, Momentary &amp; Short-term LUFS, live true peak, and correlation. These are <em>always live</em> whenever signal is present.</li>
+              <li><strong>The measurement session</strong> &mdash; Integrated LUFS, Loudness Range, the history graph, the sticky max-holds (Max&nbsp;M / Max&nbsp;S / max true peak) and the true-peak "over" flag. These accumulate over a run.</li>
+            </ul>
+            <p>By default (<em>Measurement follows transport</em> is on) the session is <strong>linked to your host's transport</strong>: it accumulates while the transport rolls and <strong>pauses when you park it</strong>. This keeps the session honest &mdash; a monitoring peak you audition while stopped (talkback, solo, scrubbing) won't contaminate your delivery reading or falsely trip the true-peak "over" flag.</p>
+            <p>For <strong>live or broadcast</strong> work, turn <em>Measurement follows transport</em> off to measure continuously whenever signal is present &mdash; the right choice for live use, broadcast, or the standalone app. (With no host playhead there's nothing to follow, so it's always continuous.)</p>
+            <p>Two related behaviours:</p>
+            <ul>
+              <li><strong>Offline bounce / render</strong> always accumulates the full session, even in hosts that report the transport as stopped during a non-real-time render. A bounce is treated as a deliberate full-signal measurement.</li>
+              <li><strong>Auto-reset on play</strong> (optional) clears the session automatically each time playback starts, so every pass measures fresh.</li>
+            </ul>
+          </section>
+
+          <!-- COLOUR -->
+          <section id="colour">
+            <h2>The colour language</h2>
+            <p>Colour in Arcoline is disciplined: on the loudness axis the three colours have distinct, non-overlapping jobs, and colour is never the only signal &mdash; it's always paired with a number or a word:</p>
+            <ul class="zone-list">
+              <li><span class="zone-dot red"></span><span><strong>Red &mdash; it happened.</strong> Integrated loudness is over the line, or true peak crossed the ceiling. A committed problem in what you've measured.</span></li>
+              <li><span class="zone-dot amber"></span><span><strong>Amber &mdash; it's happening.</strong> Short-term loudness is above target while Integrated is still in band &mdash; the current section is dragging you over. A trend, not yet a verdict.</span></li>
+              <li><span class="zone-dot green"></span><span><strong>Green &mdash; on target.</strong> You're inside the target's tolerance band. Calm.</span></li>
+            </ul>
+            <p>On the level meters and true-peak readout, amber keeps its plain meaning: approaching the ceiling.</p>
+          </section>
+
+          <!-- SHORTCUTS -->
+          <section id="shortcuts">
+            <h2>Keyboard shortcuts</h2>
+            <div class="prose-table-wrap">
+              <table>
+                <tr><th>Key</th><th>Action</th></tr>
+                <tr><td><span class="kbd">R</span> &nbsp;/&nbsp; <span class="kbd">Cmd</span>+<span class="kbd">R</span></td><td>Reset the measurement session</td></tr>
+                <tr><td><span class="kbd">F</span></td><td>Freeze / unfreeze the display</td></tr>
+                <tr><td><span class="kbd">A</span></td><td>Switch to Ascend</td></tr>
+                <tr><td><span class="kbd">D</span></td><td>Switch to Dive</td></tr>
+                <tr><td><span class="kbd">Tab</span></td><td>Toggle between views</td></tr>
+                <tr><td><span class="kbd">H</span></td><td>Show / hide the history graph (Dive)</td></tr>
+                <tr><td><span class="kbd">S</span></td><td>Open / close Settings</td></tr>
+                <tr><td><span class="kbd">Esc</span></td><td>Close Settings</td></tr>
+              </table>
+            </div>
+            <p class="mono" style="margin-top:10px;">On Windows, use Ctrl+R for reset.</p>
+          </section>
+
+          <!-- FAQ -->
+          <section id="faq">
+            <h2>Troubleshooting &amp; FAQ</h2>
+            <div class="faq">
+              <div class="faq-item">
+                <p class="faq-q">Does Arcoline change my audio?</p>
+                <p class="faq-a">No. It's a pure analyser &mdash; signal passes through completely unaltered. You can leave it on the master bus with confidence.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">Where should I insert it for a delivery check?</p>
+                <p class="faq-a">On the master bus, last in the chain, after your final limiter. Anything downstream of the meter isn't measured.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">My Integrated LUFS shows "&ndash;&ndash;" or isn't moving. Why?</p>
+                <p class="faq-a">Integrated loudness is part of the measurement session, which by default is linked to the transport &mdash; press play. It also needs signal above the &minus;70&nbsp;LUFS gate and a stretch of program to settle. Press <span class="kbd">R</span> to start a fresh measurement.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">Did my offline bounce get measured?</p>
+                <p class="faq-a">Yes. Offline / non-real-time renders always accumulate the full session, even in hosts that report the transport as stopped during a bounce.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">The true-peak "over" flag didn't trip while I was auditioning paused. Is that a bug?</p>
+                <p class="faq-a">No &mdash; that's by design. The sticky "over" flag follows the measurement session and freezes when the transport is parked, so a monitoring peak you hear while stopped can't falsely flag your delivery. The <em>live</em> true-peak readout keeps updating either way.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">My master peaks at &minus;1.0 dBFS but Arcoline shows a true-peak over. How?</p>
+                <p class="faq-a">True peak measures inter-sample peaks &mdash; the level between samples after reconstruction &mdash; which routinely sits above the sample-peak value your DAW shows. That's exactly the gap true-peak metering exists to catch.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">Can I measure continuously for live or broadcast?</p>
+                <p class="faq-a">Yes &mdash; turn off <em>Measurement follows transport</em> in Settings, or use the standalone app, and the session runs whenever signal is present.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">How do I try metering before I install anything?</p>
+                <p class="faq-a">Use the free browser-based <a href="../lab/mix-analyzer/">Mix Analyzer</a> &mdash; it measures loudness, true peak, dynamics, stereo image and tonal balance from an audio file, no install required.</p>
+              </div>
+            </div>
+
+            <div class="callout note" style="margin-top:28px;">
+              <span class="co-label">Still stuck?</span>
+              <p>Head back to <a href="./">Support</a> or <a href="../contact.html">get in touch</a> &mdash; we read every message.</p>
+            </div>
+          </section>
+
+          <a class="backlink-v2" href="./">&larr; Back to Support</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer injected by footer.js -->
+
+  <script>
+    // TOC scrollspy — highlights the current section as you read. Page-specific.
+    (function () {
+      var links = Array.prototype.slice.call(document.querySelectorAll('.manual-toc a'));
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var byId = {};
+      links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+      var sections = links
+        .map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); })
+        .filter(Boolean);
+
+      var setActive = function (id) {
+        links.forEach(function (a) { a.classList.remove('active'); });
+        if (byId[id]) byId[id].classList.add('active');
+      };
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      }, { rootMargin: '-88px 0px -66% 0px', threshold: 0 });
+
+      sections.forEach(function (s) { observer.observe(s); });
+    })();
+  </script>
+</body>
+</html>

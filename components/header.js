@@ -5,6 +5,7 @@ function loadHeader() {
   const isInArticlesDir = currentPath.includes('/articles/') || currentPath.includes('/blog/');
   const isInPluginsDir = currentPath.includes('/products/');
   const isInLabDir = currentPath.includes('/lab/');
+  const isInSupportDir = currentPath.includes('/support/');
   const isAboutPage = currentPath.endsWith('/about.html') || currentPath.endsWith('/about');
   const isContactPage = currentPath.endsWith('/contact.html') || currentPath.endsWith('/contact');
 
@@ -18,6 +19,7 @@ function loadHeader() {
   const productsPath = prefix + 'products/';
   const labPath = prefix + 'lab/';
   const articlesPath = prefix + 'articles/';
+  const supportPath = prefix + 'support/';
   const aboutPath = prefix + 'about.html';
   const contactPath = prefix + 'contact.html';
   const iconPath = prefix + 'icon.webp';
@@ -46,6 +48,7 @@ function loadHeader() {
         <a href="${productsPath}" class="nav-link${act(isInPluginsDir)}">Products</a>
         <a href="${labPath}" class="nav-link${act(isInLabDir)}">Lab</a>
         <a href="${articlesPath}" class="nav-link${act(isInArticlesDir)}">Articles</a>
+        <a href="${supportPath}" class="nav-link${act(isInSupportDir)}">Support</a>
         <a href="${aboutPath}" class="nav-link${act(isAboutPage)}">About</a>
         <a href="${contactPath}" class="nav-link${act(isContactPage)}">Contact</a>
       </nav>
