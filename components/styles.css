@@ -903,6 +903,9 @@ nav {
 .contact-status.is-ok { color: #5fe0a8; }
 .contact-status.is-error { color: #ff8b96; }
 
+/* Non-clickable "coming soon" pill, styled as a muted button. */
+.btn.is-soon { opacity: 0.5; pointer-events: none; }
+
 .contact-submit {
   align-self: flex-start;
   padding: 12px 32px;
