@@ -888,6 +888,21 @@ nav {
   min-height: 120px;
 }
 
+.contact-form[hidden] { display: none; }   /* beats .contact-form's display:flex */
+
+.contact-status {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  max-width: 620px;
+  margin-top: 18px;
+}
+.contact-status[hidden] { display: none; }
+.contact-status.is-ok { color: #5fe0a8; }
+.contact-status.is-error { color: #ff8b96; }
+
 .contact-submit {
   align-self: flex-start;
   padding: 12px 32px;

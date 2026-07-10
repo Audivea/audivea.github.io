@@ -1,0 +1,17 @@
+# GitHub Pages (Jekyll) config.
+# Sole purpose: keep developer-only files in the repo but OUT of the published
+# site. Everything listed here still lives in version control and shows on the
+# GitHub repo page — it just isn't copied to www, so it 404s publicly instead of
+# leaking internal notes, specs, build scripts and tests to anyone who guesses
+# the URL. No other Jekyll behavior is enabled; pages are still served as-is.
+exclude:
+  - CLAUDE.md
+  - README.md
+  - package.json
+  - package-lock.json
+  - image-templates/
+  - scripts/
+  - specs/
+  - tests/
+  - lab/mix-analyzer/worker.test.js
+  - lab/mix-analyzer/screenshot.js

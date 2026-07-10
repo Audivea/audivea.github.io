@@ -54,7 +54,8 @@
       <span class="article-eyebrow">Contact</span>
       <h1 class="sec-title">Every great sound starts with a conversation.</h1>
 
-      <form class="contact-form" action="https://formspree.io/f/xgonoazl" method="POST" style="max-width:620px;margin-top:40px;">
+      <form class="contact-form" action="https://formspree.io/f/xgonoazl" method="POST" novalidate style="max-width:620px;margin-top:40px;">
+        <input type="hidden" name="_subject" value="New Audivea contact message">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -69,9 +70,52 @@
         </div>
         <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send Message <span class="arr">&rarr;</span></button>
       </form>
+      <p class="contact-status" role="status" aria-live="polite" hidden></p>
     </div>
   </section>
 
   <!-- Footer injected by footer.js -->
+
+  <script>
+    // Contact form — submits to Formspree over fetch so the visitor stays on the
+    // page and gets an inline confirmation instead of being bounced to Formspree.
+    (function () {
+      var form = document.querySelector('.contact-form');
+      if (!form) return;
+      var status = document.querySelector('.contact-status');
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn.innerHTML;
+
+      function setStatus(msg, kind) {
+        status.textContent = msg || '';
+        status.className = 'contact-status' + (kind ? ' is-' + kind : '');
+        status.hidden = !msg;
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          setStatus('Please fill in your name, a valid email, and a message.', 'error');
+          return;
+        }
+        btn.disabled = true; btn.textContent = 'Sending…'; setStatus('');
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        }).then(function (res) {
+          if (!res.ok) return res.json().then(function (d) {
+            throw new Error((((d || {}).errors || [])[0] || {}).message || 'Request failed');
+          });
+          form.hidden = true;
+          setStatus("Thanks — your message is on its way. We'll be in touch soon.", 'ok');
+        }).catch(function () {
+          setStatus('Something went wrong — please try again, or email us directly.', 'error');
+          btn.disabled = false; btn.innerHTML = label;
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
