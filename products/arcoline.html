@@ -206,24 +206,22 @@
       <div class="prod-cta">
         <span class="pill live"><span class="dot"></span>Available now &middot; Version 1.0</span>
         <h2>Get Arcoline.</h2>
-        <p>Free &mdash; a VST3 and AU plugin plus a standalone app for macOS (universal, Intel &amp; Apple Silicon). <strong>Windows coming soon.</strong></p>
+        <p>Free &mdash; a VST3 and AU plugin plus a standalone app, for macOS (universal, Intel &amp; Apple Silicon) and Windows.</p>
 
-        <!-- Direct download (no gate). The macOS button fires a GA4 "download" event;
-             GitHub Releases also reports its own per-asset download_count.
-             macOS link is pinned to the v1.0.0 release asset. When you cut a new
-             version, update this URL (or rename the asset to a version-less name and
-             switch back to /releases/latest/download/ so it never needs editing).
-             Windows: swap the <span> below for an <a class="btn btn-primary arco-dl"
-             data-os="Windows" href="…Arcoline-Windows.exe"> once the build is up. -->
+        <!-- Direct download (no gate). Each button fires a GA4 "download" event by OS;
+             GitHub Releases also reports its own per-asset download_count. Both links are
+             pinned to the v1.0.0 release assets — when you cut a new version, update these
+             URLs (or rename the assets to version-less names and switch to
+             /releases/latest/download/ so the links never need editing again). -->
         <div class="cta-row" style="justify-content:center;">
           <a class="btn btn-primary arco-dl" data-os="macOS" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.0.0/Arcoline_1.0.0_Installer.pkg">Download for macOS</a>
-          <span class="btn btn-ghost is-soon" aria-disabled="true">Windows &mdash; coming soon</span>
+          <a class="btn btn-primary arco-dl" data-os="Windows" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.0.0/Arcoline_1.0.0_Setup.exe">Download for Windows</a>
         </div>
 
         <div class="spec-strip">
           <div><div class="lab">Version</div><div class="val">1.0</div></div>
           <div><div class="lab">Formats</div><div class="val">VST3 &middot; AU &middot; Standalone</div></div>
-          <div><div class="lab">Platform</div><div class="val">macOS</div></div>
+          <div><div class="lab">Platform</div><div class="val">macOS &middot; Windows</div></div>
           <div><div class="lab">Price</div><div class="val">Free</div></div>
         </div>
 
