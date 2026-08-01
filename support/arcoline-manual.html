@@ -63,7 +63,7 @@
       <h1 class="article-title">Arcoline &mdash; User Manual</h1>
       <p class="page-lede">Everything you check before you deliver, in one calm instrument with two views. This manual covers the two views, how to read every meter in each, loudness targets, settings and shortcuts.</p>
       <div class="badges" style="margin-top:20px;">
-        <span class="badge">Version 1.0</span>
+        <a class="badge" href="arcoline-changelog.html" style="text-decoration:none;">Version 1.1</a>
         <span class="badge">VST3</span>
         <span class="badge">AU</span>
         <span class="badge">Standalone</span>
@@ -169,7 +169,7 @@
 
             <figure class="manual-figure">
               <div class="shot">
-                <img src="manual-img/dive.webp" alt="Arcoline Dive view: a top control bar, left/right level meters, a central radial loudness dial reading -9.7 LUFS (over target, red), a right report card with LOUDNESS, DYNAMICS and TONE sections, and a loudness history graph along the bottom." loading="lazy">
+                <img src="manual-img/dive.webp" alt="Arcoline Dive view: a top control bar, left/right level meters, a central radial loudness dial reading -7.3 LUFS (over target, red), a right report card with LOUDNESS, DYNAMICS and TONE sections, and a loudness history graph along the bottom." loading="lazy">
               </div>
               <figcaption>The Dive view. Control bar on top; level meters at left; the centre instrument; the LOUDNESS / DYNAMICS / TONE report card at right; the loudness-history timeline along the foot.</figcaption>
             </figure>
@@ -185,23 +185,46 @@
               </div>
             </div>
 
-            <h4>The centre instrument &mdash; LUFS dial &amp; Phase scope</h4>
-            <p>The centre has two postures. The <strong>LUFS dial</strong> is a 270&deg; radial for Integrated loudness &mdash; the dominant hero number, a &plusmn;LU delta against target, and a <code>TGT</code> marker on the arc. Toggle it to the <strong>Phase scope</strong>, a full goniometer for stereo imaging:</p>
-            <div class="shot-row">
+            <h4>The centre instrument &mdash; three postures</h4>
+            <p>The centre of Dive is a single instrument that takes three postures, named on the strip beneath it: <strong>LOUDNESS</strong>, <strong>PHASE</strong> and <strong>HISTOGRAM</strong>. Click a name to switch &mdash; the instrument morphs between them rather than cutting, and all three read the same measurement. The strip is the only control; there's no keyboard shortcut for it. Your choice persists with the session.</p>
+            <div class="shot-row trio">
               <figure style="margin:0;">
-                <div class="shot"><img src="manual-img/crop-gauge.webp" alt="Radial LUFS dial reading -9.7 LUFS, +4.3 LU over target, with a TGT -14 marker and a phase-correlation arc reading +0.83." loading="lazy"></div>
-                <div class="shot-cap">Centre: LUFS dial</div>
+                <div class="shot"><img src="manual-img/crop-gauge.webp" alt="The centre instrument in its LOUDNESS posture: a radial dial reading -7.3 LUFS Integrated, +6.7 LU over target and flagged OVER, with a TGT -14 marker on the arc and a phase-correlation arc reading +0.87 across the bottom gap. The mode strip below reads LOUDNESS, PHASE, HISTOGRAM with LOUDNESS active." loading="lazy"></div>
+                <div class="shot-cap">LOUDNESS</div>
               </figure>
               <figure style="margin:0;">
-                <div class="shot"><img src="manual-img/crop-gonio.webp" alt="Goniometer (phase scope) showing a near-vertical Lissajous trace and a correlation arc reading +0.95 — a mostly-mono, well-correlated signal." loading="lazy"></div>
-                <div class="shot-cap">Centre: Phase scope</div>
+                <div class="shot"><img src="manual-img/crop-gonio.webp" alt="The centre instrument in its PHASE posture: a full goniometer disc showing a near-vertical Lissajous trace — a mostly-mono, well-correlated signal — with the correlation arc beneath it reading +0.77. The mode strip below has PHASE active." loading="lazy"></div>
+                <div class="shot-cap">PHASE</div>
+              </figure>
+              <figure style="margin:0;">
+                <div class="shot"><img src="manual-img/crop-histogram.webp" alt="The centre instrument in its HISTOGRAM posture: a time-at-level distribution drawn as mass against the dial's own printed loudness axis, reading a median of -6.9 LUFS M, with a LUFS M / RMS unit switch, a TIME AT LEVEL caption, and a TGT -14 notch with its green tolerance band on the axis. The mode strip below has HISTOGRAM active." loading="lazy"></div>
+                <div class="shot-cap">HISTOGRAM</div>
               </figure>
             </div>
-            <p>The <strong>goniometer</strong> plots left against right as a Lissajous figure &mdash; a vertical trace is mono, a 45&deg; lean shows a channel imbalance, a round blob is a wide image. The arc beneath it reads phase <strong>correlation</strong> on a named-end scale: <strong>MONO&nbsp;(+1)</strong> identical / mono-compatible, <strong>0</strong> uncorrelated / wide, <strong>ANTI&nbsp;(&minus;1)</strong> out of phase &mdash; investigate anything that sits there. Tune the trail with <em>Persistence</em>, or enable <em>Auto-scale</em> to fill the scope with low-level detail (see <a href="#settings">Settings</a>).</p>
+
+            <p><strong>LOUDNESS</strong> is a 270&deg; radial for Integrated loudness &mdash; the dominant hero number, a &plusmn;LU delta against target, and a <code>TGT</code> marker on the arc. This is the posture Dive opens in, and the one the <a href="#ascend">Ascend</a> hero number mirrors.</p>
+
+            <p><strong>PHASE</strong> is the <strong>goniometer</strong>: it plots left against right as a Lissajous figure &mdash; a vertical trace is mono, a 45&deg; lean shows a channel imbalance, a round blob is a wide image. The arc beneath it reads phase <strong>correlation</strong> on a named-end scale: <strong>MONO&nbsp;(+1)</strong> identical / mono-compatible, <strong>0</strong> uncorrelated / wide, <strong>ANTI&nbsp;(&minus;1)</strong> out of phase &mdash; investigate anything that sits there. Tune the trail with <em>Persistence</em>, or enable <em>Auto-scale</em> to fill the scope with low-level detail (see <a href="#settings">Settings</a>).</p>
+
+            <h4>HISTOGRAM &mdash; time at level</h4>
+            <p>The third posture answers a question the other two can't: <em>how much time did your material spend at each level?</em> It draws the whole distribution on the dial's own printed axis, so the shape sits directly against your target notch and tolerance band &mdash; a consistent master reads as a tight, tall mass; verse/chorus contrast spreads it wide. Beneath the shape, the <strong>MEDIAN</strong> is the level half your material sits above, and the <strong>P10&nbsp;/&nbsp;P95 caliper</strong> shows the spread &mdash; a display reading, <a href="#faq">not the report card's RANGE</a>.</p>
+            <p>The <code>LUFS M</code>&nbsp;/&nbsp;<code>RMS</code> switch picks the axis: momentary loudness (400&nbsp;ms, K-weighted) or plain RMS dBFS (100&nbsp;ms). Both accumulate in parallel, so switching units never loses the shape &mdash; though note <a href="#faq">Arcoline's RMS is deliberately not AES17</a>. In RMS units the LUFS target chrome fades out rather than mislabel a dBFS axis:</p>
+            <div class="shot-row">
+              <figure style="margin:0;">
+                <div class="shot"><img src="manual-img/crop-histogram.webp" alt="The histogram on its LUFS M axis: the TGT -14 notch and its green tolerance band are printed on the arc above the distribution, and the median reads -6.9." loading="lazy"></div>
+                <div class="shot-cap">LUFS M &mdash; target chrome shown</div>
+              </figure>
+              <figure style="margin:0;">
+                <div class="shot"><img src="manual-img/crop-histogram-rms.webp" alt="The same distribution on the RMS dBFS axis: the TGT -14 notch and tolerance band have faded out, leaving the bare axis, and the median reads -9.8." loading="lazy"></div>
+                <div class="shot-cap">RMS &mdash; target chrome faded</div>
+              </figure>
+            </div>
+
+            <p>Everything else is automatic. The axis floor derives from your target and material (&minus;36, stepping to &minus;48 when the material needs the room) &mdash; there's no range knob. A bracketed lamp (<code>[ NO SIGNAL ]</code>, <code>[ MEASURING ]</code>, <code>[ SETTLING ]</code>) says how much to trust the shape; <code>[ SETTLING ]</code> clears once a level has accumulated 3&nbsp;seconds of dwell, and wide-dynamics material <a href="#faq">holds it longer by design</a>. Colour encodes <strong>dwell time, never level</strong> &mdash; the one exception to <a href="#colour">the colour language</a>. And the histogram follows the measurement session exactly like Integrated and RANGE (see <a href="#settings">Measurement &amp; transport</a>).</p>
 
             <h4>The report card &mdash; Loudness (M / S / I)</h4>
             <div class="detail-shot">
-              <div class="shot"><img src="manual-img/crop-loudness.webp" alt="Report-card LOUDNESS section: Momentary -6.6, Short-term -6.6, Integrated -9.7 LUFS as bars, the target row (Streaming -14.0), and Max M / Max S holds." loading="lazy"></div>
+              <div class="shot"><img src="manual-img/crop-loudness.webp" alt="Report-card LOUDNESS section: Momentary -5.7, Short-term -5.6, Integrated -7.3 LUFS as bars, the target row (Streaming -14.0), and Max M -4.4 / Max S -5.0 holds." loading="lazy"></div>
               <div class="ds-text">
                 <p>The right-hand report card opens with loudness, measured to <strong>ITU-R BS.1770-4</strong> with K-weighting, in three windows:</p>
                 <ul>
@@ -215,14 +238,14 @@
 
             <h4>The report card &mdash; Dynamics (PSR / PLR / Range)</h4>
             <div class="detail-shot">
-              <div class="shot"><img src="manual-img/crop-dynamics.webp" alt="Report-card DYNAMICS section: PSR 6.6, PLR 10.6, RANGE 10.8." loading="lazy"></div>
+              <div class="shot"><img src="manual-img/crop-dynamics.webp" alt="Report-card DYNAMICS section: PSR 5.6, PLR 8.4, RANGE 11.1." loading="lazy"></div>
               <div class="ds-text">
                 <div class="prose-table-wrap">
                   <table>
                     <tr><th>Metric</th><th>Meaning</th></tr>
                     <tr><td>PSR</td><td>Peak to Short-term loudness Ratio &mdash; the punch of the current moment. Higher = more dynamic; low = squashed.</td></tr>
                     <tr><td>PLR</td><td>Peak to Loudness Ratio (max true peak minus Integrated) &mdash; the crest of the whole program.</td></tr>
-                    <tr><td>Range</td><td>Loudness Range (LRA) &mdash; the spread of short-term loudness. Low = consistent; high = wide contrast.</td></tr>
+                    <tr><td>Range</td><td>Loudness Range (LRA) &mdash; the spread of short-term loudness. Low = consistent; high = wide contrast. This is the EBU&nbsp;TECH&nbsp;3342 figure to quote on a delivery sheet; the <a href="#dive">HISTOGRAM</a> caliper is a different, wider reading and is not a substitute.</td></tr>
                   </table>
                 </div>
               </div>
@@ -230,7 +253,7 @@
 
             <h4>The report card &mdash; Tonal balance (TONE)</h4>
             <div class="detail-shot">
-              <div class="shot"><img src="manual-img/crop-tone.webp" alt="Report-card TONE section: a spectrum curve with Low 35%, Mid 56%, High 9% energy split." loading="lazy"></div>
+              <div class="shot"><img src="manual-img/crop-tone.webp" alt="Report-card TONE section: a spectrum curve with Low 31%, Mid 60%, High 9% energy split." loading="lazy"></div>
               <div class="ds-text">
                 <p>Tonal balance shows the program's spectrum and splits its energy across <strong>low</strong>, <strong>mid</strong> and <strong>high</strong> bands as a percentage of the whole, integrated over the session. It's the long-window read that catches a bass-heavy mix, a brittle top end, or a master that translates darker than you intended.</p>
               </div>
@@ -238,7 +261,7 @@
 
             <h4>Loudness history</h4>
             <figure class="manual-figure">
-              <div class="shot"><img src="manual-img/crop-history.webp" alt="Loudness history timeline: the curve runs green under the -14 target line, turns amber as it approaches, and red once Integrated loudness crosses over." loading="lazy"></div>
+              <div class="shot"><img src="manual-img/crop-history.webp" alt="Loudness history timeline: the curve runs low and blue under the -14 target line, turns amber as it climbs toward it, and red once Integrated loudness crosses over." loading="lazy"></div>
             </figure>
             <p>Along the foot of Dive, a scrolling timeline plots loudness against your target line &mdash; the fastest way to see <em>where</em> in the song you drift over. Toggle it with <span class="kbd">H</span> or <em>Show history graph</em> in Settings (Dive only). Its green/amber/red story is covered under <a href="#colour">The colour language</a>.</p>
 
@@ -264,7 +287,7 @@
               <li><strong>STEREO</strong> &mdash; correlation (MONO&nbsp;+1 &rarr; ANTI&nbsp;&minus;1) and left/right balance; a fast phase-safety check.</li>
             </ul>
 
-            <p>Ascend intentionally <strong>hides</strong> what you don't glance at mid-create: there's <em>no goniometer, no clip badge and no history graph</em> &mdash; switch to <a href="#dive">Dive</a> when you need them.</p>
+            <p>Ascend intentionally <strong>hides</strong> what you don't glance at mid-create: there's <em>no goniometer, no histogram, no clip badge and no history graph</em> &mdash; switch to <a href="#dive">Dive</a> when you need them.</p>
           </section>
 
           <!-- ACTIONS -->
@@ -272,7 +295,7 @@
             <h2>Reset, Freeze, Export</h2>
             <p>All three live in the control bar at the top of the window.</p>
             <h3>Reset</h3>
-            <p>Reset clears the measurement session &mdash; Integrated loudness, max-holds, the history graph, clip counts and the true-peak "over" flag &mdash; so your next pass starts clean. Click <strong>RESET</strong> or press <span class="kbd">R</span> / <span class="kbd">Cmd</span>+<span class="kbd">R</span> (<span class="kbd">Ctrl</span>+<span class="kbd">R</span> on Windows) &mdash; it clears immediately.</p>
+            <p>Reset clears the measurement session &mdash; Integrated loudness, max-holds, the history graph, the HISTOGRAM distribution, clip counts and the true-peak "over" flag &mdash; so your next pass starts clean. Click <strong>RESET</strong> or press <span class="kbd">R</span> / <span class="kbd">Cmd</span>+<span class="kbd">R</span> (<span class="kbd">Ctrl</span>+<span class="kbd">R</span> on Windows) &mdash; it clears immediately.</p>
             <h3>Freeze</h3>
             <p><strong>FREEZE</strong> (or <span class="kbd">F</span>) holds the display so you can read or screenshot a moment without the meters moving on. Measurement continues underneath; unfreeze to catch up.</p>
             <h3>Export</h3>
@@ -311,6 +334,7 @@
                 <tr><td>Auto-scale display</td><td>On / Off &mdash; boosts low-level stereo detail to fill the scope</td><td>Off</td></tr>
               </table>
             </div>
+            <p><strong>The HISTOGRAM posture has no settings</strong>, by design &mdash; don't go looking for them here. Its axis floor is derived automatically from your target and material, and its <code>LUFS M</code> / <code>RMS</code> unit switch lives on the instrument itself, directly under the number whose unit it names. Both the posture and the unit persist with the session.</p>
 
             <h3 style="clear:right;">Themes</h3>
             <p>Three themes ship in <em>Appearance</em>: <strong>Deep Blue</strong> (the default, shown throughout this manual), a greyer <strong>Neutral Dark</strong>, and a positive-polarity <strong>Light</strong> theme for bright rooms.</p>
@@ -348,7 +372,7 @@
             <p>How the measurement accumulates is the key to accurate readings. Arcoline separates two kinds of measurement:</p>
             <ul>
               <li><strong>Instantaneous meters</strong> &mdash; peak, RMS, Momentary &amp; Short-term LUFS, live true peak, and correlation. These are <em>always live</em> whenever signal is present.</li>
-              <li><strong>The measurement session</strong> &mdash; Integrated LUFS, Loudness Range, the history graph, the sticky max-holds (Max&nbsp;M / Max&nbsp;S / max true peak) and the true-peak "over" flag. These accumulate over a run.</li>
+              <li><strong>The measurement session</strong> &mdash; Integrated LUFS, Loudness Range, the history graph, the HISTOGRAM distribution, the sticky max-holds (Max&nbsp;M / Max&nbsp;S / max true peak) and the true-peak "over" flag. These accumulate over a run.</li>
             </ul>
             <p>By default (<em>Measurement follows transport</em> is on) the session is <strong>linked to your host's transport</strong>: it accumulates while the transport rolls and <strong>pauses when you park it</strong>. This keeps the session honest &mdash; a monitoring peak you audition while stopped (talkback, solo, scrubbing) won't contaminate your delivery reading or falsely trip the true-peak "over" flag.</p>
             <p>For <strong>live or broadcast</strong> work, turn <em>Measurement follows transport</em> off to measure continuously whenever signal is present &mdash; the right choice for live use, broadcast, or the standalone app. (With no host playhead there's nothing to follow, so it's always continuous.)</p>
@@ -369,6 +393,7 @@
               <li><span class="zone-dot green"></span><span><strong>Green &mdash; on target.</strong> You're inside the target's tolerance band. Calm.</span></li>
             </ul>
             <p>On the level meters and true-peak readout, amber keeps its plain meaning: approaching the ceiling.</p>
+            <p>The <a href="#dive">HISTOGRAM</a> posture is the deliberate exception. There, colour encodes <strong>dwell time only &mdash; never level</strong>: the mass never judges your material. The target notch and tolerance band printed on the same axis carry the verdict instead.</p>
           </section>
 
           <!-- SHORTCUTS -->
@@ -417,6 +442,18 @@
               <div class="faq-item">
                 <p class="faq-q">My master peaks at &minus;1.0 dBFS but Arcoline shows a true-peak over. How?</p>
                 <p class="faq-a">True peak measures inter-sample peaks &mdash; the level between samples after reconstruction &mdash; which routinely sits above the sample-peak value your DAW shows. That's exactly the gap true-peak metering exists to catch.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">The histogram's spread doesn't match RANGE. Which one is right?</p>
+                <p class="faq-a">Both &mdash; they measure different things. <strong>RANGE</strong> is the EBU&nbsp;TECH&nbsp;3342 loudness range, computed from <em>short-term</em> (3&nbsp;s) loudness, and it's the number to put on a delivery sheet. The histogram's P10/P95 caliper is a display reading of the distribution on screen, whose LUFS axis is <em>momentary</em> (400&nbsp;ms) &mdash; a shorter window catches more variation, so its spread reads a little wider. Use the caliper to see the shape, quote RANGE to a client.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">Another meter reads about 3&nbsp;dB hotter than Arcoline's RMS. Who's wrong?</p>
+                <p class="faq-a">Neither &mdash; it's a stated convention. Arcoline's RMS matches its own L/R level meters, where a full-scale sine reads &minus;3.01&nbsp;dBFS. Tools that apply the AES17 convention by default (Steinberg SuperVision, for one) add +3&nbsp;dB so a full-scale sine reads 0, which puts them about 3&nbsp;dB above Arcoline on the same material. We chose to agree with the meters sitting next to the reading rather than with another tool's default.</p>
+              </div>
+              <div class="faq-item">
+                <p class="faq-q">The histogram says <code>[ SETTLING ]</code> and won't clear. Is it stuck?</p>
+                <p class="faq-a">Almost certainly not. The lamp clears once some level has genuinely accumulated 3 seconds of dwell, and wide-dynamics material &mdash; film, jazz, classical &mdash; spreads its time across many levels, so no single one gets there quickly. That's the meter being honest about how much material it has, not a fault. Let it run. If the shape also looks shallow, that's deliberate: an unsettled distribution renders low so it can't be mistaken for a finished reading.</p>
               </div>
               <div class="faq-item">
                 <p class="faq-q">Can I measure continuously for live or broadcast?</p>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arcoline — Release Notes | Audivea</title>
+  <meta name="description" content="What's new in Arcoline, the free loudness, peak, dynamics, stereo and tonal-balance meter for Mac and Windows — every release, newest first.">
+  <link rel="canonical" href="https://audivea.com/support/arcoline-changelog.html">
+  <meta property="og:title" content="Arcoline — Release Notes | Audivea">
+  <meta property="og:description" content="What's new in Arcoline — every release, newest first.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/og-metering.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arcoline — Release Notes | Audivea">
+  <meta name="twitter:description" content="What's new in Arcoline — every release, newest first.">
+  <meta name="twitter:image" content="https://audivea.com/og-metering.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JLL7X7X53H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../favicon.png" type="image/png">
+
+  <link rel="stylesheet" href="../components/styles.css">
+
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/bg-wave.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Arcoline Release Notes",
+    "description": "What's new in Arcoline — every release, newest first.",
+    "url": "https://audivea.com/support/arcoline-changelog.html",
+    "about": {
+      "@type": "SoftwareApplication",
+      "name": "Arcoline",
+      "softwareVersion": "1.1.0",
+      "operatingSystem": "macOS, Windows",
+      "url": "https://audivea.com/products/arcoline.html"
+    },
+    "publisher": { "@type": "Organization", "name": "Audivea", "url": "https://audivea.com" }
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-fixed"></div>
+  <!-- Header injected by header.js -->
+
+  <section class="band first">
+    <div class="wrap">
+      <div class="article-eyebrow">Support &middot; Release notes</div>
+      <h1 class="article-title">Arcoline &mdash; Release notes</h1>
+      <p class="page-lede">What changed in each release, newest first. <a href="../products/arcoline.html#download" style="color:var(--cyan-l);">Download the latest version</a> or read the <a href="arcoline-manual.html" style="color:var(--cyan-l);">user manual</a>.</p>
+
+      <article class="prose" style="margin-top:44px;">
+
+        <!-- ===================== 1.1.0 ===================== -->
+        <section id="v1-1-0">
+          <h2>1.1.0 <span style="font-weight:400;color:var(--muted);font-size:.6em;">&mdash; August 1, 2026</span></h2>
+
+          <h3>New: HISTOGRAM view in Dive</h3>
+          <p>A third posture on Dive's centre instrument, alongside LOUDNESS and PHASE: a <strong>time-at-level histogram</strong> &mdash; how much time your material spent at each level, drawn on the dial's own printed axis so the shape sits directly against your delivery target notch and tolerance band. Our most-requested feature since launch.</p>
+          <ul>
+            <li><strong>Two axes</strong> &mdash; momentary LUFS (400&nbsp;ms) or plain RMS dBFS (100&nbsp;ms). Both accumulate in parallel, so switching units never loses data.</li>
+            <li><strong>MEDIAN hero + P10/P95 spread caliper</strong> show where the material sits and how wide it spreads. (The caliper is a display reading of the on-screen shape &mdash; the report card's RANGE remains the EBU&nbsp;TECH&nbsp;3342 loudness range.)</li>
+            <li><strong>The axis adapts, you don't</strong> &mdash; the printed floor derives from your target and material (&minus;36, stepping to &minus;48 when needed). No range knob to manage.</li>
+            <li><strong>An honest lamp</strong> &mdash; <code>[ SETTLING ]</code> marks a shape built from too little material and clears once a level has genuinely accumulated 3&nbsp;seconds of dwell.</li>
+            <li>In RMS units the LUFS-specific target chrome fades out rather than mislabel a dBFS axis; a live RMS caret takes over as the reference.</li>
+            <li>Your posture and unit choice persist with the session.</li>
+          </ul>
+          <p>The histogram follows the measurement session exactly like Integrated and RANGE: it pauses with a parked transport, clears with RESET, and rebuilds each pass when you loop a section. Colour in the histogram encodes dwell time only, never level. The <a href="arcoline-manual.html#dive">manual covers it in full</a>.</p>
+
+          <h3>Under the hood</h3>
+          <ul>
+            <li>The goniometer feed no longer runs while the scope is hidden, trimming per-frame UI work.</li>
+            <li>DSP test suite extended to 3,800+ assertions, including a characterization suite pinning the shipping LRA number bit-for-bit.</li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- ===================== 1.0.1 ===================== -->
+        <section id="v1-0-1">
+          <h2>1.0.1 <span style="font-weight:400;color:var(--muted);font-size:.6em;">&mdash; July 12, 2026</span></h2>
+          <ul>
+            <li><strong>Fixed:</strong> metering in hosts that deliver variable-size audio blocks &mdash; notably FL Studio.</li>
+          </ul>
+        </section>
+
+        <hr>
+
+        <!-- ===================== 1.0.0 ===================== -->
+        <section id="v1-0-0">
+          <h2>1.0.0 <span style="font-weight:400;color:var(--muted);font-size:.6em;">&mdash; July 10, 2026</span></h2>
+          <p>The first release. One calm instrument for the whole delivery check:</p>
+          <ul>
+            <li>Loudness to ITU-R BS.1770-4 &mdash; Momentary, Short-term and gated Integrated LUFS with Max&nbsp;M / Max&nbsp;S holds.</li>
+            <li>True peak (inter-sample, oversampled) with a sticky session &ldquo;over&rdquo; flag; per-channel peak &amp; RMS with peak-hold and clip detection.</li>
+            <li>Dynamics &mdash; PSR, PLR and EBU&nbsp;TECH&nbsp;3342 loudness range.</li>
+            <li>Stereo &mdash; goniometer, phase correlation and L/R balance. Tonal balance &mdash; low / mid / high energy split over the session.</li>
+            <li>Two views &mdash; <strong>Dive</strong> (the full workbench) and <strong>Ascend</strong> (the at-a-glance verdict) &mdash; with built-in loudness targets for streaming, broadcast, film and podcast, plus custom targets.</li>
+            <li>Measurement sessions linked to the host transport, honest true-peak flagging while parked, and full accumulation during offline bounces.</li>
+            <li>Copy-to-clipboard and CSV export of every reading; three themes and a colour-blind-safe overlay.</li>
+            <li>VST3 &middot; AU &middot; Standalone, for macOS (universal) and Windows.</li>
+          </ul>
+        </section>
+
+      </article>
+
+      <a href="./" class="backlink-v2" style="margin-top:40px;">&larr; Back to Support</a>
+    </div>
+  </section>
+
+  <!-- Footer injected by footer.js -->
+</body>
+</html>
