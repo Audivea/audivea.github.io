@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Arcoline — Loudness, Peak & Stereo Meter | Audivea</title>
-  <meta name="description" content="Arcoline is a precision loudness, dynamics, stereo and tonal-balance meter for Mac and Windows — LUFS (ITU-R BS.1770-4), true peak, goniometer and a perceptual spectrum, with streaming, broadcast and podcast targets. Free. VST3 / AU / Standalone.">
+  <meta name="description" content="Arcoline is a precision loudness, dynamics, stereo and tonal-balance meter for Mac and Windows — LUFS (ITU-R BS.1770-4), true peak, goniometer, a time-at-level histogram and a perceptual spectrum, with streaming, broadcast and podcast targets. Free. VST3 / AU / Standalone.">
   <link rel="canonical" href="https://audivea.com/products/arcoline.html">
   <meta property="og:title" content="Arcoline — Loudness, Peak & Stereo Meter | Audivea">
   <meta property="og:description" content="A precision loudness, peak, dynamics, stereo and tonal-balance meter for Mac and Windows. Free — VST3 / AU / Standalone.">
@@ -42,8 +42,8 @@
     "applicationCategory": "MultimediaApplication",
     "applicationSubCategory": "Audio metering plugin",
     "operatingSystem": "macOS, Windows",
-    "softwareVersion": "1.0.1",
-    "description": "Arcoline is a precision loudness, peak, dynamics, stereo and tonal-balance meter for Mac and Windows. LUFS (M/S/I, ITU-R BS.1770-4), true peak, RMS, goniometer and a perceptual spectrum. VST3 / AU / Standalone.",
+    "softwareVersion": "1.1.0",
+    "description": "Arcoline is a precision loudness, peak, dynamics, stereo and tonal-balance meter for Mac and Windows. LUFS (M/S/I, ITU-R BS.1770-4), true peak, RMS, goniometer, a time-at-level histogram and a perceptual spectrum. VST3 / AU / Standalone.",
     "image": "https://audivea.com/og-metering.png",
     "url": "https://audivea.com/products/arcoline.html",
     "publisher": {
@@ -75,7 +75,7 @@
             <div class="prod-kicker">Metering &middot; by Audivea</div>
           </div>
         </div>
-        <span class="pill live"><span class="dot"></span>Available now &middot; Version 1.0.1</span>
+        <span class="pill live"><span class="dot"></span>Available now &middot; <a href="../support/arcoline-changelog.html" style="color:inherit;">Version 1.1.0</a></span>
         <h1 class="prod-title">Everything you check before you deliver, in one <em>calm instrument</em>.</h1>
         <p class="prod-sub">A precision meter for loudness, true peak, dynamics, stereo image and tonal balance &mdash; with two views: <strong>Dive</strong> for a close look, <strong>Ascend</strong> for the at-a-glance verdict.</p>
         <div class="cta-row">
@@ -87,7 +87,7 @@
 
       <figure class="prod-hero-shot">
         <div class="shot">
-          <img src="../support/manual-img/dive.webp" alt="Arcoline Dive view: a top control bar, left/right level meters, a central radial loudness dial reading -9.7 LUFS, a report card with LOUDNESS, DYNAMICS and TONE sections, and a loudness-history graph along the bottom." width="1049" height="726">
+          <img src="../support/manual-img/dive.webp" alt="Arcoline Dive view: a top control bar, left/right level meters, a central radial loudness dial reading -7.3 LUFS, a report card with LOUDNESS, DYNAMICS and TONE sections, and a loudness-history graph along the bottom." width="1050" height="731">
         </div>
         <figcaption>Dive &mdash; the full workbench, in the default Deep Blue theme.</figcaption>
       </figure>
@@ -108,7 +108,7 @@
       <div class="prod-split">
         <figure class="ps-media" style="margin:0;">
           <div class="shot">
-            <img src="../support/manual-img/dive.webp" alt="Arcoline Dive view with every meter visible at once." loading="lazy" width="1049" height="726">
+            <img src="../support/manual-img/dive.webp" alt="Arcoline Dive view with every meter visible at once." loading="lazy" width="1050" height="731">
           </div>
         </figure>
         <div class="ps-copy">
@@ -173,6 +173,34 @@
     </div>
   </section>
 
+  <!-- ======================= CENTRE INSTRUMENT / HISTOGRAM ======================= -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-topline">
+        <div>
+          <span class="article-eyebrow">The centre instrument</span>
+          <h2 class="sec-title">Three postures, one axis.</h2>
+          <p class="sec-lede">The centre of Dive doesn't just change what it shows &mdash; it changes what kind of instrument it is. Click <span class="mono" style="letter-spacing:.06em;">Loudness</span>, <span class="mono" style="letter-spacing:.06em;">Phase</span> or <span class="mono" style="letter-spacing:.06em;">Histogram</span> and it morphs, holding the same measurement throughout.</p>
+        </div>
+      </div>
+
+      <div class="prod-split">
+        <figure class="ps-media narrow" style="margin:0;">
+          <div class="shot">
+            <img src="../support/manual-img/crop-histogram.webp" alt="Arcoline's centre instrument in its HISTOGRAM posture — a time-at-level distribution drawn against the dial's printed loudness axis, with a median reading of -6.9 LUFS M, a LUFS M / RMS unit switch, and the LOUDNESS / PHASE / HISTOGRAM mode strip beneath." loading="lazy" width="440" height="429">
+          </div>
+        </figure>
+        <div class="ps-copy">
+          <div class="ps-kicker">Histogram</div>
+          <h3>Not just how loud &mdash; how long.</h3>
+          <p>A time-at-level distribution, drawn on the dial's own printed axis. The shape of your material sits directly against your delivery target and its tolerance band, instead of in a separate window with a separate scale you have to reconcile by eye.</p>
+          <p>Read it in momentary LUFS or plain RMS &mdash; both accumulate at once, so switching units shows you the other view of the same pass rather than starting over. The axis floor adapts to your target and your material, so there's no range knob to manage.</p>
+          <p>Colour encodes dwell time, never level. The mass tells you where your material lived; the target chrome on the same axis is what judges it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ======================= THEMES ======================= -->
   <section class="band">
     <div class="wrap">
@@ -185,15 +213,15 @@
 
       <div class="shot-row trio">
         <figure style="margin:0;">
-          <div class="shot"><img src="../support/manual-img/dive.webp" alt="Arcoline in the default Deep Blue theme." loading="lazy" width="1049" height="726"></div>
+          <div class="shot"><img src="../support/manual-img/dive.webp" alt="Arcoline in the default Deep Blue theme." loading="lazy" width="1050" height="731"></div>
           <div class="shot-cap">Deep Blue (default)</div>
         </figure>
         <figure style="margin:0;">
-          <div class="shot"><img src="../support/manual-img/dive-dark.webp" alt="Arcoline in the Neutral Dark theme." loading="lazy" width="1053" height="727"></div>
+          <div class="shot"><img src="../support/manual-img/dive-dark.webp" alt="Arcoline in the Neutral Dark theme." loading="lazy" width="1050" height="729"></div>
           <div class="shot-cap">Neutral Dark</div>
         </figure>
         <figure style="margin:0;">
-          <div class="shot"><img src="../support/manual-img/dive-light.webp" alt="Arcoline in the Light theme." loading="lazy" width="1051" height="727"></div>
+          <div class="shot"><img src="../support/manual-img/dive-light.webp" alt="Arcoline in the Light theme." loading="lazy" width="1050" height="726"></div>
           <div class="shot-cap">Light</div>
         </figure>
       </div>
@@ -204,22 +232,22 @@
   <section class="band" id="download">
     <div class="wrap">
       <div class="prod-cta">
-        <span class="pill live"><span class="dot"></span>Available now &middot; Version 1.0.1</span>
+        <span class="pill live"><span class="dot"></span>Available now &middot; <a href="../support/arcoline-changelog.html" style="color:inherit;">Version 1.1.0</a></span>
         <h2>Get Arcoline.</h2>
         <p>Free &mdash; a VST3 and AU plugin plus a standalone app, for macOS (universal, Intel &amp; Apple Silicon) and Windows.</p>
 
         <!-- Direct download (no gate). Each button fires a GA4 "download" event by OS;
              GitHub Releases also reports its own per-asset download_count. Both links are
-             pinned to the v1.0.1 release assets — when you cut a new version, update these
+             pinned to the v1.1.0 release assets — when you cut a new version, update these
              URLs (or rename the assets to version-less names and switch to
              /releases/latest/download/ so the links never need editing again). -->
         <div class="cta-row" style="justify-content:center;">
-          <a class="btn btn-primary arco-dl" data-os="macOS" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.0.1/Arcoline_1.0.1_Installer.pkg">Download for macOS</a>
-          <a class="btn btn-primary arco-dl" data-os="Windows" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.0.1/Arcoline_1.0.1_Setup.exe">Download for Windows</a>
+          <a class="btn btn-primary arco-dl" data-os="macOS" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.1.0/Arcoline_1.1.0_Installer.pkg">Download for macOS</a>
+          <a class="btn btn-primary arco-dl" data-os="Windows" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.1.0/Arcoline_1.1.0_Setup.exe">Download for Windows</a>
         </div>
 
         <div class="spec-strip">
-          <div><div class="lab">Version</div><div class="val">1.0.1</div></div>
+          <div><div class="lab">Version</div><div class="val">1.1.0</div></div>
           <div><div class="lab">Formats</div><div class="val">VST3 &middot; AU &middot; Standalone</div></div>
           <div><div class="lab">Platform</div><div class="val">macOS &middot; Windows</div></div>
           <div><div class="lab">Price</div><div class="val">Free</div></div>
@@ -254,7 +282,7 @@
       // GA4 "download" event by OS (GitHub Releases also reports its own download_count).
       Array.prototype.forEach.call(document.querySelectorAll('.arco-dl'), function (a) {
         a.addEventListener('click', function () {
-          if (window.gtag) gtag('event', 'download', { os: a.getAttribute('data-os'), item: 'Arcoline 1.0.1' });
+          if (window.gtag) gtag('event', 'download', { os: a.getAttribute('data-os'), item: 'Arcoline 1.1.0' });
         });
       });
 

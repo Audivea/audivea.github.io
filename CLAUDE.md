@@ -27,6 +27,11 @@ npx playwright test
 
 No build, lint, or compile commands exist. Edit files and refresh.
 
+Regenerate the Arcoline screenshots (`support/manual-img/`, `og-metering.png`) from full-window plugin captures:
+```bash
+python3 tools/build-shots.py [capture-dir]   # see the script's docstring for the expected captures
+```
+
 ## Architecture
 
 ### Shared Components (JS-injected)
