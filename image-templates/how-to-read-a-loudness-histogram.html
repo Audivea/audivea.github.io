@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #07172f;
+  }
+
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #1a4ea0 0%, #0e3478 35%, #0a2755 65%, #07172f 100%);
+    overflow: hidden;
+  }
+
+  /* Soft vignette over the gradient */
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+
+  .diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <svg class="diagram" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Glow for the brightest bars -->
+        <filter id="curveGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Soft glow for the median marker -->
+        <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="5" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Level axis gradient (fade at ends), vertical -->
+        <linearGradient id="axisGrad" gradientUnits="userSpaceOnUse" x1="216" y1="150" x2="216" y2="930">
+          <stop offset="0%"   stop-color="#5ecbff" stop-opacity="0"/>
+          <stop offset="12%"  stop-color="#5ecbff" stop-opacity="0.6"/>
+          <stop offset="88%"  stop-color="#5ecbff" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#5ecbff" stop-opacity="0"/>
+        </linearGradient>
+        <!-- Bright bar gradient: hot at the axis, cooler at the tip -->
+        <linearGradient id="barBright" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%"   stop-color="#cfe5ff"/>
+          <stop offset="100%" stop-color="#7fdcff"/>
+        </linearGradient>
+        <!-- Target band: green tolerance zone fading downward -->
+        <linearGradient id="targetGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#5ed98a" stop-opacity="0.16"/>
+          <stop offset="100%" stop-color="#5ed98a" stop-opacity="0.04"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Target tolerance band (a level range near the top of the axis) -->
+      <rect x="140" y="272" width="800" height="144" fill="url(#targetGrad)"/>
+      <line x1="140" y1="272" x2="940" y2="272"
+            stroke="#5ed98a" stroke-width="2" stroke-dasharray="4 10"
+            stroke-linecap="round" opacity="0.45"/>
+      <line x1="140" y1="416" x2="940" y2="416"
+            stroke="#5ed98a" stroke-width="2" stroke-dasharray="4 10"
+            stroke-linecap="round" opacity="0.45"/>
+      <!-- Target centre line -->
+      <line x1="140" y1="344" x2="940" y2="344"
+            stroke="#5ed98a" stroke-width="3"
+            stroke-dasharray="18 12" stroke-linecap="round" opacity="0.85"/>
+
+      <!-- Level axis (vertical, loud at top, quiet at bottom) -->
+      <line x1="216" y1="150" x2="216" y2="930" stroke="url(#axisGrad)" stroke-width="3"/>
+
+      <!-- Axis ticks, one per bin -->
+      <g stroke="#5ecbff" stroke-width="2" opacity="0.35">
+        <line x1="198" y1="200" x2="212" y2="200"/>
+        <line x1="198" y1="248" x2="212" y2="248"/>
+        <line x1="198" y1="296" x2="212" y2="296"/>
+        <line x1="198" y1="344" x2="212" y2="344"/>
+        <line x1="198" y1="392" x2="212" y2="392"/>
+        <line x1="198" y1="440" x2="212" y2="440"/>
+        <line x1="198" y1="488" x2="212" y2="488"/>
+        <line x1="198" y1="536" x2="212" y2="536"/>
+        <line x1="198" y1="584" x2="212" y2="584"/>
+        <line x1="198" y1="632" x2="212" y2="632"/>
+        <line x1="198" y1="680" x2="212" y2="680"/>
+        <line x1="198" y1="728" x2="212" y2="728"/>
+        <line x1="198" y1="776" x2="212" y2="776"/>
+        <line x1="198" y1="824" x2="212" y2="824"/>
+        <line x1="198" y1="872" x2="212" y2="872"/>
+      </g>
+
+      <!-- Dwell-time bars: main lobe just under the target band, second lobe below (verse),
+           thin tail toward quiet. Opacity tracks dwell time — longer bar, brighter mass. -->
+      <g>
+        <rect x="222" y="186" width="64"  height="28" rx="6" fill="#5ecbff" opacity="0.30"/>
+        <rect x="222" y="234" width="150" height="28" rx="6" fill="#5ecbff" opacity="0.42"/>
+        <rect x="222" y="282" width="330" height="28" rx="6" fill="#5ecbff" opacity="0.62"/>
+        <rect x="222" y="330" width="560" height="28" rx="6" fill="#5ecbff" opacity="0.85"/>
+        <rect x="222" y="378" width="690" height="28" rx="6" fill="url(#barBright)" filter="url(#curveGlow)"/>
+        <rect x="222" y="426" width="620" height="28" rx="6" fill="url(#barBright)" filter="url(#curveGlow)" opacity="0.92"/>
+        <rect x="222" y="474" width="420" height="28" rx="6" fill="#5ecbff" opacity="0.72"/>
+        <rect x="222" y="522" width="230" height="28" rx="6" fill="#5ecbff" opacity="0.52"/>
+        <rect x="222" y="570" width="140" height="28" rx="6" fill="#5ecbff" opacity="0.40"/>
+        <rect x="222" y="618" width="210" height="28" rx="6" fill="#5ecbff" opacity="0.50"/>
+        <rect x="222" y="666" width="300" height="28" rx="6" fill="#5ecbff" opacity="0.60"/>
+        <rect x="222" y="714" width="220" height="28" rx="6" fill="#5ecbff" opacity="0.50"/>
+        <rect x="222" y="762" width="120" height="28" rx="6" fill="#5ecbff" opacity="0.38"/>
+        <rect x="222" y="810" width="66"  height="28" rx="6" fill="#5ecbff" opacity="0.28"/>
+        <rect x="222" y="858" width="34"  height="28" rx="6" fill="#5ecbff" opacity="0.20"/>
+      </g>
+
+      <!-- Median marker: cream line at the level where half the time sits -->
+      <g filter="url(#dotGlow)">
+        <line x1="150" y1="452" x2="930" y2="452"
+              stroke="#ffd6c2" stroke-width="3" stroke-linecap="round" opacity="0.8"/>
+        <circle cx="216" cy="452" r="9" fill="#ffd6c2"/>
+      </g>
+
+      <!-- Small accent star at the median's intersection with the mass edge -->
+      <g transform="translate(852 452)" opacity="0.95">
+        <path d="M 0 -18 L 3 -3 L 18 0 L 3 3 L 0 18 L -3 3 L -18 0 L -3 -3 Z"
+              fill="#ffd6c2"/>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>
