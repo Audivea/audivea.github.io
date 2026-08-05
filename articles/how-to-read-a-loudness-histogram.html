@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How to Read a Loudness Histogram | Audivea</title>
+  <meta name="description" content="Two masters can share the same integrated LUFS and feel nothing alike. A loudness histogram shows how long your track lived at each level — here is how to read the shape.">
+  <link rel="canonical" href="https://audivea.com/articles/how-to-read-a-loudness-histogram.html">
+  <meta property="og:title" content="How to Read a Loudness Histogram">
+  <meta property="og:description" content="Two masters can share the same integrated LUFS and feel nothing alike. A loudness histogram shows how long your track lived at each level.">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Audivea">
+  <meta property="og:image" content="https://audivea.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Read a Loudness Histogram">
+  <meta name="twitter:description" content="Two masters can share the same integrated LUFS and feel nothing alike. A loudness histogram shows how long your track lived at each level.">
+  <meta name="twitter:image" content="https://audivea.com/og-image.png">
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JLL7X7X53H"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JLL7X7X53H');
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../favicon.png" type="image/png">
+
+  <link rel="stylesheet" href="../components/styles.css">
+
+  <script src="../components/header.js"></script>
+  <script src="../components/footer.js"></script>
+  <script src="../components/bg-wave.js"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Read a Loudness Histogram",
+    "datePublished": "2026-08-05",
+    "author": {
+      "@type": "Organization",
+      "name": "Audivea"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Audivea",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://audivea.com/icon.webp"
+      }
+    },
+    "description": "Two masters can share the same integrated LUFS and feel nothing alike. A loudness histogram shows how long your track lived at each level — here is how to read the shape.",
+    "image": "https://audivea.com/articles/how-to-read-a-loudness-histogram.webp",
+    "url": "https://audivea.com/articles/how-to-read-a-loudness-histogram.html"
+  }
+  </script>
+</head>
+<body>
+  <div class="bg-fixed"></div>
+  <!-- Header will be inserted by header.js -->
+
+  <section class="band first">
+    <div class="wrap">
+      <article>
+        <div class="article-eyebrow">Article &middot; Metering</div>
+        <h1 class="article-title">How to Read a Loudness Histogram</h1>
+        <div class="article-meta-v2">Published on August 5, 2026</div>
+
+
+        <div class="prose article-prose">
+          <img src="how-to-read-a-loudness-histogram.webp" alt="A loudness histogram: time-at-level bars against a level axis, with a delivery target band and a median marker" class="article-figure" loading="lazy">
+          <p>
+            Take two masters that both read −14 LUFS integrated. One feels steady and confident next to anything on a playlist. The other feels loud in the chorus, thin in the verse, and somehow quieter overall. Same number, different records.
+          </p>
+
+          <p>
+            The number isn't lying. It's just one number, and it is describing an entire song. A moving meter has the opposite problem: it tells you everything about <em>right now</em> and remembers nothing. Between the needle and the single integrated figure, there is a piece of information neither one shows — <strong>how long your track spent at each level</strong>.
+          </p>
+
+          <p>
+            That is what a loudness histogram measures. This article covers what the histogram actually accumulates, how to read the common shapes, what the median tells you that integrated loudness can't, and how to use the whole picture against a delivery target.
+          </p>
+
+          <hr>
+
+          <h2>What a loudness histogram actually measures</h2>
+
+          <p>
+            A loudness meter produces a reading many times per second. Momentary LUFS, the fastest of the standard BS.1770 readings, is a sliding 400&nbsp;ms window — over a three-and-a-half-minute track, that is thousands of measurements. Normally you watch them go by and they are gone.
+          </p>
+
+          <p>
+            A histogram keeps them. Every reading is sorted into a level bin — −8 to −9 LUFS, −9 to −10, and so on — and each bin grows as the track spends time there. When the song ends, you are looking at a <strong>time-at-level distribution</strong>: a shape whose axis is level and whose mass is dwell time.
+          </p>
+
+          <p>
+            Not how loud — how long. The loudest moment of your track might be a single snare hit. The histogram shows you where the track <em>lived</em>.
+          </p>
+
+          <h2>The four shapes you'll actually see</h2>
+
+          <p>
+            Real material produces a small vocabulary of shapes. Learning to read them takes about one afternoon.
+          </p>
+
+          <div class="prose-table-wrap">
+          <table>
+            <tr>
+              <th>Shape</th>
+              <th>What it usually means</th>
+            </tr>
+            <tr>
+              <td>One narrow spike</td>
+              <td>The track lives at a single level — hard limiting, or tightly controlled dialogue</td>
+            </tr>
+            <tr>
+              <td>One wide mound</td>
+              <td>Level moves freely — dynamic material breathing around a centre</td>
+            </tr>
+            <tr>
+              <td>Two lobes</td>
+              <td>Two distinct states — verse and chorus, speech over a music bed, intro versus body</td>
+            </tr>
+            <tr>
+              <td>A body with a long quiet tail</td>
+              <td>A consistent core plus fades, breakdowns, or ambience</td>
+            </tr>
+          </table>
+          </div>
+
+          <h3>The narrow spike</h3>
+          <p>
+            All the mass in two or three bins. The track sits at one level and never leaves it. For a podcast or an audiobook, this is the goal — it means the listener never reaches for the volume knob. For music, it is a choice: modern hyperpop and some EDM genuinely live here, but if you didn't choose it, it usually means the limiter made the choice for you.
+          </p>
+
+          <h3>The wide mound</h3>
+          <p>
+            Mass spread across 8–12 dB with a soft peak. This is what unforced, dynamic material looks like — jazz, orchestral, a rock mix that still has its transients. Nothing to fix. The only question is whether the centre of the mound sits where you want it relative to your target.
+          </p>
+
+          <h3>The two lobes</h3>
+          <p>
+            The most informative shape in the set. Two separate concentrations of mass means your track has two homes — almost always the verse and the chorus. The distance between the lobes, read straight off the axis, <em>is</em> your section contrast in dB. Four to six dB of separation reads as a satisfying lift. Ten or more and streaming listeners will ride the volume; two or less and the chorus may not land as an event at all.
+          </p>
+
+          <h3>The long tail</h3>
+          <p>
+            A healthy body with a thin smear stretching toward silence. That tail is your intro, your breakdown, your outro fade. It is usually harmless — but it is also the part of the shape that quietly drags the integrated number away from where the song actually lives, which brings us to the median.
+          </p>
+
+          <h2>Median vs integrated: two different questions</h2>
+
+          <p>
+            Integrated LUFS is an <strong>energy average</strong> — every gated block of the track pooled into one figure, per ITU-R BS.1770. Because it averages energy rather than decibels, loud sections dominate it, and because the gate only removes near-silence, quiet <em>music</em> still counts against it.
+          </p>
+
+          <p>
+            The <strong>median</strong> of the histogram answers a different question: what level was the track at or above for half its runtime? It is a time average, not an energy average. No single section can dominate it, and a loud snare hit moves it not at all.
+          </p>
+
+          <p>
+            Concretely: a track whose body sits around −9 LUFS momentary, with a 45-second ambient intro down at −20, might read about −10.5 integrated. Neither number is where the record feels like it lives. The median lands in the body, because the body is where the time went. When median and integrated disagree, the histogram's tail or second lobe is the explanation — and now you can see it instead of guessing.
+          </p>
+
+          <p>
+            Integrated is the delivery number; platforms normalize on it, so you ship to it. The median is the honest description of the listening experience. You want to know both, and you want to know why they differ.
+          </p>
+
+          <h2>Reading the shape against a target</h2>
+
+          <p>
+            A histogram becomes a decision-making tool the moment your delivery target is drawn on the same axis. Then the question is not "did the needle touch −14" but <strong>where does the mass sit relative to the target band?</strong>
+          </p>
+
+          <ul>
+            <li><strong>Mass centred in the band:</strong> done. Normalization will barely touch you.</li>
+            <li><strong>Mass above the band:</strong> the platform will turn the whole track down by roughly the overshoot. You paid for that loudness in transients and got nothing back. The histogram shows you <em>how much</em> of the track was over — a sliver is fine, the whole lobe is a remaster.</li>
+            <li><strong>Mass below the band, tail within it:</strong> the track will be normalized up (where the platform does that) or simply play quiet. Check whether it's the whole track or just an over-long intro.</li>
+            <li><strong>One lobe in, one lobe out:</strong> your section contrast straddles the target. Usually fine — this is what dynamic records look like on a histogram. Ship it.</li>
+          </ul>
+
+          <p>
+            Note what the histogram is <em>not</em> doing here: it isn't judging the shape. There is no correct histogram — the shape belongs to the arrangement. The target band judges the delivery; taste judges the music.
+          </p>
+
+          <h2>LUFS or RMS: which units to accumulate</h2>
+
+          <p>
+            The same time-at-level idea works on any level reading, and the two worth having are momentary LUFS and plain RMS.
+          </p>
+
+          <p>
+            <strong>Momentary LUFS</strong> is K-weighted — filtered to approximate how hearing weights the spectrum, with the low end relaxed and the presence region emphasized. It is the right view for anything that ends at a streaming platform or a broadcast spec, because it is the currency those specs are written in.
+          </p>
+
+          <p>
+            <strong>RMS</strong> is unweighted energy. It is the right view when you are gain-staging into gear calibrated in RMS, matching a reference from the pre-LUFS era, or checking raw energy without the perceptual tilt — a bass-heavy master can read deceptively polite in LUFS while RMS tells you how much voltage is actually moving.
+          </p>
+
+          <p>
+            The practical detail that matters: a meter that accumulates both simultaneously lets you flip between views of the <em>same pass</em>. If switching units means starting the accumulation over, you will check one and skip the other every time.
+          </p>
+
+          <h2>Three workflows that use it</h2>
+
+          <ol>
+            <li><strong>The master check.</strong> Reset, play the whole track once, then read three things: the median against the target, the shape of the mass against the tolerance band, and the size of whatever sits above the band. Thirty seconds of reading replaces re-listening to the track four times while staring at a needle.</li>
+            <li><strong>The section-contrast check.</strong> Mixing something with a verse/chorus structure? Run the song and look for the two lobes. Measure the gap. If the contrast you feel in the room doesn't show up as separation on the axis, the chorus lift is spectral or arrangement-driven rather than level-driven — worth knowing before you push faders to force it.</li>
+            <li><strong>The dialogue check.</strong> For podcast and voice work, the whole job is a narrow spike at the spec — −16 LUFS integrated for most podcast platforms, −18 to −20 for some broadcast contexts. A wide or double-lobed speech histogram means uneven gain riding or two presenters at two levels; fix it with clip gain or gentle compression, then re-run until the spike tightens.</li>
+          </ol>
+
+          <p>
+            One habit makes all three work: <strong>reset the histogram at the start of every pass</strong>. A distribution accumulated across two different songs, or across a song plus five minutes of you soloing the kick, describes nothing.
+          </p>
+
+          <h2>The short version</h2>
+
+          <ul>
+            <li>A loudness histogram is a <strong>time-at-level distribution</strong>: level on the axis, dwell time as mass.</li>
+            <li>It shows where the track <em>lived</em> — the thing neither a moving needle nor a single integrated number can tell you.</li>
+            <li>Four shapes cover most material: the spike, the mound, the two lobes, the tail. Each has a straightforward reading.</li>
+            <li>Integrated LUFS is an energy average and the delivery number. The <strong>median</strong> is a time average and the honest one. The shape explains any gap between them.</li>
+            <li>Read the mass against the target band drawn on the same axis — how much of the track is over matters more than whether the loudest moment was.</li>
+            <li>Accumulate LUFS-M for delivery, RMS for energy. Reset every pass.</li>
+            <li>There is no correct shape. The histogram reports; the target judges delivery; you judge the music.</li>
+          </ul>
+
+          <hr>
+
+          <p>
+            Want to see where your track lands before you upload? The <a href="../lab/mix-analyzer/">Mix Analyzer</a> is a free browser-based tool that measures loudness, true peak, dynamics, stereo image, and tonal balance.
+          </p>
+
+          <p>
+            Want the histogram itself in your DAW? <a href="../products/arcoline.html">Arcoline</a> draws a time-at-level histogram on the dial's own printed loudness axis — LUFS&nbsp;M and RMS accumulate together, with a live median readout and your delivery target on the same scale. Free, VST3 / AU / Standalone for Mac &amp; Windows.
+          </p>
+
+        </div>
+
+        <a class="backlink-v2" href="./">&larr; Back to Articles</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer will be inserted by footer.js -->
+</body>
+</html>
