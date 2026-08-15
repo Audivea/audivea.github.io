@@ -42,7 +42,7 @@
     "applicationCategory": "MultimediaApplication",
     "applicationSubCategory": "Audio metering plugin",
     "operatingSystem": "macOS, Windows",
-    "softwareVersion": "1.1.0",
+    "softwareVersion": "1.1.5",
     "description": "Arcoline is a precision loudness, peak, dynamics, stereo and tonal-balance meter for Mac and Windows. LUFS (M/S/I, ITU-R BS.1770-4), true peak, RMS, goniometer, a time-at-level histogram and a perceptual spectrum. VST3 / AU / Standalone.",
     "image": "https://audivea.com/og-metering.png",
     "url": "https://audivea.com/products/arcoline.html",
@@ -75,7 +75,7 @@
             <div class="prod-kicker">Metering &middot; by Audivea</div>
           </div>
         </div>
-        <span class="pill live"><span class="dot"></span>Available now &middot; <a href="../support/arcoline-changelog.html" style="color:inherit;">Version 1.1.0</a></span>
+        <span class="pill live"><span class="dot"></span>Available now &middot; <a href="../support/arcoline-changelog.html" style="color:inherit;">Version 1.1.5</a></span>
         <h1 class="prod-title">Everything you check before you deliver, in one <em>calm instrument</em>.</h1>
         <p class="prod-sub">A precision meter for loudness, true peak, dynamics, stereo image and tonal balance &mdash; with two views: <strong>Dive</strong> for a close look, <strong>Ascend</strong> for the at-a-glance verdict.</p>
         <div class="cta-row">
@@ -232,22 +232,26 @@
   <section class="band" id="download">
     <div class="wrap">
       <div class="prod-cta">
-        <span class="pill live"><span class="dot"></span>Available now &middot; <a href="../support/arcoline-changelog.html" style="color:inherit;">Version 1.1.0</a></span>
+        <span class="pill live"><span class="dot"></span>Available now &middot; <a href="../support/arcoline-changelog.html" style="color:inherit;">Version 1.1.5</a></span>
         <h2>Get Arcoline.</h2>
         <p>Free &mdash; a VST3 and AU plugin plus a standalone app, for macOS (universal, Intel &amp; Apple Silicon) and Windows.</p>
 
         <!-- Direct download (no gate). Each button fires a GA4 "download" event by OS;
              GitHub Releases also reports its own per-asset download_count. Both links are
-             pinned to the v1.1.0 release assets — when you cut a new version, update these
+             pinned to the v1.1.5 release assets — when you cut a new version, update these
              URLs (or rename the assets to version-less names and switch to
              /releases/latest/download/ so the links never need editing again). -->
         <div class="cta-row" style="justify-content:center;">
-          <a class="btn btn-primary arco-dl" data-os="macOS" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.1.0/Arcoline_1.1.0_Installer.pkg">Download for macOS</a>
-          <a class="btn btn-primary arco-dl" data-os="Windows" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.1.0/Arcoline_1.1.0_Setup.exe">Download for Windows</a>
+          <a class="btn btn-primary arco-dl" data-os="macOS" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.1.5/Arcoline_1.1.5_Installer.pkg">Download for macOS</a>
+          <a class="btn btn-primary arco-dl" data-os="Windows" href="https://github.com/Audivea/audivea.github.io/releases/download/v1.1.5/Arcoline_1.1.5_Setup.exe">Download for Windows</a>
         </div>
 
+        <!-- Gumroad mirror — same free build, pay-what-you-want if someone wants to
+             support development. The arco-dl class reuses the GA4 download tracking. -->
+        <p class="prod-alt">Prefer Gumroad? <a class="arco-dl" data-os="Gumroad" href="https://audivea.gumroad.com/l/arcoline" target="_blank" rel="noopener noreferrer">Get Arcoline on Gumroad</a> &mdash; the same free download, with the option to name a fair price if you'd like to support development.</p>
+
         <div class="spec-strip">
-          <div><div class="lab">Version</div><div class="val">1.1.0</div></div>
+          <div><div class="lab">Version</div><div class="val">1.1.5</div></div>
           <div><div class="lab">Formats</div><div class="val">VST3 &middot; AU &middot; Standalone</div></div>
           <div><div class="lab">Platform</div><div class="val">macOS &middot; Windows</div></div>
           <div><div class="lab">Price</div><div class="val">Free</div></div>
@@ -282,7 +286,7 @@
       // GA4 "download" event by OS (GitHub Releases also reports its own download_count).
       Array.prototype.forEach.call(document.querySelectorAll('.arco-dl'), function (a) {
         a.addEventListener('click', function () {
-          if (window.gtag) gtag('event', 'download', { os: a.getAttribute('data-os'), item: 'Arcoline 1.1.0' });
+          if (window.gtag) gtag('event', 'download', { os: a.getAttribute('data-os'), item: 'Arcoline 1.1.5' });
         });
       });
 
