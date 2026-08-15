@@ -67,11 +67,14 @@
         <!-- ===================== 1.1.5 ===================== -->
         <section id="v1-1-5">
           <h2>1.1.5 <span style="font-weight:400;color:var(--muted);font-size:.6em;">&mdash; August 15, 2026</span></h2>
-          <p>Fixes for the standalone app on macOS. The VST3/AU plugin is unchanged &mdash; if you only run Arcoline in a DAW, you don't need this update.</p>
+          <p>Bug fixes for the standalone app on both platforms, and for the plugin in hosts that never roll a transport. If you run Arcoline as a VST3 or AU inside a DAW with a normal transport, nothing changes for you.</p>
           <ul>
-            <li><strong>The standalone now measures.</strong> Integrated LUFS, RANGE, PLR, the max-holds, true-peak max and the history graph sat frozen in earlier builds. They run now. Live meters were never affected.</li>
-            <li><strong>Audio input works on macOS.</strong> The app couldn't ask for microphone permission, so it received silence and every meter read flat. macOS now prompts on first launch &mdash; allow it. Arcoline only reads that input to display metering; nothing is recorded or sent anywhere.</li>
+            <li><strong>The standalone now measures &mdash; Windows and macOS.</strong> Integrated LUFS, RANGE, PLR, the peak/RMS max-holds, true-peak max and its over-flag, and the history graph all sat frozen for the life of the session. The live meters &mdash; peak, RMS, correlation, balance, M/S, momentary and short-term LUFS &mdash; kept working, so the app read as a feature-limited build rather than a broken one. The cause: those measurements belong to a measurement session that follows the host transport, and the app mistook its own internal playhead for a DAW transport that never starts rolling, so the session never began.</li>
+            <li><strong>Same fix covers plugins in hosts with no rolling transport.</strong> A live-performance host such as GigPerformer reports a playhead that never rolls, which stalled the session the same way. Those measurements run now.</li>
+            <li><strong>Audio input works on macOS.</strong> The standalone shipped without the microphone usage declaration macOS requires, so the system silently refused every input request. It now declares it properly and macOS prompts on first launch &mdash; allow it. Arcoline reads that input only to display metering; nothing is recorded, stored or transmitted.</li>
+            <li><strong>The macOS installer no longer skips the standalone.</strong> If you already had a copy of Arcoline.app outside <code>/Applications/Audivea/</code>, the installer would quietly update that copy instead. It now always installs where it says it does.</li>
           </ul>
+          <p><strong>One thing worth knowing:</strong> with no transport to follow, the session now runs continuously &mdash; so signal you monitor before pressing play counts toward the reading, and <em>Auto-reset on play</em> is off by default, so it stays in when playback starts. Turn it on in <a href="arcoline-manual.html#settings" style="color:var(--cyan-l);">Settings</a> if you want each pass to start clean.</p>
         </section>
 
         <hr>
