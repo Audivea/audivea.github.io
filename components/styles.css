@@ -2484,6 +2484,12 @@ body.manual-page { overflow-x: clip; }
 .prod-secondary a { color: var(--cyan-l); text-decoration: none; }
 .prod-secondary a:hover { color: var(--cyan); }
 
+/* alternate channel note under the download buttons (e.g. Gumroad mirror).
+   Scoped under .prod-cta so it beats the band's `.prod-cta > p` base rule. */
+.prod-cta .prod-alt { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin: 28px auto 0; padding-top: 22px; border-top: 1px solid var(--hair); max-width: 460px; }
+.prod-cta .prod-alt a { color: var(--cyan-l); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(51, 207, 255, 0.35); transition: color 0.2s var(--ease-2), text-decoration-color 0.2s var(--ease-2); }
+.prod-cta .prod-alt a:hover { color: var(--cyan); text-decoration-color: currentColor; }
+
 /* fine-print legal note under the download (EULA + licenses, per product).
    Scoped under .prod-cta so it beats the band's `.prod-cta > p` base rule. */
 .prod-cta .prod-legal { font-size: 0.72rem; color: var(--faint); line-height: 1.5; margin: 22px auto 0; max-width: 460px; opacity: 0.8; }
