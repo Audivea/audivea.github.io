@@ -44,7 +44,7 @@
     "about": {
       "@type": "SoftwareApplication",
       "name": "Arcoline",
-      "softwareVersion": "1.1.0",
+      "softwareVersion": "1.1.5",
       "operatingSystem": "macOS, Windows",
       "url": "https://audivea.com/products/arcoline.html"
     },
@@ -63,6 +63,18 @@
       <p class="page-lede">What changed in each release, newest first. <a href="../products/arcoline.html#download" style="color:var(--cyan-l);">Download the latest version</a> or read the <a href="arcoline-manual.html" style="color:var(--cyan-l);">user manual</a>.</p>
 
       <article class="prose" style="margin-top:44px;">
+
+        <!-- ===================== 1.1.5 ===================== -->
+        <section id="v1-1-5">
+          <h2>1.1.5 <span style="font-weight:400;color:var(--muted);font-size:.6em;">&mdash; August 15, 2026</span></h2>
+          <p>Fixes for the standalone app on macOS. The VST3/AU plugin is unchanged &mdash; if you only run Arcoline in a DAW, you don't need this update.</p>
+          <ul>
+            <li><strong>The standalone now measures.</strong> Integrated LUFS, RANGE, PLR, the max-holds, true-peak max and the history graph sat frozen in earlier builds. They run now. Live meters were never affected.</li>
+            <li><strong>Audio input works on macOS.</strong> The app couldn't ask for microphone permission, so it received silence and every meter read flat. macOS now prompts on first launch &mdash; allow it. Arcoline only reads that input to display metering; nothing is recorded or sent anywhere.</li>
+          </ul>
+        </section>
+
+        <hr>
 
         <!-- ===================== 1.1.0 ===================== -->
         <section id="v1-1-0">
