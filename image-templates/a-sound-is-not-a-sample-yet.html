@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #07172f;
+  }
+
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #1a4ea0 0%, #0e3478 35%, #0a2755 65%, #07172f 100%);
+    overflow: hidden;
+  }
+
+  /* Soft vignette over the gradient */
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+
+  .diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <svg class="diagram" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Restrained glow for the transient -->
+        <filter id="curveGlow" x="-30%" y="-20%" width="160%" height="140%">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Soft glow for the boundary brackets -->
+        <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="5" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Selected waveform: cyan body, lifting slightly toward the centreline -->
+        <linearGradient id="waveGrad" gradientUnits="userSpaceOnUse" x1="0" y1="290" x2="0" y2="790">
+          <stop offset="0%"   stop-color="#6fd2ff"/>
+          <stop offset="50%"  stop-color="#a9e2ff"/>
+          <stop offset="100%" stop-color="#6fd2ff"/>
+        </linearGradient>
+        <!-- Selection zone tint -->
+        <linearGradient id="selGrad" gradientUnits="userSpaceOnUse" x1="0" y1="230" x2="0" y2="850">
+          <stop offset="0%"   stop-color="#5ecbff" stop-opacity="0.02"/>
+          <stop offset="50%"  stop-color="#5ecbff" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#5ecbff" stop-opacity="0.02"/>
+        </linearGradient>
+        <!-- Timeline gradient (fade at both ends), horizontal -->
+        <linearGradient id="lineGrad" gradientUnits="userSpaceOnUse" x1="76" y1="0" x2="1004" y2="0">
+          <stop offset="0%"   stop-color="#5ecbff" stop-opacity="0"/>
+          <stop offset="14%"  stop-color="#5ecbff" stop-opacity="0.38"/>
+          <stop offset="86%"  stop-color="#5ecbff" stop-opacity="0.38"/>
+          <stop offset="100%" stop-color="#5ecbff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- The chosen region: what the recording is being reduced to -->
+      <rect x="344" y="230" width="256" height="620" fill="url(#selGrad)"/>
+
+      <!-- Timeline: the whole recording runs edge to edge -->
+      <line x1="76" y1="540" x2="1004" y2="540" stroke="url(#lineGrad)" stroke-width="2"/>
+
+      <!-- Everything the take caught that the sample leaves behind -->
+      <g fill="#5ecbff" opacity="0.20">
+        <rect x="96" y="528.0" width="7" height="24.0" rx="3.5"/>
+        <rect x="108" y="518.8" width="7" height="42.4" rx="3.5"/>
+        <rect x="120" y="527.4" width="7" height="25.1" rx="3.5"/>
+        <rect x="132" y="522.4" width="7" height="35.2" rx="3.5"/>
+        <rect x="144" y="524.3" width="7" height="31.5" rx="3.5"/>
+        <rect x="156" y="523.5" width="7" height="33.1" rx="3.5"/>
+        <rect x="168" y="521.7" width="7" height="36.5" rx="3.5"/>
+        <rect x="180" y="526.3" width="7" height="27.3" rx="3.5"/>
+        <rect x="192" y="524.7" width="7" height="30.6" rx="3.5"/>
+        <rect x="204" y="522.6" width="7" height="34.8" rx="3.5"/>
+        <rect x="216" y="503.6" width="7" height="72.9" rx="3.5"/>
+        <rect x="228" y="502.3" width="7" height="75.3" rx="3.5"/>
+        <rect x="240" y="509.4" width="7" height="61.2" rx="3.5"/>
+        <rect x="252" y="518.0" width="7" height="43.9" rx="3.5"/>
+        <rect x="264" y="519.8" width="7" height="40.3" rx="3.5"/>
+        <rect x="276" y="523.6" width="7" height="32.8" rx="3.5"/>
+        <rect x="288" y="518.7" width="7" height="42.5" rx="3.5"/>
+        <rect x="300" y="523.7" width="7" height="32.7" rx="3.5"/>
+        <rect x="312" y="521.6" width="7" height="36.9" rx="3.5"/>
+        <rect x="324" y="524.8" width="7" height="30.5" rx="3.5"/>
+        <rect x="336" y="510.1" width="7" height="59.8" rx="3.5"/>
+        <rect x="348" y="495.6" width="7" height="88.7" rx="3.5"/>
+        <rect x="600" y="511.3" width="7" height="57.4" rx="3.5"/>
+        <rect x="612" y="514.7" width="7" height="50.5" rx="3.5"/>
+        <rect x="624" y="510.1" width="7" height="59.8" rx="3.5"/>
+        <rect x="636" y="509.6" width="7" height="60.8" rx="3.5"/>
+        <rect x="648" y="465.6" width="7" height="148.9" rx="3.5"/>
+        <rect x="660" y="419.9" width="7" height="240.2" rx="3.5"/>
+        <rect x="672" y="420.1" width="7" height="239.8" rx="3.5"/>
+        <rect x="684" y="440.0" width="7" height="199.9" rx="3.5"/>
+        <rect x="696" y="485.8" width="7" height="108.4" rx="3.5"/>
+        <rect x="708" y="487.8" width="7" height="104.4" rx="3.5"/>
+        <rect x="720" y="482.7" width="7" height="114.6" rx="3.5"/>
+        <rect x="732" y="494.8" width="7" height="90.3" rx="3.5"/>
+        <rect x="744" y="502.5" width="7" height="75.0" rx="3.5"/>
+        <rect x="756" y="500.5" width="7" height="79.0" rx="3.5"/>
+        <rect x="768" y="508.7" width="7" height="62.6" rx="3.5"/>
+        <rect x="780" y="513.8" width="7" height="52.5" rx="3.5"/>
+        <rect x="792" y="514.5" width="7" height="50.9" rx="3.5"/>
+        <rect x="804" y="528.4" width="7" height="23.1" rx="3.5"/>
+        <rect x="816" y="528.5" width="7" height="23.1" rx="3.5"/>
+        <rect x="828" y="529.3" width="7" height="21.5" rx="3.5"/>
+        <rect x="840" y="522.7" width="7" height="34.6" rx="3.5"/>
+        <rect x="852" y="529.8" width="7" height="20.3" rx="3.5"/>
+        <rect x="864" y="529.2" width="7" height="21.6" rx="3.5"/>
+        <rect x="876" y="529.3" width="7" height="21.4" rx="3.5"/>
+        <rect x="888" y="524.6" width="7" height="30.8" rx="3.5"/>
+        <rect x="900" y="527.8" width="7" height="24.3" rx="3.5"/>
+        <rect x="912" y="526.5" width="7" height="27.0" rx="3.5"/>
+        <rect x="924" y="527.0" width="7" height="25.9" rx="3.5"/>
+        <rect x="936" y="526.7" width="7" height="26.6" rx="3.5"/>
+        <rect x="948" y="525.4" width="7" height="29.1" rx="3.5"/>
+        <rect x="960" y="528.4" width="7" height="23.1" rx="3.5"/>
+        <rect x="972" y="529.7" width="7" height="20.5" rx="3.5"/>
+        <rect x="984" y="528.3" width="7" height="23.4" rx="3.5"/>
+      </g>
+
+      <!-- Inside the boundaries: the approach, the decay, the rattle -->
+      <g fill="url(#waveGrad)">
+        <rect x="360" y="479.6" width="7" height="120.9" rx="3.5"/>
+        <rect x="372" y="396.7" width="7" height="286.7" rx="3.5"/>
+        <rect x="420" y="416.5" width="7" height="247.1" rx="3.5"/>
+        <rect x="432" y="429.7" width="7" height="220.6" rx="3.5"/>
+        <rect x="444" y="437.2" width="7" height="205.7" rx="3.5"/>
+        <rect x="456" y="433.5" width="7" height="212.9" rx="3.5"/>
+        <rect x="468" y="457.1" width="7" height="165.8" rx="3.5"/>
+        <rect x="480" y="479.8" width="7" height="120.4" rx="3.5"/>
+        <rect x="492" y="484.5" width="7" height="111.1" rx="3.5"/>
+        <rect x="504" y="495.2" width="7" height="89.6" rx="3.5"/>
+        <rect x="516" y="493.2" width="7" height="93.7" rx="3.5"/>
+        <rect x="528" y="490.9" width="7" height="98.2" rx="3.5"/>
+        <rect x="540" y="495.7" width="7" height="88.5" rx="3.5"/>
+        <rect x="552" y="505.1" width="7" height="69.9" rx="3.5"/>
+        <rect x="564" y="503.2" width="7" height="73.5" rx="3.5"/>
+        <rect x="576" y="507.2" width="7" height="65.6" rx="3.5"/>
+        <rect x="588" y="504.6" width="7" height="70.9" rx="3.5"/>
+      </g>
+
+      <!-- The transient that made you press record -->
+      <g fill="url(#waveGrad)" filter="url(#curveGlow)">
+        <rect x="384" y="290.0" width="7" height="500.0" rx="3.5"/>
+        <rect x="396" y="336.0" width="7" height="408.0" rx="3.5"/>
+        <rect x="408" y="353.4" width="7" height="373.2" rx="3.5"/>
+      </g>
+
+      <!-- A second contact further along the same take: one recording, several assets -->
+      <g stroke="#5ecbff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+         stroke-dasharray="9 13" fill="none" opacity="0.42">
+        <path d="M 658 372 L 626 372 L 626 708 L 658 708"/>
+        <path d="M 766 372 L 798 372 L 798 708 L 766 708"/>
+      </g>
+
+      <!-- Selection boundaries: the decision itself -->
+      <g stroke="#ffd6c2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"
+         fill="none" filter="url(#dotGlow)" opacity="0.92">
+        <path d="M 384 240 L 344 240 L 344 840 L 384 840"/>
+        <path d="M 560 240 L 600 240 L 600 840 L 560 840"/>
+      </g>
+
+      <!-- Boundary handles on the centreline -->
+      <g fill="#ffd6c2" filter="url(#dotGlow)">
+        <circle cx="344" cy="540" r="8"/>
+        <circle cx="600" cy="540" r="8"/>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>
