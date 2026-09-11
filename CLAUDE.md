@@ -35,23 +35,37 @@ python3 tools/build-shots.py [capture-dir]   # see the script's docstring for th
 ## Architecture
 
 ### Shared Components (JS-injected)
-`components/header.js` and `components/footer.js` dynamically inject navigation and footer HTML into every page on `DOMContentLoaded`. Both are **path-aware** — they detect the page's directory depth and adjust relative links accordingly. Every HTML page must include `<script>` tags for both.
+`components/header.js` and `components/footer.js` build the navigation and footer on `DOMContentLoaded` and attach them to `<body>` directly — there are **no placeholder elements**. `header.js` creates a `<header class="site">` and calls `document.body.insertBefore(header, document.body.firstChild)`; `footer.js` creates a `<footer>` and calls `document.body.appendChild(footer)`. Don't add `<div id="header">`/`<div id="footer">` stubs; a plain HTML comment marks the spot for readers.
+
+Both are **path-aware** — they derive the page's directory depth from `window.location.pathname` (and drop the repo segment on `*.github.io`) to build the `../` prefix for every link, so the same script works at any depth.
+
+`components/bg-wave.js` is the third shared script: it draws the animated cyan waves into a `<canvas>` inside `.bg-fixed`, falling back to the static `BK.webp` when JS, canvas, or motion is unavailable. It is path-agnostic and must load after the other two.
+
+Every content page must include `<script>` tags for all three. The one exception is `products/metering.html`, a meta-refresh redirect stub preserving an old indexed URL.
 
 ### Single Global Stylesheet
-`components/styles.css` is the sole stylesheet (~1080 lines). It uses CSS custom properties defined in `:root` for theming:
+`components/styles.css` is the sole stylesheet (~2500 lines). It uses CSS custom properties defined in `:root` for theming:
 - Primary: `#00aaff` (cyan), with `--color-primary-light` and `--color-primary-dark` variants
 - Card backgrounds: `rgba(18, 18, 30, 0.8)` — dark translucent panels
 - Border: `rgba(0, 170, 255, 0.15)`
 - Content widths: 750px (narrow), 1000px (wide), 1200px (page max)
 
 ### Page Structure
-Every page follows this pattern:
+The `<head>` carries the SEO block (see below), the Google tag, the Manrope preconnect/stylesheet, `components/styles.css`, and the three component scripts. The `<body>` is then just:
 ```html
-<div class="bg-fixed"></div>  <!-- Fixed background image -->
-<div id="header"></div>       <!-- Injected by header.js -->
-<main>...</main>
-<div id="footer"></div>       <!-- Injected by footer.js -->
+<body>
+  <div class="bg-fixed"></div>   <!-- Background: bg-wave.js canvas over BK.webp -->
+  <!-- Header injected by header.js -->
+
+  <section class="band first">   <!-- `first`: 118px top padding, no top border -->
+    <div class="wrap">...</div>
+  </section>
+  <section class="band">...</section>
+
+  <!-- Footer injected by footer.js -->
+</body>
 ```
+Sections are `<section class="band">` wrapping `<div class="wrap">` — the site does **not** use `<main>`. Every interior page opens with `band first`; the homepage is the one exception, opening with `<section class="hero">` instead. The header and footer are absent from the source; the comments are only signposts.
 
 ### Routing
 Static file-based — no SPA routing. Pages live at:
@@ -67,7 +81,7 @@ Every page has: canonical URL, meta description, Open Graph tags, Twitter cards,
 - **Desktop-first** responsive design (not mobile-first)
 - Breakpoints: `768px`, `480px`
 - Class naming: descriptive, scoped by component (`.nav-`, `.hero-`, `.article-`, `.card-`, `.form-`)
-- Semantic HTML: `<main>`, `<section>`, `<article>`, `<nav>`
+- Semantic HTML: `<section>`, `<article>`, `<nav>`, `<header>`, `<footer>` (no `<main>` — see Page Structure)
 - Images: WebP format, lazy loading on cards (`loading="lazy"`)
 - Transitions: `0.2s ease` (via `--transition-speed`)
 - Focus states: `2px solid var(--color-primary)` outline
