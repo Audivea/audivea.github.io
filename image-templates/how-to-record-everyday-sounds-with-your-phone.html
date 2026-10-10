@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1080px;
+    overflow: hidden;
+    background: #07172f;
+  }
+
+  .canvas {
+    position: relative;
+    width: 1080px;
+    height: 1080px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 45%, #1a4ea0 0%, #0e3478 35%, #0a2755 65%, #07172f 100%);
+    overflow: hidden;
+  }
+
+  /* Soft vignette over the gradient */
+  .canvas::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 95% 80% at 50% 50%, transparent 55%, rgba(0,0,0,0.45) 100%);
+    pointer-events: none;
+  }
+
+  .diagram {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <svg class="diagram" viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Restrained glow for the teeth and phone outlines -->
+        <filter id="curveGlow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Soft glow for the source and the two microphone points -->
+        <filter id="dotGlow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="5" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <!-- Teeth: cyan body lifting toward the centreline -->
+        <linearGradient id="teethGrad" gradientUnits="userSpaceOnUse" x1="0" y1="780" x2="0" y2="820">
+          <stop offset="0%"   stop-color="#6fd2ff"/>
+          <stop offset="50%"  stop-color="#a9e2ff"/>
+          <stop offset="100%" stop-color="#6fd2ff"/>
+        </linearGradient>
+        <linearGradient id="phoneGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#6fd2ff"/>
+          <stop offset="100%" stop-color="#a9e2ff"/>
+        </linearGradient>
+        <!-- The zipper fades out at both ends, like the timelines in the series -->
+        <linearGradient id="zipFade" gradientUnits="userSpaceOnUse" x1="96" y1="0" x2="984" y2="0">
+          <stop offset="0%"   stop-color="#fff" stop-opacity="0"/>
+          <stop offset="16%"  stop-color="#fff" stop-opacity="1"/>
+          <stop offset="84%"  stop-color="#fff" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="zipMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1080">
+          <rect x="0" y="0" width="1080" height="1080" fill="url(#zipFade)"/>
+        </mask>
+        <!-- The rings stop short of the zipper so they read as sound in the air -->
+        <linearGradient id="ringFade" gradientUnits="userSpaceOnUse" x1="0" y1="690" x2="0" y2="748">
+          <stop offset="0%"   stop-color="#fff" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <mask id="ringMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1080" height="1080">
+          <rect x="0" y="0" width="1080" height="1080" fill="url(#ringFade)"/>
+        </mask>
+      </defs>
+
+      <!-- Sound spreading from the pull tab: the close phone sits inside the bright inner rings,
+           the distant one where they have thinned out -->
+      <g fill="none" stroke="#5ecbff" stroke-width="2" mask="url(#ringMask)">
+        <path d="M 420 800 A 120 120 0 0 1 660 800" stroke-opacity="0.55"/>
+        <path d="M 300 800 A 240 240 0 0 1 780 800" stroke-opacity="0.4"/>
+        <path d="M 180 800 A 360 360 0 0 1 900 800" stroke-opacity="0.28"/>
+        <path d="M 60 800 A 480 480 0 0 1 1020 800" stroke-opacity="0.19"/>
+        <path d="M -60 800 A 600 600 0 0 1 1140 800" stroke-opacity="0.12"/>
+        <path d="M -180 800 A 720 720 0 0 1 1260 800" stroke-opacity="0.07"/>
+      </g>
+
+      <!-- Where each phone points: back at the pull tab -->
+      <g stroke="#5ecbff" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="7 12" mask="url(#ringMask)">
+        <line x1="540" y1="800" x2="445" y2="635.5"/>
+        <line x1="540" y1="800" x2="790" y2="367"/>
+      </g>
+
+      <!-- THE ZIPPER - closed teeth on the left, the pull tab, open rows diverging on the right -->
+      <g mask="url(#zipMask)">
+        <!-- Tape -->
+        <g fill="#5ecbff" fill-opacity="0.08">
+          <rect x="96" y="752" width="408" height="28"/>
+          <rect x="96" y="820" width="408" height="28"/>
+          <rect x="576" y="752" width="408" height="28" transform="rotate(-8 576 780)"/>
+          <rect x="576" y="820" width="408" height="28" transform="rotate(8 576 820)"/>
+        </g>
+        <g stroke="#5ecbff" stroke-opacity="0.3" stroke-width="1.5">
+          <line x1="96" y1="752" x2="504" y2="752"/>
+          <line x1="96" y1="848" x2="504" y2="848"/>
+          <line x1="576" y1="752" x2="984" y2="752" transform="rotate(-8 576 780)"/>
+          <line x1="576" y1="848" x2="984" y2="848" transform="rotate(8 576 820)"/>
+        </g>
+        <!-- Closed: teeth from both tapes interlock across the centreline -->
+        <g fill="url(#teethGrad)" filter="url(#curveGlow)">
+        <rect x="112" y="780" width="9" height="24" rx="3"/>
+        <rect x="130" y="780" width="9" height="24" rx="3"/>
+        <rect x="148" y="780" width="9" height="24" rx="3"/>
+        <rect x="166" y="780" width="9" height="24" rx="3"/>
+        <rect x="184" y="780" width="9" height="24" rx="3"/>
+        <rect x="202" y="780" width="9" height="24" rx="3"/>
+        <rect x="220" y="780" width="9" height="24" rx="3"/>
+        <rect x="238" y="780" width="9" height="24" rx="3"/>
+        <rect x="256" y="780" width="9" height="24" rx="3"/>
+        <rect x="274" y="780" width="9" height="24" rx="3"/>
+        <rect x="292" y="780" width="9" height="24" rx="3"/>
+        <rect x="310" y="780" width="9" height="24" rx="3"/>
+        <rect x="328" y="780" width="9" height="24" rx="3"/>
+        <rect x="346" y="780" width="9" height="24" rx="3"/>
+        <rect x="364" y="780" width="9" height="24" rx="3"/>
+        <rect x="382" y="780" width="9" height="24" rx="3"/>
+        <rect x="400" y="780" width="9" height="24" rx="3"/>
+        <rect x="418" y="780" width="9" height="24" rx="3"/>
+        <rect x="436" y="780" width="9" height="24" rx="3"/>
+        <rect x="454" y="780" width="9" height="24" rx="3"/>
+        <rect x="472" y="780" width="9" height="24" rx="3"/>
+        <rect x="121" y="796" width="9" height="24" rx="3"/>
+        <rect x="139" y="796" width="9" height="24" rx="3"/>
+        <rect x="157" y="796" width="9" height="24" rx="3"/>
+        <rect x="175" y="796" width="9" height="24" rx="3"/>
+        <rect x="193" y="796" width="9" height="24" rx="3"/>
+        <rect x="211" y="796" width="9" height="24" rx="3"/>
+        <rect x="229" y="796" width="9" height="24" rx="3"/>
+        <rect x="247" y="796" width="9" height="24" rx="3"/>
+        <rect x="265" y="796" width="9" height="24" rx="3"/>
+        <rect x="283" y="796" width="9" height="24" rx="3"/>
+        <rect x="301" y="796" width="9" height="24" rx="3"/>
+        <rect x="319" y="796" width="9" height="24" rx="3"/>
+        <rect x="337" y="796" width="9" height="24" rx="3"/>
+        <rect x="355" y="796" width="9" height="24" rx="3"/>
+        <rect x="373" y="796" width="9" height="24" rx="3"/>
+        <rect x="391" y="796" width="9" height="24" rx="3"/>
+        <rect x="409" y="796" width="9" height="24" rx="3"/>
+        <rect x="427" y="796" width="9" height="24" rx="3"/>
+        <rect x="445" y="796" width="9" height="24" rx="3"/>
+        <rect x="463" y="796" width="9" height="24" rx="3"/>
+        <rect x="481" y="796" width="9" height="24" rx="3"/>
+        </g>
+        <!-- Open: the two rows part behind the slider -->
+        <g fill="#6fd2ff" fill-opacity="0.75" filter="url(#curveGlow)">
+          <g transform="rotate(-8 576 780)">
+          <rect x="584" y="780" width="9" height="18" rx="3"/>
+          <rect x="602" y="780" width="9" height="18" rx="3"/>
+          <rect x="620" y="780" width="9" height="18" rx="3"/>
+          <rect x="638" y="780" width="9" height="18" rx="3"/>
+          <rect x="656" y="780" width="9" height="18" rx="3"/>
+          <rect x="674" y="780" width="9" height="18" rx="3"/>
+          <rect x="692" y="780" width="9" height="18" rx="3"/>
+          <rect x="710" y="780" width="9" height="18" rx="3"/>
+          <rect x="728" y="780" width="9" height="18" rx="3"/>
+          <rect x="746" y="780" width="9" height="18" rx="3"/>
+          <rect x="764" y="780" width="9" height="18" rx="3"/>
+          <rect x="782" y="780" width="9" height="18" rx="3"/>
+          <rect x="800" y="780" width="9" height="18" rx="3"/>
+          <rect x="818" y="780" width="9" height="18" rx="3"/>
+          <rect x="836" y="780" width="9" height="18" rx="3"/>
+          <rect x="854" y="780" width="9" height="18" rx="3"/>
+          <rect x="872" y="780" width="9" height="18" rx="3"/>
+          <rect x="890" y="780" width="9" height="18" rx="3"/>
+          <rect x="908" y="780" width="9" height="18" rx="3"/>
+          <rect x="926" y="780" width="9" height="18" rx="3"/>
+          <rect x="944" y="780" width="9" height="18" rx="3"/>
+          <rect x="962" y="780" width="9" height="18" rx="3"/>
+          </g>
+          <g transform="rotate(8 576 820)">
+          <rect x="584" y="802" width="9" height="18" rx="3"/>
+          <rect x="602" y="802" width="9" height="18" rx="3"/>
+          <rect x="620" y="802" width="9" height="18" rx="3"/>
+          <rect x="638" y="802" width="9" height="18" rx="3"/>
+          <rect x="656" y="802" width="9" height="18" rx="3"/>
+          <rect x="674" y="802" width="9" height="18" rx="3"/>
+          <rect x="692" y="802" width="9" height="18" rx="3"/>
+          <rect x="710" y="802" width="9" height="18" rx="3"/>
+          <rect x="728" y="802" width="9" height="18" rx="3"/>
+          <rect x="746" y="802" width="9" height="18" rx="3"/>
+          <rect x="764" y="802" width="9" height="18" rx="3"/>
+          <rect x="782" y="802" width="9" height="18" rx="3"/>
+          <rect x="800" y="802" width="9" height="18" rx="3"/>
+          <rect x="818" y="802" width="9" height="18" rx="3"/>
+          <rect x="836" y="802" width="9" height="18" rx="3"/>
+          <rect x="854" y="802" width="9" height="18" rx="3"/>
+          <rect x="872" y="802" width="9" height="18" rx="3"/>
+          <rect x="890" y="802" width="9" height="18" rx="3"/>
+          <rect x="908" y="802" width="9" height="18" rx="3"/>
+          <rect x="926" y="802" width="9" height="18" rx="3"/>
+          <rect x="944" y="802" width="9" height="18" rx="3"/>
+          <rect x="962" y="802" width="9" height="18" rx="3"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- The slider and its pull tab, in the series' marker colour -->
+      <g stroke="#ffd6c2" fill="#0a2350" filter="url(#dotGlow)">
+        <rect x="504" y="768" width="72" height="64" rx="16" stroke-width="3"/>
+        <line x1="540" y1="832" x2="540" y2="842" stroke-width="3"/>
+        <rect x="526" y="842" width="28" height="66" rx="11" stroke-width="3"/>
+        <rect x="533" y="876" width="14" height="20" rx="5" stroke-width="2"/>
+      </g>
+
+      <!-- THE TWO RECORDING POSITIONS - same phone, same action, different distance -->
+      <g transform="translate(387 535) rotate(-30)" class="close">
+        <rect x="-56" y="-112" width="112" height="224" rx="20" fill="#081d42" fill-opacity="0.82"
+              stroke="url(#phoneGrad)" stroke-width="3" filter="url(#curveGlow)"/>
+        <line x1="-14" y1="-99" x2="14" y2="-99" stroke="#7fdcff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+        <g fill="#7fdcff" fill-opacity="0.85">
+          <circle cx="-10" cy="100" r="2.2"/>
+          <circle cx="0" cy="100" r="2.2"/>
+          <circle cx="10" cy="100" r="2.2"/>
+        </g>
+      </g>
+      <g transform="translate(848 266.5) rotate(30)" class="distant">
+        <rect x="-56" y="-112" width="112" height="224" rx="20" fill="#081d42" fill-opacity="0.82"
+              stroke="url(#phoneGrad)" stroke-width="3" filter="url(#curveGlow)"/>
+        <line x1="-14" y1="-99" x2="14" y2="-99" stroke="#7fdcff" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+        <g fill="#7fdcff" fill-opacity="0.85">
+          <circle cx="-10" cy="100" r="2.2"/>
+          <circle cx="0" cy="100" r="2.2"/>
+          <circle cx="10" cy="100" r="2.2"/>
+        </g>
+      </g>
+
+      <!-- The source and the two points that hear it -->
+      <g fill="#ffd6c2" filter="url(#dotGlow)" opacity="0.9">
+        <circle cx="540" cy="800" r="7"/>
+        <circle cx="445" cy="635.5" r="7"/>
+        <circle cx="790" cy="367" r="7"/>
+      </g>
+    </svg>
+  </div>
+</body>
+</html>
